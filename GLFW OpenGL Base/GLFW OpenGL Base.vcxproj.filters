@@ -81,9 +81,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameStateManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="states\GameState.cpp">
       <Filter>Source Files\states</Filter>
     </ClCompile>
@@ -135,9 +132,6 @@
       <Filter>Header Files\general</Filter>
     </ClInclude>
     <ClInclude Include="Game.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStateManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="states\GameState.hpp">

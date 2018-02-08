@@ -26,7 +26,7 @@ and remember to build dependencies with cmake in `lib` folder. Since BASS isn't 
 - [BASS](https://www.un4seen.com/)
 
 ## FAQ
-**Q: Why global `unique_ptr<Game>` and `unique_ptr<GameStateManager>`?**
+**Q: Why global `unique_ptr<Game>`?**
 
 *I know that's a dirty solution and I could (maybe should) use Singleton pattern design, but this solution is cheap and it works. I just don't like moving mountains just to follow some guidlines, if there is much easier way to do something, with little to no cost. Feel free to change it if you don't like it.*
 

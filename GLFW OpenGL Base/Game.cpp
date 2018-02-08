@@ -1,6 +1,5 @@
 #include "Game.hpp"
 #include "imgui/imgui_impl.h"
-#include "GameStateManager.hpp"
 #include "general/Settings.hpp"
 
 int SCREEN_WIDTH = 1280;
@@ -8,10 +7,6 @@ int SCREEN_HEIGHT = 720;
 
 float last_x = SCREEN_WIDTH / 2.0f;
 float last_y = SCREEN_HEIGHT / 2.0f;
-
-void framebuffer_size_callback (GLFWwindow* window, int width, int height);
-void mouse_callback (GLFWwindow* window, double xpos, double ypos);
-void key_callback (GLFWwindow* window, int key, int scancode, int action, int mods);
 
 Game::Game ()
 {
@@ -31,11 +26,11 @@ Game::~Game ()
 void Game::update ()
 {
 	glfwPollEvents ();
-	ImGui_impl_new_frame();
+	ImGui_impl_new_frame ();
 
 	set_volume (settings.music_volume);
 
-	gsm->update ();
+	game_state->update ();
 }
 
 void Game::render () const
@@ -43,7 +38,7 @@ void Game::render () const
 	glClearColor (0.2f, 0.3f, 0.3f, 1.0f);
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-	gsm->render ();
+	game_state->render ();
 
 	ImGui::Render ();
 
@@ -55,9 +50,14 @@ GLFWwindow* Game::get_window () const
 	return window;
 }
 
-void Game::set_volume(float volume)
+void Game::set_volume (float volume)
 {
-	BASS_SetVolume(volume);
+	BASS_SetVolume (volume);
+}
+
+shared_ptr<GameState> Game::get_game_state() const
+{
+	return game_state;
 }
 
 void Game::init_opengl ()
@@ -123,12 +123,12 @@ void Game::init_audio () const
 		throw runtime_error (std::to_string (BASS_ErrorGetCode ()));
 }
 
-void Game::log_error(int error, const char* description)
+void Game::log_error (int error, const char* description)
 {
 	std::cout << description << "(" << error << ")" << std::endl;
 }
 
-static void framebuffer_size_callback (GLFWwindow* window, const int width, const int height)
+void Game::framebuffer_size_callback (GLFWwindow* window, const int width, const int height)
 {
 	// make sure the viewport matches the new window dimensions; note that width and 
 	// height will be significantly larger than specified on retina displays.
@@ -137,7 +137,7 @@ static void framebuffer_size_callback (GLFWwindow* window, const int width, cons
 	SCREEN_HEIGHT = height;
 }
 
-static void mouse_callback (GLFWwindow* window, double xpos, double ypos)
+void Game::mouse_callback (GLFWwindow* window, double xpos, double ypos)
 {
 	const float x_offset = xpos - last_x;
 	const float y_offset = last_y - ypos; // reversed since y-coordinates go from bottom to top
@@ -146,10 +146,10 @@ static void mouse_callback (GLFWwindow* window, double xpos, double ypos)
 	last_y = ypos;
 
 	if (!settings.ui_open)
-		gsm->update (x_offset, y_offset);
+		game->get_game_state ()->update (x_offset, y_offset);
 }
 
-static void key_callback (GLFWwindow* window, int key, int scancode, int action, int mods)
+void Game::key_callback (GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	gsm->update (key, scancode, action, mods);
+	game->get_game_state ()->update (key, scancode, action, mods);
 }

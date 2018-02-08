@@ -1,6 +1,5 @@
 #pragma once
 #include "../Common.hpp"
-#include "../GameStateManager.hpp"
 #include "../general/Camera.hpp"
 #include "../general/Shader.hpp"
 

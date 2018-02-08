@@ -1,12 +1,12 @@
 #include "Game.hpp"
-#include "GameStateManager.hpp"
+#include "states/ExampleState.hpp"
 
 int main (int argc, char* argv[])
 {
 	try
 	{
 		game = make_unique<Game> ();
-		gsm = make_unique<GameStateManager> ();
+		game->set_game_state<ExampleState>();
 
 		const auto window = game->get_window ();
 
