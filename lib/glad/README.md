@@ -1,1 +1,1 @@
-# Basic GLAD setup generated via (website)[http://glad.dav1d.de/]
+# Basic GLAD setup generated via [website](http://glad.dav1d.de)

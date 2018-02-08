@@ -1,7 +1,7 @@
 # GLFW OpenGL Base
 Base Project structure for OpenGL + GLFW. Clone with
 `git clone --recursive https://github.com/BonusPlay/GLFW-OpenGL-Base.git`
-and remember to build dependencies with cmake in `lib` folder. Press ` (tilde) in game to view UI. Feel free to use/contribute.
+and remember to build dependencies with cmake in `lib` folder. Since BASS isn't open source I didn't include it in the repo, but if you want to use it just unzip it into the `lib/bass` folder. Press ` (tilde) in game to view UI. Feel free to use/contribute.
 
 ## Features
 -[x] Multiplatform (Windows, Linux, macOS)
