@@ -12,6 +12,11 @@ public:
 	float get_progress () const;
 	int get_position () const;
 	string get_name () const;
+	
+	void update () const;
+	
+	// public for imgui binding
+	float volume = 1.0f;
 
 private:
 	string name;

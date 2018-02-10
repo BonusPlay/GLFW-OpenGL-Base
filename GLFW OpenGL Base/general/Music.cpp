@@ -33,6 +33,19 @@ string Music::get_name() const
 	return name;
 }
 
+void Music::update () const
+{
+	float current_volume;
+	BASS_ChannelGetAttribute (music, BASS_ATTRIB_VOL, &current_volume);
+	check_errors ();
+
+	if (current_volume != volume)
+	{
+		BASS_ChannelSetAttribute (music, BASS_ATTRIB_VOL, volume);
+		check_errors ();
+	}
+}
+
 void Music::check_errors () const
 {
 	if (BASS_ErrorGetCode () != BASS_OK)

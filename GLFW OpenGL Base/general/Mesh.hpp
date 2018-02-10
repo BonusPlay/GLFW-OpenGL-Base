@@ -8,7 +8,7 @@ class Mesh
 {
 public:
 	Mesh (vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
-	//~Mesh(); BUG: declaring deconstructor breaks a lot of stuff
+	~Mesh();
 
 	void draw (shared_ptr<Shader> shader);
 

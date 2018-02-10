@@ -41,12 +41,13 @@ Mesh::Mesh (vector<Vertex> vertices, vector<unsigned> indices, vector<Texture> t
 	glBindVertexArray (0);
 }
 
-//Mesh::~Mesh()
-//{
-//	glDeleteVertexArrays(1, &VAO);
-//	glDeleteBuffers(1, &VBO);
-//	glDeleteBuffers(1, &EBO);
-//}
+Mesh::~Mesh()
+{
+	// BUG: figure out why this crashes
+	//glDeleteVertexArrays(1, &VAO);
+	//glDeleteBuffers(1, &VBO);
+	//glDeleteBuffers(1, &EBO);
+}
 
 void Mesh::draw (shared_ptr<Shader> shader)
 {
