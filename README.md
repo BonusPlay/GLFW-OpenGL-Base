@@ -12,7 +12,7 @@ and remember to build dependencies with cmake in `lib` folder. Since BASS isn't 
 - [x] Shader
 - [x] dear ImGui ❤️
 - [x] Fontawesome, Material Design icons
-- [x] Multithreading (single-threaded branch [here](https://raw.githubusercontent.com/BonusPlay/GLFW-OpenGL-Base/tree/single-threaded))
+- [ ] Multithreading
 - [ ] Tests
 - [ ] x64 configuration
 - [ ] Dictionary for resources (unsure yet)
@@ -25,6 +25,13 @@ and remember to build dependencies with cmake in `lib` folder. Since BASS isn't 
 - [assimp](https://github.com/assimp/assimp)
 - [imgui](https://github.com/ocornut/imgui)
 - [BASS](https://www.un4seen.com/)
+- Icon fonts: [Font Awesome](https://github.com/FortAwesome/Font-Awesome), [Material Design Icons](https://github.com/google/material-design-icons), [Kenney](http://kenney.nl/assets/game-icons)
+
+## Multithreaded architecture
+Application is divided into 3 threads:
+- main - the only thread that can invoke some GLFW functions (like [`glfwGetCursorPos`](http://www.glfw.org/docs/latest/group__input.html#ga01d37b6c40133676b9cea60ca1d7c0cc)).
+- backend - updates world independently from other threads
+- frontend - renders the world it has *as it is* (that means that world can update mid-render). This is also the only thread that can run OpenGL functions (since it has OpenGL context)
 
 ## FAQ
 **Q: Why global `unique_ptr<Game>`?**
