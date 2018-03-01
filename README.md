@@ -12,7 +12,7 @@ and remember to build dependencies with cmake in `lib` folder. Since BASS isn't 
 - [x] Shader
 - [x] dear ImGui ❤️
 - [x] Fontawesome, Material Design icons
-- [ ] Multithreading
+- [x] Multithreading (single-threaded branch [here](https://raw.githubusercontent.com/BonusPlay/GLFW-OpenGL-Base/tree/single-threaded))
 - [ ] Tests
 - [ ] x64 configuration
 - [ ] Dictionary for resources (unsure yet)
