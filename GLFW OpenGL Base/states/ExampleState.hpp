@@ -9,7 +9,7 @@ class ExampleState : public GameState
 {
 public:
 	ExampleState ();
-	~ExampleState () override;
+	~ExampleState () = default;
 
 	void render () override;
 	void update () override;

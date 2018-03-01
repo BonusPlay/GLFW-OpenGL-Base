@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include "imgui/imgui_impl.h"
 #include "general/Settings.hpp"
+#include "imgui/fonts.hpp"
 
 int SCREEN_WIDTH = 1280;
 int SCREEN_HEIGHT = 720;
@@ -107,6 +108,8 @@ void Game::init_ui () const
 	// ImGui_impl handles creating and destroying context
 	ImGui_impl_init (window, false);
 	ImGui::StyleColorsDark ();
+
+	Fonts::init();
 }
 
 void Game::init_audio () const

@@ -139,6 +139,10 @@ xcopy /I /Y "$(SolutionDir)lib\bass\c\*.dll" "$(outDir)"</Command>
     <ClInclude Include="general\Shader.hpp" />
     <ClInclude Include="general\Texture.hpp" />
     <ClInclude Include="general\Vertex.hpp" />
+    <ClInclude Include="imgui\fonts.hpp" />
+    <ClInclude Include="imgui\font_awesome.hpp" />
+    <ClInclude Include="imgui\font_kenney.hpp" />
+    <ClInclude Include="imgui\font_material_design.hpp" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui_impl.h" />
     <ClInclude Include="states\ExampleState.hpp" />
