@@ -2,8 +2,12 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
-#include "Game.hpp"
-#include "general/Settings.hpp"
 
-Settings settings;
+#include "Game.hpp"
 unique_ptr<Game> game;
+
+#include "general/Settings.hpp"
+Settings settings;
+
+#include "general/SharedData.hpp"
+SharedData shared;

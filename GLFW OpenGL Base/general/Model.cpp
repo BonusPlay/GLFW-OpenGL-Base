@@ -3,31 +3,31 @@
 /**
  * \throws runtime_error Failed to load model
  */
-Model::Model (const string& file)
+Model::Model(const string& file)
 	: GameObject()
 {
 	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile (file, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+	const aiScene* scene = importer.ReadFile(file, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
 	// check for errors
 	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
-		throw runtime_error ("Failed to load model '" + file + "'");
+		throw runtime_error("Failed to load model '" + file + "'");
 
 	// retrieve the directory path of the filepath
-	directory = file.substr (0, file.find_last_of (PATH_SEP));
+	directory = file.substr(0, file.find_last_of(PATH_SEP));
 
-	process_node (scene->mRootNode, scene);
+	process_node(scene->mRootNode, scene);
 }
 
-void Model::draw (shared_ptr<Shader> shader)
+void Model::draw(shared_ptr<Shader> shader)
 {
 	GameObject::draw(shader);
 
 	for (auto &mesh : meshes)
-		mesh.draw (shader);
+		mesh.draw(shader);
 }
 
-void Model::process_node (aiNode* node, const aiScene* scene)
+void Model::process_node(aiNode* node, const aiScene* scene)
 {
 	// process each mesh located at the current node
 	for (unsigned int i = 0; i < node->mNumMeshes; i++)
@@ -35,15 +35,15 @@ void Model::process_node (aiNode* node, const aiScene* scene)
 		// the node object only contains indices to index the actual objects in the scene. 
 		// the scene contains all the data, node is just to keep stuff organized (like relations between nodes).
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-		meshes.push_back (process_mesh (mesh, scene));
+		meshes.push_back(process_mesh(mesh, scene));
 	}
 
 	// after we've processed all of the meshes (if any) we then recursively process each of the children nodes
 	for (unsigned int i = 0; i < node->mNumChildren; i++)
-		process_node (node->mChildren[i], scene);
+		process_node(node->mChildren[i], scene);
 }
 
-Mesh Model::process_mesh (aiMesh* mesh, const aiScene* scene)
+Mesh Model::process_mesh(aiMesh* mesh, const aiScene* scene)
 {
 	// data to fill
 	vector<Vertex> vertices;
@@ -79,7 +79,7 @@ Mesh Model::process_mesh (aiMesh* mesh, const aiScene* scene)
 			vertex.tex_coords = vec;
 		}
 		else
-			vertex.tex_coords = glm::vec2 (0.0f, 0.0f);
+			vertex.tex_coords = glm::vec2(0.0f, 0.0f);
 
 		// tangent
 		vector.x = mesh->mTangents[i].x;
@@ -93,7 +93,7 @@ Mesh Model::process_mesh (aiMesh* mesh, const aiScene* scene)
 		vector.z = mesh->mBitangents[i].z;
 		vertex.bitangent = vector;
 
-		vertices.push_back (vertex);
+		vertices.push_back(vertex);
 	}
 
 	// now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
@@ -102,7 +102,7 @@ Mesh Model::process_mesh (aiMesh* mesh, const aiScene* scene)
 		aiFace face = mesh->mFaces[i];
 		// retrieve all indices of the face and store them in the indices vector
 		for (unsigned int j = 0; j < face.mNumIndices; j++)
-			indices.push_back (face.mIndices[j]);
+			indices.push_back(face.mIndices[j]);
 	}
 
 	// process materials
@@ -115,45 +115,45 @@ Mesh Model::process_mesh (aiMesh* mesh, const aiScene* scene)
 	// normal: texture_normal_N
 
 	// 1. diffuse maps
-	vector<Texture> diffuseMaps = load_material_textures (material, aiTextureType_DIFFUSE);
-	textures.insert (textures.end (), diffuseMaps.begin (), diffuseMaps.end ());
+	vector<Texture> diffuseMaps = load_material_textures(material, aiTextureType_DIFFUSE);
+	textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
 	// 2. specular maps
-	vector<Texture> specularMaps = load_material_textures (material, aiTextureType_SPECULAR);
-	textures.insert (textures.end (), specularMaps.begin (), specularMaps.end ());
+	vector<Texture> specularMaps = load_material_textures(material, aiTextureType_SPECULAR);
+	textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
 	// 3. normal maps
-	vector<Texture> normalMaps = load_material_textures (material, aiTextureType_HEIGHT);
-	textures.insert (textures.end (), normalMaps.begin (), normalMaps.end ());
+	vector<Texture> normalMaps = load_material_textures(material, aiTextureType_HEIGHT);
+	textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 
 	// 4. height maps
-	vector<Texture> heightMaps = load_material_textures (material, aiTextureType_AMBIENT);
-	textures.insert (textures.end (), heightMaps.begin (), heightMaps.end ());
+	vector<Texture> heightMaps = load_material_textures(material, aiTextureType_AMBIENT);
+	textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
 	// return a mesh object created from the extracted mesh data
-	return Mesh (vertices, indices, textures);
+	return Mesh(vertices, indices, textures);
 }
 
-vector<Texture> Model::load_material_textures (aiMaterial* mat, aiTextureType type)
+vector<Texture> Model::load_material_textures(aiMaterial* mat, aiTextureType type)
 {
 	vector<Texture> textures;
 
-	for (unsigned int i = 0; i < mat->GetTextureCount (type); i++)
+	for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
 	{
 		aiString str;
-		mat->GetTexture (type, i, &str);
+		mat->GetTexture(type, i, &str);
 
 		// check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
 		bool skip = false;
 
 		for (auto &texture : textures_loaded)
 		{
-			string path = texture.get_path ();
+			string path = texture.get_path();
 			path = path.substr(path.find_last_of(PATH_SEP) + 1, path.size());
 
-			if (std::strcmp (path.c_str(), str.C_Str ()) == 0)
+			if (std::strcmp(path.c_str(), str.C_Str()) == 0)
 			{
-				textures.push_back (texture);
+				textures.push_back(texture);
 				skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
 				break;
 			}
@@ -161,9 +161,9 @@ vector<Texture> Model::load_material_textures (aiMaterial* mat, aiTextureType ty
 
 		if (!skip)
 		{   // if texture hasn't been loaded already, load it
-			const Texture texture (this->directory + PATH_SEP + str.C_Str (), type);
-			textures.push_back (texture);
-			textures_loaded.push_back (texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
+			const Texture texture(this->directory + PATH_SEP + str.C_Str(), type);
+			textures.push_back(texture);
+			textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
 		}
 	}
 	return textures;

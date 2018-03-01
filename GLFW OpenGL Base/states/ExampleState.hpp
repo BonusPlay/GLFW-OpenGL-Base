@@ -8,12 +8,12 @@
 class ExampleState : public GameState
 {
 public:
-	ExampleState ();
-	~ExampleState () override;
+	ExampleState();
+	~ExampleState() = default;
 
-	void render () override;
-	void update () override;
-	void update (int key, int scancode, int action, int mods) override;
+	void render() override;
+	void update() override;
+	void update(int key, int scancode, int action, int mods) override;
 
 private:
 	shared_ptr<Music> music;
@@ -21,6 +21,6 @@ private:
 	shared_ptr<Shader> shader_skybox;
 	shared_ptr<CubeMap> skybox;
 
-	void load () override;
-	void render_music_menu () const;
+	void load() override;
+	void render_music_menu() const;
 };

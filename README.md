@@ -11,6 +11,7 @@ and remember to build dependencies with cmake in `lib` folder. Since BASS isn't 
 - [x] 3d Models
 - [x] Shader
 - [x] dear ImGui ❤️
+- [x] Fontawesome, Material Design icons
 - [ ] Multithreading
 - [ ] Tests
 - [ ] x64 configuration

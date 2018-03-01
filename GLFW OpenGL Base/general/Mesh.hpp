@@ -7,10 +7,10 @@
 class Mesh
 {
 public:
-	Mesh (vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
+	Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
 	~Mesh();
 
-	void draw (shared_ptr<Shader> shader);
+	void draw(shared_ptr<Shader> shader);
 
 private:
 	unsigned int VAO, VBO, EBO;

@@ -9,6 +9,9 @@
 #include <thread>
 #include <map>
 #include <fstream>
+#include <atomic>
+#include <mutex>
+#include <condition_variable>
 
 // GLAD + GLFW
 #include <glad.h>
@@ -53,12 +56,17 @@ using std::pair;
 using std::make_pair;
 using std::runtime_error;
 using std::error_code;
+using std::mutex;
+using std::condition_variable;
+using std::atomic;
+using std::unique_lock;
+using std::scoped_lock;
 
 #define GET_VARIABLE_NAME(Variable) (#Variable)
 
 #ifdef _WIN32
-	//const char PATH_SEP = '\\'; TODO: fully implement windows path
-	const char PATH_SEP = '/';
+//const char PATH_SEP = '\\'; TODO: fully implement windows path
+const char PATH_SEP = '/';
 #else
-	const char PATH_SEP = '/';
+const char PATH_SEP = '/';
 #endif

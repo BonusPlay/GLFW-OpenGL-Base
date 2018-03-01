@@ -34,6 +34,12 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{58f946d1-f8d0-41e5-bae5-411dc305d67e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\threads">
+      <UniqueIdentifier>{d2e2b832-ca69-4b22-9073-8138e33da9b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\threads">
+      <UniqueIdentifier>{f7ccf99f-dbee-4311-a2d9-489d41216774}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -90,6 +96,15 @@
     <ClCompile Include="utils\glad.c">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="threads\Backend.cpp">
+      <Filter>Source Files\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\Frontend.cpp">
+      <Filter>Source Files\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="states\LoadState.cpp">
+      <Filter>Source Files\states</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -138,6 +153,30 @@
       <Filter>Header Files\states</Filter>
     </ClInclude>
     <ClInclude Include="states\ExampleState.hpp">
+      <Filter>Header Files\states</Filter>
+    </ClInclude>
+    <ClInclude Include="general\SharedData.hpp">
+      <Filter>Header Files\general</Filter>
+    </ClInclude>
+    <ClInclude Include="threads\Backend.hpp">
+      <Filter>Header Files\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="threads\Frontend.hpp">
+      <Filter>Header Files\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\fonts.hpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\font_awesome.hpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\font_kenney.hpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\font_material_design.hpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="states\LoadState.hpp">
       <Filter>Header Files\states</Filter>
     </ClInclude>
   </ItemGroup>

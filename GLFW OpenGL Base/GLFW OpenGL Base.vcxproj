@@ -66,7 +66,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc140-mt.lib;bass.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\bass\c;$(SolutionDir)lib\assimp\lib\$(Configuration);$(SolutionDir)lib\glfw\src\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -124,6 +124,9 @@ xcopy /I /Y "$(SolutionDir)lib\bass\c\*.dll" "$(outDir)"</Command>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="states\ExampleState.cpp" />
     <ClCompile Include="states\GameState.cpp" />
+    <ClCompile Include="states\LoadState.cpp" />
+    <ClCompile Include="threads\Backend.cpp" />
+    <ClCompile Include="threads\Frontend.cpp" />
     <ClCompile Include="utils\glad.c" />
   </ItemGroup>
   <ItemGroup>
@@ -137,12 +140,20 @@ xcopy /I /Y "$(SolutionDir)lib\bass\c\*.dll" "$(outDir)"</Command>
     <ClInclude Include="general\Music.hpp" />
     <ClInclude Include="general\Settings.hpp" />
     <ClInclude Include="general\Shader.hpp" />
+    <ClInclude Include="general\SharedData.hpp" />
     <ClInclude Include="general\Texture.hpp" />
     <ClInclude Include="general\Vertex.hpp" />
+    <ClInclude Include="imgui\fonts.hpp" />
+    <ClInclude Include="imgui\font_awesome.hpp" />
+    <ClInclude Include="imgui\font_kenney.hpp" />
+    <ClInclude Include="imgui\font_material_design.hpp" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui_impl.h" />
     <ClInclude Include="states\ExampleState.hpp" />
     <ClInclude Include="states\GameState.hpp" />
+    <ClInclude Include="states\LoadState.hpp" />
+    <ClInclude Include="threads\Backend.hpp" />
+    <ClInclude Include="threads\Frontend.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

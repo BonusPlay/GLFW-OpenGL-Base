@@ -5,11 +5,11 @@
 class CubeMap
 {
 public:
-	CubeMap (string name);
+	CubeMap(string name);
 	~CubeMap();
-	unsigned int get_ID () const;
+	unsigned int get_id() const;
 
-	void draw (shared_ptr<Shader> shader);
+	void draw(shared_ptr<Shader> shader);
 
 private:
 	unsigned int ID;
