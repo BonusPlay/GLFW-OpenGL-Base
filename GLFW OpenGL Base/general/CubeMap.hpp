@@ -9,9 +9,9 @@ public:
 	~CubeMap();
 	unsigned int get_id() const;
 
-	void draw(shared_ptr<Shader> shader);
+	void draw(shared_ptr<Shader> shader) const;
 
 private:
 	unsigned int ID;
-	unsigned int VAO, VBO;
+	unsigned int VAO, VBO, EBO;
 };

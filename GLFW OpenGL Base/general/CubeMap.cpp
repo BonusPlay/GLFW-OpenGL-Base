@@ -107,7 +107,7 @@ unsigned int CubeMap::get_id() const
 	return ID;
 }
 
-void CubeMap::draw(shared_ptr<Shader> shader)
+void CubeMap::draw(shared_ptr<Shader> shader) const
 {
 	glDepthFunc(GL_LEQUAL);
 	shader->use();

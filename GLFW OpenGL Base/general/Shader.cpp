@@ -11,20 +11,13 @@
  */
 Shader::Shader(string v_shader_path, string f_shader_path)
 {
-	try
-	{
-		string v_shader_code = v_shader_load("res/shaders/" + v_shader_path + ".vert");
-		string f_shader_code = f_shader_load("res/shaders/" + f_shader_path + ".frag");
+	string v_shader_code = v_shader_load("res/shaders/" + v_shader_path + ".vert");
+	string f_shader_code = f_shader_load("res/shaders/" + f_shader_path + ".frag");
 
-		v_shader_compile(v_shader_code.c_str());
-		f_shader_compile(f_shader_code.c_str());
+	v_shader_compile(v_shader_code.c_str());
+	f_shader_compile(f_shader_code.c_str());
 
-		create_shader_program();
-	}
-	catch (exception& e)
-	{
-		throw e;
-	}
+	create_shader_program();
 }
 
 Shader::~Shader()
