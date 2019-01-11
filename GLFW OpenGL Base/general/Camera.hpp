@@ -15,18 +15,4 @@ public:
 private:
 	// Calculates the front vector from the Camera's (updated) Eular Angles
 	void update_camera_vectors();
-
-	// Camera Attributes
-	glm::vec3 Front = glm::vec3(0.0f, 0.0f, -1.0f);
-	glm::vec3 Up;
-	glm::vec3 Right;
-	glm::vec3 WorldUp;
-
-	// Eular Angles
-	float Yaw;
-	float Pitch;
-
-	// Camera options
-	float MovementSpeed = 2.5f;
-	float MouseSensitivity = 0.1f;
 };

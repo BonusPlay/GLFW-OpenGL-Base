@@ -31,7 +31,7 @@ public:
 
 private:
 	string name;
-	HMUSIC music;
+	HMUSIC data;
 	high_resolution_clock::time_point start_time;
 
 	void check_errors() const;

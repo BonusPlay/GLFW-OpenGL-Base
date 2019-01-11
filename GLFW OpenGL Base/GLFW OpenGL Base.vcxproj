@@ -56,13 +56,14 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\stb;$(SolutionDir)lib\assimp\include;$(SolutionDir)lib\glad;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glm;$(SolutionDir)lib\bass\c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\stb;$(SolutionDir)lib\assimp\include;$(SolutionDir)lib\glad;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glm;$(SolutionDir)lib\bass\c;$(SolutionDir)lib\cglm\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>
+      </LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Common.hpp</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Common.hpp</ForcedIncludeFiles>
-      <EnableModules>true</EnableModules>
-      <CompileAs>CompileAsCpp</CompileAs>
+      <EnableModules>false</EnableModules>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc140-mt.lib;bass.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -84,12 +85,13 @@ xcopy /I /Y "$(SolutionDir)lib\bass\c\*.dll" "$(outDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\stb;$(SolutionDir)lib\assimp\include;$(SolutionDir)lib\glad;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glm;$(SolutionDir)lib\bass\c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>
+      </LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Common.hpp</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Common.hpp</ForcedIncludeFiles>
-      <EnableModules>true</EnableModules>
-      <CompileAs>CompileAsCpp</CompileAs>
+      <EnableModules>false</EnableModules>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -108,19 +110,30 @@ xcopy /I /Y "$(SolutionDir)lib\bass\c\*.dll" "$(outDir)"</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Game.c" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="general\Camera.c" />
     <ClCompile Include="general\Camera.cpp" />
+    <ClCompile Include="general\Cubemap.c" />
     <ClCompile Include="general\CubeMap.cpp" />
+    <ClCompile Include="general\GameObject.c" />
     <ClCompile Include="general\GameObject.cpp" />
+    <ClCompile Include="general\Mesh.c" />
     <ClCompile Include="general\Mesh.cpp" />
+    <ClCompile Include="general\Model.c" />
     <ClCompile Include="general\Model.cpp" />
+    <ClCompile Include="general\Music.c" />
     <ClCompile Include="general\Music.cpp" />
+    <ClCompile Include="general\Settings.c" />
+    <ClCompile Include="general\Shader.c" />
     <ClCompile Include="general\Shader.cpp" />
+    <ClCompile Include="general\Texture.c" />
     <ClCompile Include="general\Texture.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
     <ClCompile Include="imgui\imgui_impl.cpp" />
+    <ClCompile Include="Main.c" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="states\ExampleState.cpp" />
     <ClCompile Include="states\GameState.cpp" />
@@ -128,20 +141,31 @@ xcopy /I /Y "$(SolutionDir)lib\bass\c\*.dll" "$(outDir)"</Command>
     <ClCompile Include="threads\Backend.cpp" />
     <ClCompile Include="threads\Frontend.cpp" />
     <ClCompile Include="utils\glad.c" />
+    <ClCompile Include="utils\Vector.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="general\Camera.h" />
     <ClInclude Include="general\Camera.hpp" />
+    <ClInclude Include="general\Cubemap.h" />
     <ClInclude Include="general\CubeMap.hpp" />
+    <ClInclude Include="general\GameObject.h" />
     <ClInclude Include="general\GameObject.hpp" />
+    <ClInclude Include="general\Mesh.h" />
     <ClInclude Include="general\Mesh.hpp" />
+    <ClInclude Include="general\Model.h" />
     <ClInclude Include="general\Model.hpp" />
+    <ClInclude Include="general\Music.h" />
     <ClInclude Include="general\Music.hpp" />
+    <ClInclude Include="general\Settings.h" />
     <ClInclude Include="general\Settings.hpp" />
+    <ClInclude Include="general\Shader.h" />
     <ClInclude Include="general\Shader.hpp" />
-    <ClInclude Include="general\SharedData.hpp" />
+    <ClInclude Include="general\Texture.h" />
     <ClInclude Include="general\Texture.hpp" />
+    <ClInclude Include="general\Vertex.h" />
     <ClInclude Include="general\Vertex.hpp" />
     <ClInclude Include="imgui\fonts.hpp" />
     <ClInclude Include="imgui\font_awesome.hpp" />
@@ -154,6 +178,7 @@ xcopy /I /Y "$(SolutionDir)lib\bass\c\*.dll" "$(outDir)"</Command>
     <ClInclude Include="states\LoadState.hpp" />
     <ClInclude Include="threads\Backend.hpp" />
     <ClInclude Include="threads\Frontend.hpp" />
+    <ClInclude Include="utils\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
