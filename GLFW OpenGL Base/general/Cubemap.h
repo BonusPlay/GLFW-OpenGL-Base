@@ -8,6 +8,6 @@ typedef struct
 } CubeMap;
 
 CubeMap* CubeMap_Ctor(const char* name);
-void CubeMap_DCtor(CubeMap* cubeMap);
+void CubeMap_DCtor(CubeMap* c);
 
-void CubeMap_draw(CubeMap* cubeMap, Shader* shader);
+void CubeMap_Draw(CubeMap* c, Shader* shader);

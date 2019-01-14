@@ -20,10 +20,12 @@ typedef struct
 	float MouseSensitivity;
 } Camera;
 
-Camera* Camera_Ctor(vec3 position, vec3 up, float yaw, float pitch);
-Camera* Camera_Ctor(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
-void Camera_DCtor(Camera* camera);
+Camera* Camera_Ctor0(vec3 position);
+Camera* Camera_Ctor1(vec3 position, vec3 up);
+Camera* Camera_Ctor2(vec3 position, vec3 up, vec3 front, float yaw, float pitch);
+Camera* Camera_Ctor3(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
+void Camera_DCtor(Camera* c);
 
-mat4* Camera_GetViewMatrix(Camera* camera);
-void Camera_ProcessKeyboard(Camera* camera, float deltaTime);
-void Camera_ProcessMouseMovement(Camera* camera, float xoffset, float yoffset, GLboolean constrainPitch);
+mat4* Camera_GetViewMatrix(Camera* c);
+void Camera_ProcessKeyboard(Camera* c, float deltaTime);
+void Camera_ProcessMouseMovement(Camera* c, float xoffset, float yoffset, bool constrainPitch);

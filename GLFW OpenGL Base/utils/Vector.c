@@ -1,6 +1,7 @@
 #include "Vector.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 Vector* Vector_Ctor()
 {
@@ -16,11 +17,6 @@ Vector* Vector_Ctor()
 void Vector_DCtor(Vector* v)
 {
 	free(v->data);
-}
-
-int Vector_Count(Vector* v)
-{
-	return v->count;
 }
 
 void Vector_Add(Vector* v, void* item)
@@ -45,7 +41,7 @@ void Vector_Add(Vector* v, void* item)
 	v->count++;
 }
 
-void Vector_Set(Vector* v, int index, void* item)
+void Vector_Set(Vector* v, unsigned int index, void* item)
 {
 	if (index >= v->count)
 		return;
@@ -53,7 +49,7 @@ void Vector_Set(Vector* v, int index, void* item)
 	v->data[index] = item;
 }
 
-void* Vector_Get(Vector* v, int index)
+void* Vector_Get(Vector* v, unsigned int index)
 {
 	if (index >= v->count)
 		return;
@@ -61,7 +57,7 @@ void* Vector_Get(Vector* v, int index)
 	return v->data[index];
 }
 
-void Vector_Delete(Vector *v, int index)
+void Vector_Delete(Vector *v, unsigned int index)
 {
 	if (index >= v->count)
 		return;

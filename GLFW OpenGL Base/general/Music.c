@@ -1,81 +1,97 @@
 #include "Music.h"
-#include <string.h>
+#include <stdbool.h>
+#include "../utils/SwissArmyKnife.h"
+
+void check_errors();
+
+
+/*********************************************
+****************    public    ****************
+*********************************************/
 
 Music* Music_Ctor(char* name)
 {
 	Music* music = (Music*)malloc(sizeof(Music));
-	music->name = name;
-	music->data = BASS_StreamCreateFile(false, ("res/music/" + name + ".mp3").c_str(), 0, 0, 0);
 
+	music->data = BASS_StreamCreateFile(false, concat3("res/music/", name, ".mp3"), 0, 0, 0);
+	music->name = name;
 	music->volume = 1.0f;
 
 	return music;
 }
 
-void Music_DCtor(Music* music)
+void Music_DCtor(Music* m)
 {
-	BASS_StreamFree(music->data);
-	free(music);
+	BASS_StreamFree(m->data);
+	free(m);
 }
 
-void Music_play(Music* music)
+void Music_Play(Music* m)
 {
-	BASS_ChannelPlay(music->data, false);
+	BASS_ChannelPlay(m->data, false);
 	check_errors();
 	//start_time = high_resolution_clock::now();
 }
 
-void Music_pause(Music* music)
+void Music_Pause(Music* m)
 {
-	BASS_ChannelPause(music->data);
+	BASS_ChannelPause(m->data);
 	check_errors();
 }
 
-void Music_stop(Music* music)
+void Music_Stop(Music* m)
 {
-	BASS_ChannelStop(music->data);
+	BASS_ChannelStop(m->data);
 	check_errors();
-	BASS_ChannelSetPosition(music->data, 0, BASS_POS_BYTE);
+	BASS_ChannelSetPosition(m->data, 0, BASS_POS_BYTE);
 	check_errors();
 }
 
-MusicStatus Music_get_status(Music* music)
+MusicStatus Music_GetStatus(Music* m)
 {
-	return (MusicStatus)(BASS_ChannelIsActive(music->data));
+	return (MusicStatus)BASS_ChannelIsActive(m->data);
 }
 
-float Music_get_progress(Music* music)
+float Music_GetProgress(Music* music)
 {
-	const float curr = BASS_ChannelGetPosition(music->data, BASS_POS_BYTE);
+	const float current = BASS_ChannelGetPosition(music->data, BASS_POS_BYTE);
 	check_errors();
 	const float length = BASS_ChannelGetLength(music->data, BASS_POS_BYTE);
 	check_errors();
-	return curr / length;
+	return current / length;
 }
 
-int Music_get_position(Music* music)
+int Music_GetPosition(Music* music)
 {
+	// TODO: not implemented
+	return 0;
 	//return duration_cast<milliseconds>(std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
-void Music_update(Music* music)
+void Music_Update(Music* m)
 {
 	float current_volume;
-	BASS_ChannelGetAttribute(music->data, BASS_ATTRIB_VOL, &current_volume);
+	BASS_ChannelGetAttribute(m->data, BASS_ATTRIB_VOL, &current_volume);
 	check_errors();
 
-	if (current_volume != volume)
+	if (current_volume != m->volume)
 	{
-		BASS_ChannelSetAttribute(music->data, BASS_ATTRIB_VOL, volume);
+		BASS_ChannelSetAttribute(m->data, BASS_ATTRIB_VOL, m->volume);
 		check_errors();
 	}
 
 	//bool current_playing = BASS_ChannelIsActive(music);
 }
 
-void Music_check_errors()
+
+/**********************************************
+****************    private    ****************
+**********************************************/
+
+void check_errors()
 {
 	// TODO: BASS error codes
-	if (BASS_ErrorGetCode() != BASS_OK)
-		throw runtime_error(BASS_ErrorGetCode());
+	if (BASS_ErrorGetCode() != BASS_OK);
+		//throw runtime_error(BASS_ErrorGetCode());
+		// TODO: error handling
 }

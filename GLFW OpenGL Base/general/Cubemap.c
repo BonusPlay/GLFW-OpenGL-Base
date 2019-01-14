@@ -1,4 +1,8 @@
 #include "Cubemap.h"
+#include "../utils/Typedefs.h"
+#include "../utils/SwissArmyKnife.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 
 const char* faces[6] = {
 	"right.jpg",
@@ -55,18 +59,23 @@ float vertices[] = {
 	 1.0f, -1.0f,  1.0f
 };
 
+
+/*********************************************
+****************    public    ****************
+*********************************************/
+
 CubeMap* CubeMap_Ctor(const char* name)
 {
-	CubeMap* cubeMap = (CubeMap*)malloc(sizeof(CubeMap));
+	CubeMap* cm = (CubeMap*)malloc(sizeof(CubeMap));
 
-	glGenTextures(1, &cubeMap->ID);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMap->ID);
+	glGenTextures(1, &cm->ID);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, cm->ID);
 
 	int width, height, channels;
 
 	for (int i = 0; i < 6; i++)
 	{
-		unsigned char* data = stbi_load("res/textures/skybox_" + name + "/" + faces[i], &width, &height, &channels, 0);
+		unsigned char* data = stbi_load(concat4("res/textures/skybox_", name, "/", faces[i]), &width, &height, &channels, 0);
 		if (data)
 		{
 			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -86,32 +95,35 @@ CubeMap* CubeMap_Ctor(const char* name)
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
-	glGenVertexArrays(1, &cubeMap->VAO);
-	glGenBuffers(1, &cubeMap->VBO);
-	glBindVertexArray(cubeMap->VAO);
-	glBindBuffer(GL_ARRAY_BUFFER, cubeMap->VBO);
+	glGenVertexArrays(1, &cm->VAO);
+	glGenBuffers(1, &cm->VBO);
+	glBindVertexArray(cm->VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, cm->VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
 	glBindVertexArray(0);
+
+	return cm;
 }
 
-void CubeMap_DCtor(CubeMap* cubeMap)
+void CubeMap_DCtor(CubeMap* cm)
 {
-	glDeleteVertexArrays(1, &cubeMap->VAO);
-	glDeleteBuffers(1, &cubeMap->VBO);
+	glDeleteVertexArrays(1, &cm->VAO);
+	glDeleteBuffers(1, &cm->VBO);
+	free(cm);
 }
 
-void CubeMap_draw(CubeMap* cubeMap, Shader* shader)
+void CubeMap_Draw(CubeMap* cm, Shader* shader)
 {
 	glDepthFunc(GL_LEQUAL);
 	Shader_Use(shader);
 	Shader_SetInt(shader, "skybox", 0);
 
-	glBindVertexArray(cubeMap->VAO);
+	glBindVertexArray(cm->VAO);
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMap->ID);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, cm->ID);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 	glBindVertexArray(0);
 

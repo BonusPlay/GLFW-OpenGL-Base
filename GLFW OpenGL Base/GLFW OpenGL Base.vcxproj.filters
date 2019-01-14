@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\imgui">
-      <UniqueIdentifier>{3fd5bdd8-cb2b-46c5-95c7-6fea73ddfc7d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\imgui">
-      <UniqueIdentifier>{20f8197a-9980-4afa-baea-5ece615d3e15}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\general">
       <UniqueIdentifier>{2b75c938-8dbf-4a1e-86c8-bf9c9d45c5e0}</UniqueIdentifier>
     </Filter>
@@ -34,79 +28,13 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{58f946d1-f8d0-41e5-bae5-411dc305d67e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\threads">
-      <UniqueIdentifier>{d2e2b832-ca69-4b22-9073-8138e33da9b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\threads">
-      <UniqueIdentifier>{f7ccf99f-dbee-4311-a2d9-489d41216774}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\utils">
       <UniqueIdentifier>{34df35db-514d-44ec-9f07-ad2582bfee0a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_demo.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_draw.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_impl.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Camera.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\CubeMap.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\GameObject.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Mesh.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Model.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Music.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Shader.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Texture.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="states\GameState.cpp">
-      <Filter>Source Files\states</Filter>
-    </ClCompile>
-    <ClCompile Include="states\ExampleState.cpp">
-      <Filter>Source Files\states</Filter>
-    </ClCompile>
     <ClCompile Include="utils\glad.c">
       <Filter>Source Files\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="threads\Backend.cpp">
-      <Filter>Source Files\threads</Filter>
-    </ClCompile>
-    <ClCompile Include="threads\Frontend.cpp">
-      <Filter>Source Files\threads</Filter>
-    </ClCompile>
-    <ClCompile Include="states\LoadState.cpp">
-      <Filter>Source Files\states</Filter>
     </ClCompile>
     <ClCompile Include="general\Camera.c">
       <Filter>Source Files\general</Filter>
@@ -144,77 +72,17 @@
     <ClCompile Include="utils\Vector.c">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="states\GameState.c">
+      <Filter>Source Files\states</Filter>
+    </ClCompile>
+    <ClCompile Include="states\State1.c">
+      <Filter>Source Files\states</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\SwissArmyKnife.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="imgui\imconfig.h">
-      <Filter>Header Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui_impl.h">
-      <Filter>Header Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Camera.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\CubeMap.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\GameObject.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Mesh.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Model.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Music.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Shader.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Texture.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Vertex.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Settings.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="states\GameState.hpp">
-      <Filter>Header Files\states</Filter>
-    </ClInclude>
-    <ClInclude Include="states\ExampleState.hpp">
-      <Filter>Header Files\states</Filter>
-    </ClInclude>
-    <ClInclude Include="threads\Backend.hpp">
-      <Filter>Header Files\threads</Filter>
-    </ClInclude>
-    <ClInclude Include="threads\Frontend.hpp">
-      <Filter>Header Files\threads</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\fonts.hpp">
-      <Filter>Header Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\font_awesome.hpp">
-      <Filter>Header Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\font_kenney.hpp">
-      <Filter>Header Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\font_material_design.hpp">
-      <Filter>Header Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="states\LoadState.hpp">
-      <Filter>Header Files\states</Filter>
-    </ClInclude>
     <ClInclude Include="general\Camera.h">
       <Filter>Header Files\general</Filter>
     </ClInclude>
@@ -250,6 +118,18 @@
     </ClInclude>
     <ClInclude Include="utils\Vector.h">
       <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\Typedefs.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\SwissArmyKnife.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="states\GameState.h">
+      <Filter>Header Files\states</Filter>
+    </ClInclude>
+    <ClInclude Include="states\State1.h">
+      <Filter>Header Files\states</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,10 +1,16 @@
 #include "Texture.h"
+#include "../utils/SwissArmyKnife.h"
+#include <glad.h>
+#include <stb_image.h>
 
-Texture* Texture_Ctor(const char* path, TextureType type)
+Texture* Texture_Ctor(const char* path, aiTextureType type)
 {
 	Texture* texture = (Texture*)malloc(sizeof(Texture));
 
-	this->path = file.substr(0, path.find_last_of(PATH_SEP));
+	//texture->path = (char*)calloc(strlstchar(path, PATH_SEP) + 1, sizeof (char)); // +1 for null terminator
+	//memcpy(texture->path, path, strlstchar(path, PATH_SEP));
+	texture->path = (char*)calloc(strlen(path) +1, sizeof(char));
+	memcpy(texture->path, path, strlen(path));
 	texture->type = type;
 
 	glGenTextures(1, &texture->ID);
@@ -42,7 +48,8 @@ Texture* Texture_Ctor(const char* path, TextureType type)
 	return texture;
 }
 
-void Texture_DCtor(Texture* texture)
+void Texture_DCtor(Texture* t)
 {
-	free(texture);
+	//glDeleteTextures(1, &t->ID); BUG: destructor ?
+	free(t);
 }

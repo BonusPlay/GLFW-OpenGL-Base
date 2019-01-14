@@ -2,8 +2,12 @@
 #include <stddef.h>
 #include <assimp/material.h>
 #include "Texture.h"
+#include <glad.h>
+#include "../utils/SwissArmyKnife.h"
 
-typedef enum aiTextureType TextureType;
+/*********************************************
+****************    public    ****************
+*********************************************/
 
 Mesh* Mesh_Ctor(Vector* vertices, Vector* indices, Vector* textures)
 {
@@ -12,6 +16,15 @@ Mesh* Mesh_Ctor(Vector* vertices, Vector* indices, Vector* textures)
 	m->vertices = vertices;
 	m->indices = indices;
 	m->textures = textures;
+
+	//for(unsigned int i = 0; i < vertices->count; i++)
+	//{
+	//	Vertex* v = (Vertex*)Vector_Get(vertices, i);
+	//	printf("i: %i\n", i);
+	//	printf("   pos: (%f, %f, %f)\n", v->position[0], v->position[1], v->position[2]);
+	//	printf("   norm: (%f, %f, %f)\n", v->normal[0], v->normal[1], v->normal[2]);
+	//	printf("   tex: (%f, %f)\n", v->tex_coords[0], v->tex_coords[1]);
+	//}
 
 	glGenVertexArrays(1, &m->VAO);
 	glGenBuffers(1, &m->VBO);
@@ -23,10 +36,10 @@ Mesh* Mesh_Ctor(Vector* vertices, Vector* indices, Vector* textures)
 	// A great thing about structs is that their memory layout is sequential for all its items.
 	// The effect is that we can simply pass a pointer to the struct and it translates perfectly to a glm::vec3/2 array which
 	// again translates to 3/2 floats which translates to a byte array.
-	glBufferData(GL_ARRAY_BUFFER, Vector_Count(vertices) * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vertices->count * sizeof(Vertex), &vertices->data[0], GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, Vector_Count(indices) * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices->count * sizeof(unsigned int), &indices->data[0], GL_STATIC_DRAW);
 
 	// set the vertex attribute pointers
 	// vertex Positions
@@ -56,6 +69,10 @@ void Mesh_DCtor(Mesh* m)
 	//glDeleteVertexArrays(1, &m->VAO);
 	//glDeleteBuffers(1, &m->VBO);
 	//glDeleteBuffers(1, &m->EBO);
+	Vector_DCtor(m->vertices);
+	Vector_DCtor(m->indices);
+	Vector_DCtor(m->textures);
+	free(m);
 }
 
 void Mesh_Draw(Mesh* m, Shader* shader)
@@ -65,36 +82,35 @@ void Mesh_Draw(Mesh* m, Shader* shader)
 	unsigned int normalNr = 1;
 	unsigned int heightNr = 1;
 
-	for (unsigned int i = 0; i < Vector_Count(m->textures); i++)
+	for (unsigned int i = 0; i < m->textures->count; i++)
 	{
 		glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
 										   // retrieve texture number (the N in diffuse_textureN)
-		const char* name;
-		const char* number;
+		const char* name = NULL;
+		char number[12];
 		
-		const TextureType type = ((Texture*)Vector_Get(m->textures, i))->type;
+		const aiTextureType type = ((Texture*)Vector_Get(m->textures, i))->type;
 
 		switch (type)
 		{
 		case aiTextureType_DIFFUSE:
 			name = "texture_diffuse";
-			number = utoa()
-			number = std::to_string(diffuseNr++);
+			_itoa_s(diffuseNr++, number, 12, 10);
 			break;
 
 		case aiTextureType_SPECULAR:
 			name = "texture_specular";
-			number = std::to_string(specularNr++);
+			_itoa_s(specularNr++, number, 12, 10);
 			break;
 
 		case aiTextureType_HEIGHT:
 			name = "texture_normal";
-			number = std::to_string(normalNr++);
+			_itoa_s(normalNr++, number, 12, 10);
 			break;
 
 		case aiTextureType_AMBIENT:
 			name = "texture_height";
-			number = std::to_string(heightNr++);
+			_itoa_s(heightNr++, number, 12, 10);
 			break;
 
 		default:
@@ -103,15 +119,15 @@ void Mesh_Draw(Mesh* m, Shader* shader)
 		}
 
 		// now set the sampler to the correct texture unit
-		shader->set_int(name + "_" + number, i);
+		Shader_SetInt(shader, concat3(name, "_", number), i);
 
 		// and finally bind the texture
-		glBindTexture(GL_TEXTURE_2D, textures[i].get_id());
+		glBindTexture(GL_TEXTURE_2D, ((Texture*)Vector_Get(m->textures, i))->ID);
 	}
 
 	// draw mesh
-	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+	glBindVertexArray(m->VAO);
+	glDrawElements(GL_TRIANGLES, m->indices->count, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 
 	// always good practice to set everything back to defaults once configured.
