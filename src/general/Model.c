@@ -5,6 +5,7 @@
 #include <assimp/postprocess.h>
 #include "Texture.h"
 #include "../utils/SwissArmyKnife.h"
+#include "../utils/VectorGL.h"
 
 void process_node(Model* model, aiNode* node, const aiScene* scene);
 Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene);
@@ -16,6 +17,7 @@ Vector* load_material_textures(Model* m, aiMaterial *mat, enum aiTextureType typ
 
 Model* Model_Ctor(const char* file)
 {
+	LogD("Model_Ctor");
 	Model* m = (GameObject*)GameObject_Ctor0();
 
 	m->textures_loaded = Vector_Ctor();
@@ -74,27 +76,29 @@ void process_node(Model* model, aiNode* node, const struct aiScene* scene)
 Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 {
 	// data to fill
-	Vector* vertices = Vector_Ctor();
-	Vector* indices = Vector_Ctor();
+	// vertices and indices will be bound to OpenGL so they need to be in VectorGL
+	Vertex* vertices = NULL;
+	Indice* indices = NULL;
 	Vector* textures = Vector_Ctor();
 
 	// Walk through each of the mesh's vertices
 	for (unsigned int i = 0; i < mesh->mNumVertices; i++)
 	{
-		Vertex* vertex = (Vertex*)malloc(sizeof(Vertex));
+		//Vertex* vertex = (Vertex*)malloc(sizeof(Vertex));
+		Vertex vertex;
 		vec3 vector; // we declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
 
 		// positions
 		vector[0] = mesh->mVertices[i].x;
 		vector[1] = mesh->mVertices[i].y;
 		vector[2] = mesh->mVertices[i].z;
-		memcpy_s(vertex->position, sizeof(vertex->position), vector, sizeof(vector));
+		memcpy_s(vertex.position, sizeof(vertex.position), vector, sizeof(vector));
 
 		// normals
 		vector[0] = mesh->mNormals[i].x;
 		vector[1] = mesh->mNormals[i].y;
 		vector[2] = mesh->mNormals[i].z;
-		memcpy_s(vertex->normal, sizeof(vertex->normal), vector, sizeof(vector));
+		memcpy_s(vertex.normal, sizeof(vertex.normal), vector, sizeof(vector));
 
 		// texture coordinates
 		if (mesh->mTextureCoords[0]) // does the mesh contain texture coordinates?
@@ -104,24 +108,24 @@ Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 			// use models where a vertex can have multiple texture coordinates so we always take the first set (0).
 			vec[0] = mesh->mTextureCoords[0][i].x;
 			vec[1] = mesh->mTextureCoords[0][i].y;
-			memcpy_s(vertex->tex_coords, sizeof(vertex->tex_coords), vec, sizeof(vec));
+			memcpy_s(vertex.tex_coords, sizeof(vertex.tex_coords), vec, sizeof(vec));
 		}
 		else
-			memset(vertex->tex_coords, 0, 2);
+			memset(vertex.tex_coords, 0, 2);
 
 		// tangent
 		vector[0] = mesh->mTangents[i].x;
 		vector[1] = mesh->mTangents[i].y;
 		vector[2] = mesh->mTangents[i].z;
-		memcpy_s(vertex->tangent, sizeof(vertex->tangent), vector, sizeof(vector));
+		memcpy_s(vertex.tangent, sizeof(vertex.tangent), vector, sizeof(vector));
 
 		// bitangent
 		vector[0] = mesh->mBitangents[i].x;
 		vector[1] = mesh->mBitangents[i].y;
 		vector[2] = mesh->mBitangents[i].z;
-		memcpy_s(vertex->bitangent, sizeof(vertex->bitangent), vector, sizeof(vector));
+		memcpy_s(vertex.bitangent, sizeof(vertex.bitangent), vector, sizeof(vector));
 
-		Vector_Add(vertices, vertex);
+		vector_push_back(vertices, vertex);
 	}
 
 	// now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
@@ -130,7 +134,8 @@ Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 		aiFace face = mesh->mFaces[i];
 		// retrieve all indices of the face and store them in the indices vector
 		for (unsigned int j = 0; j < face.mNumIndices; j++)
-			Vector_Add(indices, &face.mIndices[j]); // BUG: ?
+			vector_push_back(indices, face.mIndices[j]);
+			//Vector_Add(indices, &face.mIndices[j]); // BUG: ?
 	}
 
 	// process materials
@@ -180,7 +185,8 @@ Vector* load_material_textures(Model* model, aiMaterial *mat, enum aiTextureType
 
 		for (unsigned int j = 0; j < model->textures_loaded->count; j++)
 		{
-			Texture* texture = (Texture*)Vector_Get(model->textures_loaded, j);
+			Texture* texture = NULL;
+			texture = (Texture*)Vector_Get(model->textures_loaded, j);
 			char* texture_path = texture->path;
 			char* path = (char*)calloc(strlen(texture_path) - strlstchar(texture_path, PATH_SEP) + 1, sizeof (char)); // +1 for null terminator
 			memcpy(path, &texture_path[strlstchar(texture_path, PATH_SEP)], strlen(texture_path) - strlstchar(texture_path, PATH_SEP));

@@ -66,6 +66,7 @@ float vertices[] = {
 
 CubeMap* CubeMap_Ctor(const char* name)
 {
+	LogD("CubeMap_Ctor\n");
 	CubeMap* cm = (CubeMap*)malloc(sizeof(CubeMap));
 
 	glGenTextures(1, &cm->ID);
@@ -75,7 +76,8 @@ CubeMap* CubeMap_Ctor(const char* name)
 
 	for (int i = 0; i < 6; i++)
 	{
-		unsigned char* data = stbi_load(concat4("res/textures/skybox_", name, "/", faces[i]), &width, &height, &channels, 0);
+		char* path = concat4("res/textures/skybox_", name, "/", faces[i]);
+		unsigned char* data = stbi_load(path, &width, &height, &channels, 0);
 		if (data)
 		{
 			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -87,6 +89,7 @@ CubeMap* CubeMap_Ctor(const char* name)
 			//throw runtime_error("Failed to load texture '" + name + "[" + faces[i] + "]'");
 			// TODO: error handling
 		}
+		free(path);
 	}
 
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -110,6 +113,7 @@ CubeMap* CubeMap_Ctor(const char* name)
 
 void CubeMap_DCtor(CubeMap* cm)
 {
+	LogD("CubeMap_DCtor\n");
 	glDeleteVertexArrays(1, &cm->VAO);
 	glDeleteBuffers(1, &cm->VBO);
 	free(cm);

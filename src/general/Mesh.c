@@ -4,13 +4,15 @@
 #include "Texture.h"
 #include <glad.h>
 #include "../utils/SwissArmyKnife.h"
+#include "../utils/VectorGL.h"
 
 /*********************************************
 ****************    public    ****************
 *********************************************/
 
-Mesh* Mesh_Ctor(Vector* vertices, Vector* indices, Vector* textures)
+Mesh* Mesh_Ctor(Vertex* vertices, Indice* indices, Vector* textures)
 {
+	LogD("Mesh_Ctor");
 	Mesh* m = (Mesh*)malloc(sizeof(Mesh));
 
 	m->vertices = vertices;
@@ -36,10 +38,10 @@ Mesh* Mesh_Ctor(Vector* vertices, Vector* indices, Vector* textures)
 	// A great thing about structs is that their memory layout is sequential for all its items.
 	// The effect is that we can simply pass a pointer to the struct and it translates perfectly to a glm::vec3/2 array which
 	// again translates to 3/2 floats which translates to a byte array.
-	glBufferData(GL_ARRAY_BUFFER, vertices->count * sizeof(Vertex), &vertices->data[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vector_size(vertices) * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices->count * sizeof(unsigned int), &indices->data[0], GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, vector_size(indices) * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
 
 	// set the vertex attribute pointers
 	// vertex Positions
@@ -119,7 +121,9 @@ void Mesh_Draw(Mesh* m, Shader* shader)
 		}
 
 		// now set the sampler to the correct texture unit
-		Shader_SetInt(shader, concat3(name, "_", number), i);
+		char* path = concat3(name, "_", number);
+		Shader_SetInt(shader, path, i);
+		free(path);
 
 		// and finally bind the texture
 		glBindTexture(GL_TEXTURE_2D, ((Texture*)Vector_Get(m->textures, i))->ID);
@@ -127,7 +131,7 @@ void Mesh_Draw(Mesh* m, Shader* shader)
 
 	// draw mesh
 	glBindVertexArray(m->VAO);
-	glDrawElements(GL_TRIANGLES, m->indices->count, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, vector_size(m->indices), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 
 	// always good practice to set everything back to defaults once configured.

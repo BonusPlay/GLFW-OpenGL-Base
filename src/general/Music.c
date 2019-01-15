@@ -1,6 +1,7 @@
 #include "Music.h"
 #include <stdbool.h>
 #include "../utils/SwissArmyKnife.h"
+#include "../utils/Typedefs.h"
 
 void check_errors();
 
@@ -11,6 +12,7 @@ void check_errors();
 
 Music* Music_Ctor(char* name)
 {
+	LogD("Music_Ctor\n");
 	Music* music = (Music*)malloc(sizeof(Music));
 
 	music->data = BASS_StreamCreateFile(false, concat3("res/music/", name, ".mp3"), 0, 0, 0);

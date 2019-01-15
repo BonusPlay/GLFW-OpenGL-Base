@@ -7,6 +7,7 @@
 #include <glad.h>
 #include <GLFW/glfw3.h>
 
+typedef unsigned int Indice;
 typedef versor quat; // quaternion
 typedef struct aiScene aiScene;
 typedef struct aiMesh aiMesh;
@@ -17,3 +18,9 @@ typedef struct aiString aiString;
 typedef enum aiTextureType aiTextureType;
 
 #define PATH_SEP '/' // path separator
+
+#ifdef _DEBUG
+#define LogD(str, ...)  printf(str, __VA_ARGS__);
+#else
+#define LogD(str, ...)
+#endif

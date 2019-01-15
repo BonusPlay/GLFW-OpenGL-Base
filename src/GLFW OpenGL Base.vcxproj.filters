@@ -81,6 +81,9 @@
     <ClCompile Include="utils\SwissArmyKnife.c">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="utils\VectorGL.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="general\Camera.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="states\State1.h">
       <Filter>Header Files\states</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\VectorGL.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

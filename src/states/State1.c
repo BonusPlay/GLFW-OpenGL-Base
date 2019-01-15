@@ -3,6 +3,7 @@
 
 State1* State1_Ctor()
 {
+	LogD("Stage1_Ctor\n");
 	GameStateParams params;
 	params.v_shader_name = "state1";
 	params.f_shader_name = "state1";
@@ -11,9 +12,9 @@ State1* State1_Ctor()
 
 	State1* s = (State1*)GameState_Ctor(&params);
 
+	s->model = Model_Ctor("res/nanosuit/nanosuit.obj");
 	s->music = Music_Ctor("Crossing the Waterscape");
 	s->shader_skybox = Shader_Ctor("skybox", "skybox");
-	s->model = Model_Ctor("res/nanosuit/nanosuit.obj");
 	s->skybox = CubeMap_Ctor("sea");
 
 	vec3 model_pos = {0.0f, -1.75f, 0.0f};
@@ -23,11 +24,13 @@ State1* State1_Ctor()
 
 	Music_Play(s->music);
 
+	LogD("Stage1_Ctor finished!");
 	return s;
 }
 
 void State1_DCtor(State1* s)
 {
+	LogD("Stage1_DCtor");
 	Music_DCtor(s->music);
 	Shader_DCtor(s->shader_skybox);
 	GameState_DCtor((GameState*)s); // GameState_DCtor frees the pointer
@@ -52,8 +55,8 @@ void State1_Render(State1* s)
 
 	// Skybox
 	Shader_Use(s->shader_skybox);
-	mat3 tmp;
-	mat4 out;
+	mat3 tmp = GLM_MAT3_ZERO_INIT;
+	mat4 out = GLM_MAT4_ZERO_INIT;
 	glm_mat4_pick3(*vm, tmp);
 	glm_mat4_ins3(tmp, out);
 	Shader_SetMat4(s->shader_skybox, "view", out);

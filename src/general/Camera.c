@@ -28,7 +28,7 @@ Camera* Camera_Ctor2(vec3 position, vec3 up, vec3 front, float yaw, float pitch)
 	memcpy_s(c->Front, sizeof(vec3), front, sizeof c->Front);
 	c->Yaw = yaw;
 	c->Pitch = pitch;
-	c->MouseSensitivity = 2.5f;
+	c->MovementSpeed = 2.5f;
 	c->MouseSensitivity = 0.1f;
 	
 	Camera_UpdateVectors(c);

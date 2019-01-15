@@ -154,5 +154,5 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 static void log_error(int error, const char* description)
 {
-	// TODO: error handling
+	printf("[ERROR] (%i) %s\n", error, description);
 }

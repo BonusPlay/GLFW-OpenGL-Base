@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "../utils/SwissArmyKnife.h"
 #include <glad.h>
+#include "../utils/Typedefs.h"
 
 #define CHUNK 1024 // read 1024 bytes at a time
 
@@ -18,13 +19,17 @@ void create_shader_program(Shader* s);
 
 Shader* Shader_Ctor(const char* v_shader_name, const char* f_shader_name)
 {
+	LogD("Shader_Ctor\n");
 	Shader* s = (Shader*)malloc(sizeof(Shader));
 
-	const char* v_path = concat3("res/shaders/", v_shader_name, ".vert");
-	const char* f_path = concat3("res/shaders/", f_shader_name, ".frag");
+	char* v_path = concat3("res/shaders/", v_shader_name, ".vert");
+	char* f_path = concat3("res/shaders/", f_shader_name, ".frag");
 
 	const char* v_shader_code = shader_load(v_path);
 	const char* f_shader_code = shader_load(f_path);
+
+	free(v_path);
+	free(f_path);
 
 	v_shader_compile(s, v_shader_code);
 	f_shader_compile(s, f_shader_code);
@@ -159,6 +164,7 @@ void v_shader_compile(Shader* s, const char* code)
 	if (!success)
 	{
 		glGetShaderInfoLog(s->v_shader, 512, NULL, info_log);
+		LogD("[ERROR] %s\n", info_log);
 		// log_error ("Shader::f_shader_compile", info_log);
 		//throw runtime_error("Failed to compile fragment shader");
 		// TODO: error handling
@@ -178,6 +184,7 @@ void f_shader_compile(Shader* s, const char* code)
 	if (!success)
 	{
 		glGetShaderInfoLog(s->f_shader, 512, NULL, info_log);
+		LogD("[ERROR] %s\n", info_log);
 		// log_error ("Shader::f_shader_compile", info_log);
 		//throw runtime_error("Failed to compile fragment shader");
 		// TODO: error handling
@@ -197,6 +204,7 @@ void create_shader_program(Shader* s)
 	if (!success)
 	{
 		glGetProgramInfoLog(s->ID, 512, NULL, info_log);
+		LogD("[ERROR] %s\n", info_log);
 		// log_error ("Shader::create_shader_program", info_log);
 		//throw runtime_error("Failed to compile shader program");
 		// TODO: error handling

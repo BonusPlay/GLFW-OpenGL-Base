@@ -16,7 +16,9 @@ Vector* Vector_Ctor()
 
 void Vector_DCtor(Vector* v)
 {
-	free(v->data);
+	if(v->count != 0)
+		free(v->data);
+	free(v);
 }
 
 void Vector_Add(Vector* v, void* item)
