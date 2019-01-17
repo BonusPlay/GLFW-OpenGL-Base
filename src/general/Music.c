@@ -15,7 +15,9 @@ Music* Music_Ctor(char* name)
 	LogD("Music_Ctor\n");
 	Music* music = (Music*)malloc(sizeof(Music));
 
-	music->data = BASS_StreamCreateFile(false, concat3("res/music/", name, ".mp3"), 0, 0, 0);
+	const char* path = concat3("res/music/", name, ".mp3");
+	music->data = BASS_StreamCreateFile(false, path, 0, 0, 0);
+	free(path);
 	music->name = name;
 	music->volume = 1.0f;
 

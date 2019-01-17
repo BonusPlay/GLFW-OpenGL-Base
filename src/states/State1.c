@@ -33,6 +33,8 @@ void State1_DCtor(State1* s)
 	LogD("Stage1_DCtor");
 	Music_DCtor(s->music);
 	Shader_DCtor(s->shader_skybox);
+	CubeMap_DCtor(s->skybox);
+	Model_DCtor(s->model);
 	GameState_DCtor((GameState*)s); // GameState_DCtor frees the pointer
 }
 

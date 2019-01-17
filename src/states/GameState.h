@@ -13,8 +13,8 @@ typedef struct
 
 typedef struct
 {
-	char* v_shader_name;
-	char* f_shader_name;
+	const char* v_shader_name;
+	const char* f_shader_name;
 	vec3 camera_position; // this should contain rest of Camera_Ctor params
 } GameStateParams;
 

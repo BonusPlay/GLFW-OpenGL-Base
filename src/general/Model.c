@@ -40,7 +40,8 @@ void Model_DCtor(Model* m)
 {
 	Vector_DCtor(m->textures_loaded);
 	Vector_DCtor(m->meshes);
-	GameObject_DCtor((GameObject*)m); // free called by GameObject_DCtor
+	free(m->directory);
+	GameObject_DCtor((GameObject*)m);
 }
 
 void Model_Draw(Model* m, Shader* shader)
@@ -202,7 +203,9 @@ Vector* load_material_textures(Model* model, aiMaterial *mat, enum aiTextureType
 		if (!skip)
 		{
 			// if texture hasn't been loaded already, load it
-			Texture* texture = Texture_Ctor(concat2(model->directory, str.data), type);
+			const char* path = concat2(model->directory, str.data);
+			Texture* texture = Texture_Ctor(path, type);
+			free(path);
 
 			Vector_Add(textures, texture);
 			Vector_Add(model->textures_loaded, texture); // store it as texture loaded for entire model, to ensure we won't load duplicate textures.
