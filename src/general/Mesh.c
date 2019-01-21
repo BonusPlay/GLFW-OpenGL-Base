@@ -12,8 +12,10 @@
 
 Mesh* Mesh_Ctor(Vertex* vertices, Indice* indices, Vector* textures)
 {
-	LogD("Mesh_Ctor");
+	LogD("Mesh_Ctor\n");
 	Mesh* m = (Mesh*)malloc(sizeof(Mesh));
+	if (!m)
+		panic("malloc failed in Mesh_Ctor");
 
 	m->vertices = vertices;
 	m->indices = indices;
@@ -67,18 +69,26 @@ Mesh* Mesh_Ctor(Vertex* vertices, Indice* indices, Vector* textures)
 
 void Mesh_DCtor(Mesh* m)
 {
+	assert(m);
+
 	// BUG: figure out why this crashes
 	//glDeleteVertexArrays(1, &m->VAO);
 	//glDeleteBuffers(1, &m->VBO);
 	//glDeleteBuffers(1, &m->EBO);
-	Vector_DCtor(m->vertices);
-	Vector_DCtor(m->indices);
+	vector_free(m->vertices);
+	vector_free(m->indices);
+
+	for(unsigned int i = 0; i < m->textures->count; ++i)
+		Texture_DCtor(Vector_Get(m->textures, i));
 	Vector_DCtor(m->textures);
 	free(m);
 }
 
 void Mesh_Draw(Mesh* m, Shader* shader)
 {
+	assert(m);
+	assert(shader);
+
 	unsigned int diffuseNr = 1;
 	unsigned int specularNr = 1;
 	unsigned int normalNr = 1;

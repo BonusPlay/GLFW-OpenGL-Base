@@ -24,13 +24,15 @@ State1* State1_Ctor()
 
 	Music_Play(s->music);
 
-	LogD("Stage1_Ctor finished!");
+	LogD("Stage1_Ctor finished!\n");
 	return s;
 }
 
 void State1_DCtor(State1* s)
 {
-	LogD("Stage1_DCtor");
+	assert(s);
+	LogD("Stage1_DCtor\n");
+
 	Music_DCtor(s->music);
 	Shader_DCtor(s->shader_skybox);
 	CubeMap_DCtor(s->skybox);
@@ -40,6 +42,8 @@ void State1_DCtor(State1* s)
 
 void State1_Render(State1* s)
 {
+	assert(s);
+
 	GameState_Render((GameState*)s);
 
 	glStencilFunc(GL_ALWAYS, 1, 0xFF);
@@ -70,6 +74,7 @@ void State1_Render(State1* s)
 
 void State1_Update(State1* s)
 {
+	assert(s);
 	GameState_Update((GameState*)s);
 
 	//const double time_value = glfwGetTime();
@@ -83,5 +88,7 @@ void State1_Update(State1* s)
 
 void State1_UpdateK(State1* s, int key, int scancode, int action, int mods)
 {
+	assert(s);
+
 	GameState_UpdateK((GameState*)s, key, scancode, action, mods);
 }

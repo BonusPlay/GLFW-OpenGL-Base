@@ -68,6 +68,8 @@ CubeMap* CubeMap_Ctor(const char* name)
 {
 	LogD("CubeMap_Ctor\n");
 	CubeMap* cm = (CubeMap*)malloc(sizeof(CubeMap));
+	if (!cm)
+		panic("malloc failed in CubeMap_Ctor");
 
 	glGenTextures(1, &cm->ID);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, cm->ID);
@@ -113,7 +115,9 @@ CubeMap* CubeMap_Ctor(const char* name)
 
 void CubeMap_DCtor(CubeMap* cm)
 {
+	assert(cm);
 	LogD("CubeMap_DCtor\n");
+
 	glDeleteVertexArrays(1, &cm->VAO);
 	glDeleteBuffers(1, &cm->VBO);
 	free(cm);
@@ -121,6 +125,9 @@ void CubeMap_DCtor(CubeMap* cm)
 
 void CubeMap_Draw(CubeMap* cm, Shader* shader)
 {
+	assert(cm);
+	assert(shader);
+
 	glDepthFunc(GL_LEQUAL);
 	Shader_Use(shader);
 	Shader_SetInt(shader, "skybox", 0);

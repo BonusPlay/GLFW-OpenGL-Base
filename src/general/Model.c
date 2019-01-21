@@ -6,6 +6,9 @@
 #include "Texture.h"
 #include "../utils/SwissArmyKnife.h"
 #include "../utils/VectorGL.h"
+#include <stdlib.h>
+#include <corecrt_memcpy_s.h>
+#include <string.h>
 
 void process_node(Model* model, aiNode* node, const aiScene* scene);
 Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene);
@@ -17,19 +20,20 @@ Vector* load_material_textures(Model* m, aiMaterial *mat, enum aiTextureType typ
 
 Model* Model_Ctor(const char* file)
 {
-	LogD("Model_Ctor");
-	Model* m = (GameObject*)GameObject_Ctor0();
+	LogD("Model_Ctor\n");
+	Model* m = (Model*)GameObject_Ctor0();
+	if (!m)
+		panic("malloc failed in Model_Ctor");
 
 	m->textures_loaded = Vector_Ctor();
 	m->meshes = Vector_Ctor();
 	m->directory = (char*)calloc((strlstchar(file, PATH_SEP) + 1), sizeof (char)); // +1 for null terminator
-	memcpy(m->directory, file, strlstchar(file, PATH_SEP));
+	memcpy_s(m->directory, strlstchar(file, PATH_SEP) + 1, file, strlstchar(file, PATH_SEP) + 1);
 
 	const aiScene* scene = aiImportFile(file, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 	// check for errors
-	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode);
-		//throw runtime_error("Failed to load model '" + file + "'");
-		// TODO: error handling
+	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+		panic("Scene loading failed");
 
 	process_node(m, scene->mRootNode, scene);
 
@@ -38,28 +42,42 @@ Model* Model_Ctor(const char* file)
 
 void Model_DCtor(Model* m)
 {
+	assert(m);
+	LogD("Model_DCtor");
+
+	for (unsigned int i = 0; i < m->textures_loaded->count; ++i)
+		Texture_DCtor(Vector_Get(m->textures_loaded, i));
 	Vector_DCtor(m->textures_loaded);
+
+	for (unsigned int i = 0; i < m->meshes->count; ++i)
+		Texture_DCtor(Vector_Get(m->meshes, i));
 	Vector_DCtor(m->meshes);
+	
 	free(m->directory);
 	GameObject_DCtor((GameObject*)m);
 }
 
 void Model_Draw(Model* m, Shader* shader)
 {
+	assert(m);
+	assert(shader);
+
 	GameObject_Draw((GameObject*)m, shader);
 
 	for(unsigned int i = 0; i < m->meshes->count; i++)
-	{
 		Mesh_Draw((Mesh*)Vector_Get(m->meshes, i), shader);
-	}
 }
 
 /**********************************************
 ****************    private    ****************
 **********************************************/
 
-void process_node(Model* model, aiNode* node, const struct aiScene* scene)
+void process_node(Model* model, aiNode* node, const aiScene* scene)
 {
+	assert(model);
+	assert(node);
+	assert(scene);
+
 	// process each mesh located at the current node
 	for (unsigned int i = 0; i < node->mNumMeshes; i++)
 	{
@@ -76,6 +94,10 @@ void process_node(Model* model, aiNode* node, const struct aiScene* scene)
 
 Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 {
+	assert(model);
+	assert(mesh);
+	assert(scene);
+
 	// data to fill
 	// vertices and indices will be bound to OpenGL so they need to be in VectorGL
 	Vertex* vertices = NULL;
@@ -172,8 +194,12 @@ Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 	return Mesh_Ctor(vertices, indices, textures);
 }
 
-Vector* load_material_textures(Model* model, aiMaterial *mat, enum aiTextureType type)
+Vector* load_material_textures(Model* model, aiMaterial* mat, enum aiTextureType type)
 {
+	assert(model);
+	assert(mat);
+	assert(type);
+
 	Vector* textures = Vector_Ctor();
 
 	for (unsigned int i = 0; i < aiGetMaterialTextureCount(mat, type); i++)
@@ -189,8 +215,9 @@ Vector* load_material_textures(Model* model, aiMaterial *mat, enum aiTextureType
 			Texture* texture = NULL;
 			texture = (Texture*)Vector_Get(model->textures_loaded, j);
 			char* texture_path = texture->path;
-			char* path = (char*)calloc(strlen(texture_path) - strlstchar(texture_path, PATH_SEP) + 1, sizeof (char)); // +1 for null terminator
-			memcpy(path, &texture_path[strlstchar(texture_path, PATH_SEP)], strlen(texture_path) - strlstchar(texture_path, PATH_SEP));
+			const unsigned int path_length = strlen(texture_path) - strlstchar(texture_path, PATH_SEP) + 1;
+			char* path = (char*)calloc(path_length, sizeof (char)); // +1 for null terminator
+			memcpy_s(path, path_length, &texture_path[strlstchar(texture_path, PATH_SEP)], strlen(texture_path) - strlstchar(texture_path, PATH_SEP));
 
 			if (strcmp(path, str.data) == 0)
 			{
@@ -203,7 +230,7 @@ Vector* load_material_textures(Model* model, aiMaterial *mat, enum aiTextureType
 		if (!skip)
 		{
 			// if texture hasn't been loaded already, load it
-			const char* path = concat2(model->directory, str.data);
+			char* path = concat2(model->directory, str.data);
 			Texture* texture = Texture_Ctor(path, type);
 			free(path);
 

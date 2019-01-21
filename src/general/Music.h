@@ -13,8 +13,6 @@ typedef struct
 {
 	char* name;
 	HMUSIC data;
-	// TODO: music time
-	// high_resolution_clock::time_point start_time;
 	float volume;
 } Music;
 
@@ -26,5 +24,4 @@ void Music_Pause(Music* m);
 void Music_Stop(Music* m);
 MusicStatus Music_GetStatus(Music* m);
 float Music_GetProgress(Music* m);
-int Music_GetPosition(Music* m);
 void Music_Update(Music* m);

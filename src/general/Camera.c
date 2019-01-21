@@ -1,5 +1,8 @@
 #include "Camera.h"
 #include "../Game.h"
+#include <math.h>
+#include <stdlib.h>
+#include <corecrt_memcpy_s.h>
 
 void Camera_UpdateVectors(Camera* c);
 
@@ -22,6 +25,7 @@ Camera* Camera_Ctor1(vec3 position, vec3 up)
 
 Camera* Camera_Ctor2(vec3 position, vec3 up, vec3 front, float yaw, float pitch)
 {
+	LogD("Camera_Ctor");
 	Camera* c = (Camera*)GameObject_Ctor1(position);
 
 	memcpy_s(c->WorldUp, sizeof(vec3), up, sizeof c->WorldUp);
@@ -46,12 +50,17 @@ Camera* Camera_Ctor3(float posX, float posY, float posZ, float upX, float upY, f
 
 void Camera_DCtor(Camera* c)
 {
+	assert(c);
+	LogD("Camera_DCtor");
+
 	GameObject_DCtor((GameObject*)c);
 }
 
 mat4* Camera_GetViewMatrix(Camera* c)
 {
+	assert(c);
 	mat4* ret = malloc(sizeof(mat4));
+	
 	vec3 center;
 	glm_vec3_add(c->base.position, c->Front, center);
 	glm_lookat(c->base.position, center, c->Up, *ret);
@@ -60,6 +69,8 @@ mat4* Camera_GetViewMatrix(Camera* c)
 
 void Camera_ProcessKeyboard(Camera* c, float deltaTime)
 {
+	assert(c);
+
 	const float velocity = c->MovementSpeed * deltaTime;
 	if (glfwGetKey(g_Window, GLFW_KEY_W) == GLFW_PRESS)
 	{
@@ -92,6 +103,8 @@ void Camera_ProcessKeyboard(Camera* c, float deltaTime)
 
 void Camera_ProcessMouseMovement(Camera* c, float xoffset, float yoffset, bool constrainPitch)
 {
+	assert(c);
+
 	xoffset *= c->MouseSensitivity;
 	yoffset *= c->MouseSensitivity;
 
@@ -118,6 +131,8 @@ void Camera_ProcessMouseMovement(Camera* c, float xoffset, float yoffset, bool c
 
 void Camera_UpdateVectors(Camera* c)
 {
+	assert(c);
+
 	// Calculate the new Front vector
 	vec3 front;
 
@@ -129,16 +144,16 @@ void Camera_UpdateVectors(Camera* c)
 	front[2] = sinf(glm_rad(c->Yaw)) * cosf(glm_rad(c->Pitch));
 
 	glm_normalize(front);
-	memcpy(c->Front, front, sizeof c->Front);
+	memcpy_s(c->Front, sizeof(c->Front), front, sizeof c->Front);
 
 	// Also re-calculate the Right and Up vector
 	vec3 cross;
 	glm_cross(c->Front, c->WorldUp, cross);
 	glm_normalize(cross);
-	memcpy(c->Right, cross, sizeof c->Right);
+	memcpy_s(c->Right, sizeof(c->Right), cross, sizeof c->Right);
 
 	// Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
 	glm_cross(c->Right, c->Front, cross);
 	glm_normalize(cross);
-	memcpy(c->Up, cross, sizeof c->Up);
+	memcpy_s(c->Up, sizeof(c->Up), cross, sizeof c->Up);
 }

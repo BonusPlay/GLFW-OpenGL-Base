@@ -2,10 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
+#include "SwissArmyKnife.h"
 
 Vector* Vector_Ctor()
 {
 	Vector* v = (Vector*)malloc(sizeof(Vector));
+	if(!v)
+		panic("malloc failed in Vector_Ctor");
 
 	v->data = NULL;
 	v->size = 0;
@@ -16,6 +20,8 @@ Vector* Vector_Ctor()
 
 void Vector_DCtor(Vector* v)
 {
+	assert(v);
+
 	if(v->count != 0)
 		free(v->data);
 	free(v);
@@ -23,11 +29,14 @@ void Vector_DCtor(Vector* v)
 
 void Vector_Add(Vector* v, void* item)
 {
+	assert(v);
+
 	// batch add to prevent intense mallocs
 	if (v->size == 0)
 	{
 		v->size = 10;
 		v->data = malloc(sizeof(void*) * v->size);
+		assert(v->data);
 		memset(v->data, '\0', sizeof(void) * v->size);
 	}
 
@@ -45,14 +54,15 @@ void Vector_Add(Vector* v, void* item)
 
 void Vector_Set(Vector* v, unsigned int index, void* item)
 {
-	if (index >= v->count)
-		return;
+	assert (index < v->count);
 
 	v->data[index] = item;
 }
 
 void* Vector_Get(Vector* v, unsigned int index)
 {
+	assert(v);
+
 	if (index >= v->count)
 		return;
 
@@ -61,6 +71,8 @@ void* Vector_Get(Vector* v, unsigned int index)
 
 void Vector_Delete(Vector *v, unsigned int index)
 {
+	assert(v);
+
 	if (index >= v->count)
 		return;
 
@@ -68,6 +80,7 @@ void Vector_Delete(Vector *v, unsigned int index)
 
 	int i, j;
 	void **newarr = (void**)malloc(sizeof(void*) * v->count * 2);
+	assert(newarr);
 	for (i = 0, j = 0; i < v->count; i++)
 	{
 		if (v->data[i] != NULL)

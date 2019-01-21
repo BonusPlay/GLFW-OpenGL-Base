@@ -2,15 +2,24 @@
 #include "../utils/SwissArmyKnife.h"
 #include <glad.h>
 #include <stb_image.h>
+#include <string.h>
+#include <stdlib.h>
 
 Texture* Texture_Ctor(const char* path, aiTextureType type)
 {
+	assert(path);
+
 	Texture* texture = (Texture*)malloc(sizeof(Texture));
+	if(!texture)
+		panic("malloc failed in Texture_Ctor");
 
 	//texture->path = (char*)calloc(strlstchar(path, PATH_SEP) + 1, sizeof (char)); // +1 for null terminator
 	//memcpy(texture->path, path, strlstchar(path, PATH_SEP));
-	texture->path = (char*)calloc(strlen(path) +1, sizeof(char));
-	memcpy(texture->path, path, strlen(path));
+	texture->path = (char*)malloc((strlen(path) + 1) * sizeof(char));
+	if (!texture->path)
+		panic("malloc failed in Texture_Ctor");
+
+	strncpy_s(texture->path, (strlen(path) + 1) * sizeof(char), path, strlen(path) + 1);
 	texture->type = type;
 
 	glGenTextures(1, &texture->ID);
@@ -50,6 +59,7 @@ Texture* Texture_Ctor(const char* path, aiTextureType type)
 
 void Texture_DCtor(Texture* t)
 {
+	assert(t);
 	//glDeleteTextures(1, &t->ID); BUG: destructor ?
 	free(t);
 }

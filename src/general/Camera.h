@@ -27,5 +27,17 @@ Camera* Camera_Ctor3(float posX, float posY, float posZ, float upX, float upY, f
 void Camera_DCtor(Camera* c);
 
 mat4* Camera_GetViewMatrix(Camera* c);
+
+/**
+ * \brief Processes GLFW keyboard event
+ * \param deltaTime time since last update
+ */
 void Camera_ProcessKeyboard(Camera* c, float deltaTime);
+
+/**
+ * \brief Processes GLFW mouse event
+ * \param xoffset offset since last mouse position on X axis
+ * \param yoffset offset since last mouse position on Y axis
+ * \param constrainPitch should constrain camera pitch
+ */
 void Camera_ProcessMouseMovement(Camera* c, float xoffset, float yoffset, bool constrainPitch);

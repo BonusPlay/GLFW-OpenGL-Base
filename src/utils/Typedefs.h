@@ -1,11 +1,13 @@
 #pragma once
-#include <stdbool.h>
-#include <stdio.h>
 #include <assimp/material.h>
 #include <assimp/scene.h>
 #include <cglm/cglm.h>
 #include <glad.h>
 #include <GLFW/glfw3.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
 
 typedef unsigned int Indice;
 typedef versor quat; // quaternion

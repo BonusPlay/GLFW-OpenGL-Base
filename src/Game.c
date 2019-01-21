@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "general/Settings.h"
 #include "states/State1.h"
+#include "utils/SwissArmyKnife.h"
 
 static int SCREEN_WIDTH = 1280;
 static int SCREEN_HEIGHT = 720;
@@ -24,6 +25,9 @@ static void log_error(int error, const char* description);
 void init()
 {
 	g_Settings = (Settings*)malloc(sizeof(Settings));
+	if(!g_Settings)
+		panic("malloc failed in Game_init");
+
 	g_Settings->screen_width = 1280;
 	g_Settings->screen_height = 720;
 	g_Settings->music_volume = 1.0f;
@@ -49,7 +53,7 @@ void update()
 
 void render()
 {
-	glClearColor (0.2f, 0.3f, 0.3f, 1.0f);
+	glClearColor (1.0f, 0.0f, 0.0f, 1.0f);
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	State1_Render((State1*)state);
@@ -73,7 +77,7 @@ void init_opengl()
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -82,9 +86,8 @@ void init_opengl()
 	g_Window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Beat Hunter", NULL, NULL);
 	if (g_Window == NULL)
 	{
+		panic("GLFW window create failed");
 		glfwTerminate();
-		// TODO: error handling
-
 	}
 
 	glfwMakeContextCurrent(g_Window);
@@ -94,9 +97,7 @@ void init_opengl()
 	glfwSetInputMode(g_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		// TODO: error handling
-	}
+		panic("GLAD initialization failed");
 
 	glEnable(GL_DEPTH_TEST);
 
@@ -154,5 +155,5 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 static void log_error(int error, const char* description)
 {
-	printf("[ERROR] (%i) %s\n", error, description);
+	LogD("[ERROR](%i) %s\n", error, description);
 }

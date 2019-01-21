@@ -14,8 +14,10 @@ Music* Music_Ctor(char* name)
 {
 	LogD("Music_Ctor\n");
 	Music* music = (Music*)malloc(sizeof(Music));
+	if (!music)
+		panic("malloc failed in Music_Ctor");
 
-	const char* path = concat3("res/music/", name, ".mp3");
+	char* path = concat3("res/music/", name, ".mp3");
 	music->data = BASS_StreamCreateFile(false, path, 0, 0, 0);
 	free(path);
 	music->name = name;
@@ -26,12 +28,18 @@ Music* Music_Ctor(char* name)
 
 void Music_DCtor(Music* m)
 {
+	assert(m);
+	LogD("Music_DCtor");
+
 	BASS_StreamFree(m->data);
 	free(m);
 }
 
 void Music_Play(Music* m)
 {
+	assert(m);
+	LogD("Music_Play on %s", m->name);
+
 	BASS_ChannelPlay(m->data, false);
 	check_errors();
 	//start_time = high_resolution_clock::now();
@@ -39,12 +47,18 @@ void Music_Play(Music* m)
 
 void Music_Pause(Music* m)
 {
+	assert(m);
+	LogD("Music_Pause on %s", m->name);
+
 	BASS_ChannelPause(m->data);
 	check_errors();
 }
 
 void Music_Stop(Music* m)
 {
+	assert(m);
+	LogD("Music_Stop on %s", m->name);
+
 	BASS_ChannelStop(m->data);
 	check_errors();
 	BASS_ChannelSetPosition(m->data, 0, BASS_POS_BYTE);
@@ -53,11 +67,13 @@ void Music_Stop(Music* m)
 
 MusicStatus Music_GetStatus(Music* m)
 {
+	assert(m);
 	return (MusicStatus)BASS_ChannelIsActive(m->data);
 }
 
 float Music_GetProgress(Music* music)
 {
+	assert(music);
 	const float current = BASS_ChannelGetPosition(music->data, BASS_POS_BYTE);
 	check_errors();
 	const float length = BASS_ChannelGetLength(music->data, BASS_POS_BYTE);
@@ -65,15 +81,9 @@ float Music_GetProgress(Music* music)
 	return current / length;
 }
 
-int Music_GetPosition(Music* music)
-{
-	// TODO: not implemented
-	return 0;
-	//return duration_cast<milliseconds>(std::chrono::high_resolution_clock::now() - start_time).count();
-}
-
 void Music_Update(Music* m)
 {
+	assert(m);
 	float current_volume;
 	BASS_ChannelGetAttribute(m->data, BASS_ATTRIB_VOL, &current_volume);
 	check_errors();
