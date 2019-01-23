@@ -230,7 +230,6 @@ xcopy /I /Y "$(SolutionDir)lib\bass\x64\*.dll" "$(outDir)"</Command>
     <ClCompile Include="utils\glad.c" />
     <ClCompile Include="utils\SwissArmyKnife.c" />
     <ClCompile Include="utils\Vector.c" />
-    <ClCompile Include="utils\VectorGL.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />

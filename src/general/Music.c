@@ -1,3 +1,4 @@
+/** @file */
 #include "Music.h"
 #include <stdbool.h>
 #include "../utils/SwissArmyKnife.h"

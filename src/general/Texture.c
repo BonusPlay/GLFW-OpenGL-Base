@@ -1,3 +1,4 @@
+/** @file */
 #include "Texture.h"
 #include "../utils/SwissArmyKnife.h"
 #include <glad.h>

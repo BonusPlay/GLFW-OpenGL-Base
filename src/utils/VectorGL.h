@@ -1,21 +1,3 @@
-//#pragma once
-//
-//// this vector stores all data in one place, so it can be passed to OpenGL functions
-//typedef struct {
-//	void* data;
-//	unsigned int size;
-//	unsigned int count;
-//} VectorGL;
-//
-//VectorGL* VectorGL_Ctor();
-//void VectorGL_DCtor(VectorGL* v);
-//
-//void VectorGL_Add(VectorGL* v, void* item);
-//void VectorGL_Set(VectorGL* v, unsigned int index, void* item);
-//void* VectorGL_Get(VectorGL* v, unsigned int index);
-////void VectorGL_Delete(VectorGL* v, unsigned int index);
-
-
 #ifndef VECTOR_H_
 #define VECTOR_H_
 

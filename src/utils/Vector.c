@@ -1,3 +1,4 @@
+/** @file */
 #include "Vector.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,7 +37,8 @@ void Vector_Add(Vector* v, void* item)
 	{
 		v->size = 10;
 		v->data = malloc(sizeof(void*) * v->size);
-		assert(v->data);
+		if(!v->data)
+			panic("malloc failed in Vector_Add");
 		memset(v->data, '\0', sizeof(void) * v->size);
 	}
 
@@ -78,10 +80,11 @@ void Vector_Delete(Vector *v, unsigned int index)
 
 	v->data[index] = NULL;
 
-	int i, j;
 	void **newarr = (void**)malloc(sizeof(void*) * v->count * 2);
-	assert(newarr);
-	for (i = 0, j = 0; i < v->count; i++)
+	if(!newarr)
+		panic("malloc failed in Vector_Delete");
+
+	for (unsigned int i = 0, j = 0; i < v->count; i++)
 	{
 		if (v->data[i] != NULL)
 		{

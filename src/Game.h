@@ -3,31 +3,31 @@
 #include "states/GameState.h"
 
 /**
- * \brief GLFW window handle
+ * @brief GLFW window handle
  */
 GLFWwindow* g_Window;
 
 /**
- * \brief Initializes GLFW, OpenGL, BASS, GLAD. Should only be called once.
+ * @brief Initializes GLFW, OpenGL, BASS, GLAD. Should only be called once.
  */
 void init();
 
 /**
- * \brief Deinitializes all libraries and cleans up. Should only be called once.
+ * @brief Deinitializes all libraries and cleans up. Should only be called once.
  */
 void deinit();
 
 /**
- * \brief Make game tick.
+ * @brief Make game tick.
  */
 void update();
 
 /**
- * \brief Renders current game state.
+ * @brief Renders current game state.
  */
 void render();
 
 /**
- * \brief Changes game state.
+ * @brief Changes game state.
  */
 void set_state(GameState* state);

@@ -1,10 +1,26 @@
+/** @file */
 #include "Camera.h"
 #include "../Game.h"
 #include <math.h>
 #include <stdlib.h>
 #include <corecrt_memcpy_s.h>
+#include "../utils/SwissArmyKnife.h"
 
-void Camera_UpdateVectors(Camera* c);
+/**********************************************
+****************    VFTable    ****************
+**********************************************/
+
+void Camera_DCtor(Camera* c);
+mat4* GetViewMatrix(Camera* c);
+void ProcessKeyboard(Camera* c, float deltaTime);
+void ProcessMouseMovement(Camera* c, float xoffset, float yoffset, bool constrainPitch);
+
+
+/**********************************************
+****************    private    ****************
+**********************************************/
+
+void UpdateVectors(Camera* c);
 
 
 /*********************************************
@@ -35,7 +51,18 @@ Camera* Camera_Ctor2(vec3 position, vec3 up, vec3 front, float yaw, float pitch)
 	c->MovementSpeed = 2.5f;
 	c->MouseSensitivity = 0.1f;
 	
-	Camera_UpdateVectors(c);
+	UpdateVectors(c);
+
+	// backup VFTable
+	c->vftable.GameObject_DCtor = GameObject_DCtor;
+
+	// override
+	c->base.vftable.GameObject_DCtor = Camera_DCtor;
+
+	c->vftable.GetViewMatrix = GetViewMatrix;
+	c->vftable.ProcessKeyboard = ProcessKeyboard;
+	c->vftable.ProcessMouseMovement = ProcessMouseMovement;
+
 	return c;
 }
 
@@ -56,10 +83,12 @@ void Camera_DCtor(Camera* c)
 	GameObject_DCtor((GameObject*)c);
 }
 
-mat4* Camera_GetViewMatrix(Camera* c)
+mat4* GetViewMatrix(Camera* c)
 {
 	assert(c);
 	mat4* ret = malloc(sizeof(mat4));
+	if(!ret)
+		panic("malloc failed in Camera_GetViewMatrix");
 	
 	vec3 center;
 	glm_vec3_add(c->base.position, c->Front, center);
@@ -67,7 +96,7 @@ mat4* Camera_GetViewMatrix(Camera* c)
 	return ret;
 }
 
-void Camera_ProcessKeyboard(Camera* c, float deltaTime)
+void ProcessKeyboard(Camera* c, float deltaTime)
 {
 	assert(c);
 
@@ -101,7 +130,7 @@ void Camera_ProcessKeyboard(Camera* c, float deltaTime)
 	}
 }
 
-void Camera_ProcessMouseMovement(Camera* c, float xoffset, float yoffset, bool constrainPitch)
+void ProcessMouseMovement(Camera* c, float xoffset, float yoffset, bool constrainPitch)
 {
 	assert(c);
 
@@ -121,7 +150,7 @@ void Camera_ProcessMouseMovement(Camera* c, float xoffset, float yoffset, bool c
 	}
 
 	// Update Front, Right and Up Vectors using the updated Eular angles
-	Camera_UpdateVectors(c);
+	UpdateVectors(c);
 }
 
 
@@ -129,7 +158,7 @@ void Camera_ProcessMouseMovement(Camera* c, float xoffset, float yoffset, bool c
 ****************    private    ****************
 **********************************************/
 
-void Camera_UpdateVectors(Camera* c)
+void UpdateVectors(Camera* c)
 {
 	assert(c);
 

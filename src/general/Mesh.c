@@ -1,3 +1,4 @@
+/** @file */
 #include "Mesh.h"
 #include <stddef.h>
 #include <assimp/material.h>

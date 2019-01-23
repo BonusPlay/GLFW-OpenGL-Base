@@ -1,3 +1,4 @@
+/** @file */
 #include "Model.h"
 #include <assimp/cimport.h>
 #include <assimp/scene.h>
@@ -22,8 +23,6 @@ Model* Model_Ctor(const char* file)
 {
 	LogD("Model_Ctor\n");
 	Model* m = (Model*)GameObject_Ctor0();
-	if (!m)
-		panic("malloc failed in Model_Ctor");
 
 	m->textures_loaded = Vector_Ctor();
 	m->meshes = Vector_Ctor();
@@ -107,7 +106,6 @@ Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 	// Walk through each of the mesh's vertices
 	for (unsigned int i = 0; i < mesh->mNumVertices; i++)
 	{
-		//Vertex* vertex = (Vertex*)malloc(sizeof(Vertex));
 		Vertex vertex;
 		vec3 vector; // we declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
 

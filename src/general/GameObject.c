@@ -1,3 +1,4 @@
+/** @file */
 #include "GameObject.h"
 #include "../utils/SwissArmyKnife.h"
 

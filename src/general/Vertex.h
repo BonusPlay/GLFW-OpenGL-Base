@@ -2,7 +2,7 @@
 #include <cglm/cglm.h>
 
 /**
- * \brief Structure holding vertex data for .obj models.
+ * @brief Structure holding vertex data for .obj models.
  */
 typedef struct
 {

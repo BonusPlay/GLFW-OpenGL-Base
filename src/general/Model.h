@@ -8,6 +8,8 @@ typedef struct
 
 	Vector* textures_loaded;
 	Vector* meshes;
+
+	// directory model is in (file path)
 	char* directory;
 } Model;
 

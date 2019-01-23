@@ -1,7 +1,13 @@
+/** @file */
 #include "GameState.h"
 #include "../general/Settings.h"
-#include "../Game.h"
 #include "../utils/SwissArmyKnife.h"
+
+void DCtor(struct GameState* gs);
+void Update(struct GameState* gs);
+void UpdateM(struct GameState* gs, float x_offset, float y_offset);
+void UpdateK(struct GameState* gs, int key, int scancode, int action, int mods);
+void Render(struct GameState* gs);
 
 /*********************************************
 ****************    public    ****************
@@ -22,36 +28,43 @@ GameState* GameState_Ctor(GameStateParams* params)
 	gs->shader = Shader_Ctor(params->v_shader_name, params->f_shader_name);
 	gs->camera = Camera_Ctor0(params->camera_position);
 
+	// init VFTable
+	gs->vftable.DCtor = DCtor;
+	gs->vftable.Update = Update;
+	gs->vftable.UpdateM = UpdateM;
+	gs->vftable.UpdateK = UpdateK;
+	gs->vftable.Render = Render;
+
 	return gs;
 }
 
-void GameState_DCtor(GameState* gs)
+void DCtor(GameState* gs)
 {
 	assert(gs);
 	LogD("GameState_DCtor");
 
 	Shader_DCtor(gs->shader);
-	Camera_DCtor(gs->camera);
+	gs->camera->base.vftable.GameObject_DCtor(gs->camera);
 	free(gs);
 }
 
-void GameState_Update(GameState* gs)
+void Update(GameState* gs)
 {
 	assert(gs);
 }
 
-void GameState_UpdateM(GameState* gs, float x_offset, float y_offset)
+void UpdateM(GameState* gs, float x_offset, float y_offset)
 {
 	assert(gs);
-	Camera_ProcessMouseMovement(gs->camera, x_offset, y_offset, true);
+	gs->camera->vftable.ProcessMouseMovement(gs->camera, x_offset, y_offset, true);
 }
 
-void GameState_UpdateK(GameState* gs, int key, int scancode, int action, int mods)
+void UpdateK(GameState* gs, int key, int scancode, int action, int mods)
 {
 	assert(gs);
 }
 
-void GameState_Render(GameState* gs)
+void Render(GameState* gs)
 {
 	assert(gs);
 

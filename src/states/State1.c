@@ -1,5 +1,12 @@
+/** @file */
 #include "State1.h"
 #include <glad.h>
+
+void State1_DCtor(State1* gs);
+void State1_Render(State1* gs);
+void State1_Update(State1* gs);
+void State1_UpdateK(State1* gs, int key, int scancode, int action, int mods);
+void State1_UpdateM(State1* gs, float x_offset, float y_offset);
 
 State1* State1_Ctor()
 {
@@ -7,8 +14,8 @@ State1* State1_Ctor()
 	GameStateParams params;
 	params.v_shader_name = "state1";
 	params.f_shader_name = "state1";
-	vec3 camera_pos = {0.0f, 0.0f, 3.0f};
-	memmove_s(params.camera_position, sizeof(params.camera_position), camera_pos, sizeof(camera_pos));
+	vec3 camera_pos = { 0.0f, 0.0f, 3.0f };
+	memmove_s(params.camera_position, sizeof(params.camera_position), camera_pos, sizeof camera_pos);
 
 	State1* s = (State1*)GameState_Ctor(&params);
 
@@ -17,12 +24,26 @@ State1* State1_Ctor()
 	s->shader_skybox = Shader_Ctor("skybox", "skybox");
 	s->skybox = CubeMap_Ctor("sea");
 
-	vec3 model_pos = {0.0f, -1.75f, 0.0f};
-	vec3 model_scale = {0.2f, 0.2f, 0.2f};
+	vec3 model_pos = { 0.0f, -1.75f, 0.0f };
+	vec3 model_scale = { 0.2f, 0.2f, 0.2f };
 	memmove_s(s->model->base.position, sizeof s->model->base.position, model_pos, sizeof model_pos);
 	memmove_s(s->model->base.scale, sizeof s->model->base.scale, model_scale, sizeof model_scale);
 
 	Music_Play(s->music);
+
+	// backup base VFTable
+	s->vftable.GameState_DCtor = s->base.vftable.DCtor;
+	s->vftable.GameState_Render = s->base.vftable.Render;
+	s->vftable.GameState_Update = s->base.vftable.Update;
+	s->vftable.GameState_UpdateK = s->base.vftable.UpdateK;
+	s->vftable.GameState_UpdateM = s->base.vftable.UpdateM;
+
+	// override functions
+	s->base.vftable.DCtor = State1_DCtor;
+	s->base.vftable.Render = State1_Render;
+	s->base.vftable.Update = State1_Update;
+	s->base.vftable.UpdateK = State1_UpdateK;
+	s->base.vftable.UpdateM = State1_UpdateM;
 
 	LogD("Stage1_Ctor finished!\n");
 	return s;
@@ -37,21 +58,21 @@ void State1_DCtor(State1* s)
 	Shader_DCtor(s->shader_skybox);
 	CubeMap_DCtor(s->skybox);
 	Model_DCtor(s->model);
-	GameState_DCtor((GameState*)s); // GameState_DCtor frees the pointer
+	s->vftable.GameState_DCtor((GameState*)s); // GameState_DCtor frees the pointer
 }
 
 void State1_Render(State1* s)
 {
 	assert(s);
 
-	GameState_Render((GameState*)s);
+	s->vftable.GameState_Render((GameState*)s);
 
 	glStencilFunc(GL_ALWAYS, 1, 0xFF);
 	glStencilMask(0xFF);
 
-	mat4* vm = Camera_GetViewMatrix(s->base.camera);
+	mat4* vm = s->base.camera->vftable.GetViewMatrix(s->base.camera);
 
-	// Shader
+	// Main Shader
 	Shader_Use(s->base.shader);
 	Shader_SetMat4(s->base.shader, "view", *vm);
 	Shader_SetMat4(s->base.shader, "projection", s->base.projection);
@@ -75,14 +96,9 @@ void State1_Render(State1* s)
 void State1_Update(State1* s)
 {
 	assert(s);
-	GameState_Update((GameState*)s);
 
-	//const double time_value = glfwGetTime();
-	//delta_time2 = time_value - last_frame2;
-	//last_frame2 = time_value;
-
-	Camera_ProcessKeyboard(s->base.camera, s->base.delta_time);
-
+	s->vftable.GameState_Update((GameState*)s);
+	s->base.camera->vftable.ProcessKeyboard(s->base.camera, s->base.delta_time);
 	Music_Update(s->music);
 }
 
@@ -90,5 +106,12 @@ void State1_UpdateK(State1* s, int key, int scancode, int action, int mods)
 {
 	assert(s);
 
-	GameState_UpdateK((GameState*)s, key, scancode, action, mods);
+	s->vftable.GameState_UpdateK((GameState*)s, key, scancode, action, mods);
+}
+
+void State1_UpdateM(State1* s, float x_offset, float y_offset)
+{
+	assert(s);
+
+	s->vftable.GameState_UpdateM((GameState*)s, x_offset, y_offset);
 }

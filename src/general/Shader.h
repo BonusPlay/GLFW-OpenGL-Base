@@ -13,6 +13,7 @@ Shader* Shader_Ctor(const char* v_shader_name, const char* f_shader_name);
 void Shader_DCtor(Shader* s);
 
 void Shader_Use(Shader* s);
+
 void Shader_SetBool(Shader* s, const char* name, bool value);
 void Shader_SetInt(Shader* s, const char* name, int value);
 void Shader_SetFloat(Shader* s, const char* name, float value);

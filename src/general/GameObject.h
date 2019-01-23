@@ -2,8 +2,17 @@
 #include "Shader.h"
 #include "../utils/Typedefs.h"
 
+struct GameObject;
+
+struct GameObject_VFTable
+{
+	void (*GameObject_DCtor)(struct GameObject* go);
+};
+
 typedef struct
 {
+	struct GameObject_VFTable vftable;
+
 	vec3 position;
 	quat rotation;
 	vec3 scale;

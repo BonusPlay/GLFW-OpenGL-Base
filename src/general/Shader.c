@@ -1,3 +1,4 @@
+/** @file */
 #include "Shader.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -171,22 +172,17 @@ char* shader_load(const char* path)
 			}
 
 			source = malloc(sizeof(char) * (bufsize + 1));
-			assert(source);
+			if(!source)
+				panic("malloc failed in shader_load");
 
 			// Go back to the start of the file
 			if (fseek(fp, 0L, SEEK_SET) != 0)
-			{
-				assert(false);
-				// TODO: error handling
-			}
+				panic("fseek failed in shader_load");
 
 			/* Read the entire file into memory. */
 			size_t newLen = fread(source, sizeof(char), bufsize, fp);
 			if (ferror(fp) != 0)
-			{
-				assert(false);
-				// TODO: error handling
-			}
+				panic("ferror in shader_load");
 			else
 				source[newLen++] = '\0';
 		}

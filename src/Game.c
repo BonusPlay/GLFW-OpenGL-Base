@@ -1,3 +1,4 @@
+/** @file */
 #include "Game.h"
 #include "general/Settings.h"
 #include "states/State1.h"
@@ -6,8 +7,8 @@
 static int SCREEN_WIDTH = 1280;
 static int SCREEN_HEIGHT = 720;
 
-static float last_x;
-static float last_y;
+static float last_x;	// stores last mouse X coord
+static float last_y;	// stores last mouse Y coord
 
 GameState* state;
 
@@ -25,7 +26,7 @@ static void log_error(int error, const char* description);
 void init()
 {
 	g_Settings = (Settings*)malloc(sizeof(Settings));
-	if(!g_Settings)
+	if (!g_Settings)
 		panic("malloc failed in Game_init");
 
 	g_Settings->screen_width = 1280;
@@ -40,25 +41,25 @@ void init()
 
 void deinit()
 {
-	State1_DCtor((State1*)state); // HACK: idk which state dctr to call, this should be resolved by vftables
+	state->vftable.DCtor(state);
 	BASS_Free();
 }
 
 void update()
 {
-	glfwPollEvents ();
+	glfwPollEvents();
 	BASS_SetVolume(g_Settings->music_volume);
-	State1_Update((State1*)state); // HACK: vftable
+	state->vftable.Update(state);
 }
 
 void render()
 {
-	glClearColor (1.0f, 0.0f, 0.0f, 1.0f);
-	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-	State1_Render((State1*)state);
+	state->vftable.Render(state);
 
-	glfwSwapBuffers (g_Window);
+	glfwSwapBuffers(g_Window);
 }
 
 void set_state(GameState* next)
@@ -114,18 +115,18 @@ void init_opengl()
 void init_audio()
 {
 	if (HIWORD(BASS_GetVersion()) != BASSVERSION);
-		//throw runtime_error("An incorrect version of BASS.DLL was loaded");
-		// TODO: error handling
+	//throw runtime_error("An incorrect version of BASS.DLL was loaded");
+	// TODO: error handling
 
 	if (!BASS_Init(-1, 44100, 0, NULL, NULL));
-		//throw runtime_error("Can't initialize BASS device");
-		// TODO: error handling
+	//throw runtime_error("Can't initialize BASS device");
+	// TODO: error handling
 
 	BASS_SetVolume(1);
 
 	if (BASS_ErrorGetCode() != BASS_OK);
-		//throw runtime_error(std::to_string(BASS_ErrorGetCode()));
-		// TODO: error handling
+	//throw runtime_error(std::to_string(BASS_ErrorGetCode()));
+	// TODO: error handling
 }
 
 static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -142,15 +143,15 @@ static void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 	const float x_offset = xpos - last_x;
 	const float y_offset = last_y - ypos; // reversed since y-coordinates go from bottom to top
 
-	last_x = xpos;
-	last_y = ypos;
+	last_x = (float)xpos;
+	last_y = (float)ypos;
 
-	GameState_UpdateM(state, x_offset, y_offset);
+	state->vftable.UpdateM(state, x_offset, y_offset);
 }
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	State1_UpdateK((State1*)state, key, scancode, action, mods); // HACK: vftable
+	state->vftable.UpdateK(state, key, scancode, action, mods);
 }
 
 static void log_error(int error, const char* description)

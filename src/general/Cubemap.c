@@ -1,3 +1,4 @@
+/** @file */
 #include "Cubemap.h"
 #include "../utils/Typedefs.h"
 #include "../utils/SwissArmyKnife.h"
