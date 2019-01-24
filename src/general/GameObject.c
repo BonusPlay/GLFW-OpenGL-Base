@@ -2,6 +2,8 @@
 #include "GameObject.h"
 #include "../utils/SwissArmyKnife.h"
 
+void GameObject_Draw(GameObject* go, Shader* shader);
+
 /*********************************************
 ****************    public    ****************
 *********************************************/
@@ -25,6 +27,9 @@ GameObject* GameObject_Ctor2(vec3 position, quat rotation, vec3 scale)
 	memcpy_s(go->position, sizeof(vec3), position, sizeof go->position);
 	memcpy_s(go->rotation, sizeof(quat), rotation, sizeof go->rotation);
 	memcpy_s(go->scale, sizeof(vec3), scale, sizeof go->scale);
+
+	go->vftable.GameObject_DCtor = GameObject_DCtor;
+	go->vftable.GameObject_Draw = GameObject_Draw;
 
 	return go;
 }

@@ -36,6 +36,12 @@ Model* Model_Ctor(const char* file)
 
 	process_node(m, scene->mRootNode, scene);
 
+	m->vftable.GameObject_DCtor = m->base.vftable.GameObject_DCtor;
+	m->vftable.GameObject_Draw = m->base.vftable.GameObject_Draw;
+
+	m->base.vftable.GameObject_DCtor = Mesh_DCtor;
+	m->base.vftable.GameObject_Draw = Mesh_Draw;
+
 	return m;
 }
 
@@ -61,7 +67,7 @@ void Model_Draw(Model* m, Shader* shader)
 	assert(m);
 	assert(shader);
 
-	GameObject_Draw((GameObject*)m, shader);
+	m->vftable.GameObject_Draw((GameObject*)m, shader);
 
 	for(unsigned int i = 0; i < m->meshes->count; i++)
 		Mesh_Draw((Mesh*)Vector_Get(m->meshes, i), shader);

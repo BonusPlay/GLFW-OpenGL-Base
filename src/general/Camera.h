@@ -3,31 +3,30 @@
 
 struct Camera;
 
-struct Camera_VFTable
-{
-	void (*GameObject_DCtor)(GameObject* go);
-
-	mat4* (*GetViewMatrix)(struct Camera* c);
-
-	/**
-	 * @brief Processes GLFW keyboard event
-	 * @param deltaTime time since last update
-	 */
-	void(*ProcessKeyboard)(struct Camera* c, float deltaTime);
-
-	/**
-	 * @brief Processes GLFW mouse event
-	 * @param xoffset offset since last mouse position on X axis
-	 * @param yoffset offset since last mouse position on Y axis
-	 * @param constrainPitch should constrain camera pitch
-	 */
-	void(*ProcessMouseMovement)(struct Camera* c, float xoffset, float yoffset, bool constrainPitch);
-};
-
 typedef struct
 {
 	GameObject base;
-	struct Camera_VFTable vftable;
+
+	struct
+	{
+		void(*GameObject_DCtor)(GameObject* go);
+
+		mat4* (*GetViewMatrix)(struct Camera* c);
+
+		/**
+		 * @brief Processes GLFW keyboard event
+		 * @param deltaTime time since last update
+		 */
+		void(*ProcessKeyboard)(struct Camera* c, float deltaTime);
+
+		/**
+		 * @brief Processes GLFW mouse event
+		 * @param xoffset offset since last mouse position on X axis
+		 * @param yoffset offset since last mouse position on Y axis
+		 * @param constrainPitch should constrain camera pitch
+		 */
+		void(*ProcessMouseMovement)(struct Camera* c, float xoffset, float yoffset, bool constrainPitch);
+	} vftable;
 
 	// Camera Attributes
 	vec3 Front;

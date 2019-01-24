@@ -158,7 +158,7 @@ char* shader_load(const char* path)
 		assert(false);
 	}
 
-	if (fp != NULL)
+	if (fp != NULL)	
 	{
 		// Go to the end of the file
 		if (fseek(fp, 0L, SEEK_END) == 0)
