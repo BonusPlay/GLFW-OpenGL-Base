@@ -20,7 +20,7 @@ Texture* Texture_Ctor(const char* path, aiTextureType type)
 	if (!texture->path)
 		panic("malloc failed in Texture_Ctor");
 
-	strncpy_s(texture->path, (strlen(path) + 1) * sizeof(char), path, strlen(path) + 1);
+	CheckedMemory(strncpy_s(texture->path, (strlen(path) + 1) * sizeof(char), path, strlen(path) + 1));
 	texture->type = type;
 
 	glGenTextures(1, &texture->ID);

@@ -3,6 +3,10 @@
 #include "../general/Settings.h"
 #include "../utils/SwissArmyKnife.h"
 
+/**********************************************
+****************    VFTable    ****************
+**********************************************/
+
 void DCtor(struct GameState* gs);
 void Update(struct GameState* gs);
 void UpdateM(struct GameState* gs, float x_offset, float y_offset);

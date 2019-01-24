@@ -4,6 +4,9 @@
 #include "../utils/SwissArmyKnife.h"
 #include "../utils/Typedefs.h"
 
+/**
+ * @brief Helper function to return BASS library errors
+ */
 void check_errors();
 
 
@@ -43,7 +46,6 @@ void Music_Play(Music* m)
 
 	BASS_ChannelPlay(m->data, false);
 	check_errors();
-	//start_time = high_resolution_clock::now();
 }
 
 void Music_Pause(Music* m)
@@ -105,8 +107,7 @@ void Music_Update(Music* m)
 
 void check_errors()
 {
-	// TODO: BASS error codes
-	if (BASS_ErrorGetCode() != BASS_OK);
-		//throw runtime_error(BASS_ErrorGetCode());
-		// TODO: error handling
+	const int err = BASS_ErrorGetCode();
+	if (err != BASS_OK)
+		panic("BASS error occured '%d'", err);
 }

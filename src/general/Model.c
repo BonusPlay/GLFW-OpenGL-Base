@@ -11,9 +11,35 @@
 #include <corecrt_memcpy_s.h>
 #include <string.h>
 
+/**********************************************
+****************    private    ****************
+**********************************************/
+
+/**
+ * @brief Processes all nodes on assimp scene
+ * @param model currently processed model
+ * @param node currently processed node
+ * @param scene currently processed scene
+ */
 void process_node(Model* model, aiNode* node, const aiScene* scene);
+
+/**
+ * @brief Processes mesh (loads materials and textures)
+ * @param model currently processed model
+ * @param mesh currently processed mesh
+ * @param scene currently processed scene
+ * @returns Mesh
+ */
 Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene);
-Vector* load_material_textures(Model* m, aiMaterial *mat, enum aiTextureType type);
+
+/**
+ * @brief Loads textures for material
+ * @param m currently processed model
+ * @param mat currently processed material
+ * @param type texture type
+ * @returns Vector of textures
+ */
+Vector* load_material_textures(Model* m, aiMaterial* mat, enum aiTextureType type);
 
 /*********************************************
 ****************    public    ****************
@@ -26,10 +52,12 @@ Model* Model_Ctor(const char* file)
 
 	m->textures_loaded = Vector_Ctor();
 	m->meshes = Vector_Ctor();
-	m->directory = (char*)calloc((strlstchar(file, PATH_SEP) + 1), sizeof (char)); // +1 for null terminator
-	memcpy_s(m->directory, strlstchar(file, PATH_SEP) + 1, file, strlstchar(file, PATH_SEP) + 1);
+	m->directory = (char*)calloc(strlstchar(file, PATH_SEP) + 1, sizeof(char)); // +1 for null terminator, this could be any malloc, but I wanted to test out calloc
+	if(!m->directory)
+		panic("calloc failed in Model_Ctor");
+	CheckedMemory(memcpy_s(m->directory, strlstchar(file, PATH_SEP) + 1, file, strlstchar(file, PATH_SEP) + 1));
 
-	const aiScene* scene = aiImportFile(file, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+	const aiScene * scene = aiImportFile(file, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 	// check for errors
 	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
 		panic("Scene loading failed");
@@ -45,7 +73,7 @@ Model* Model_Ctor(const char* file)
 	return m;
 }
 
-void Model_DCtor(Model* m)
+void Model_DCtor(Model * m)
 {
 	assert(m);
 	LogD("Model_DCtor");
@@ -57,19 +85,19 @@ void Model_DCtor(Model* m)
 	for (unsigned int i = 0; i < m->meshes->count; ++i)
 		Texture_DCtor(Vector_Get(m->meshes, i));
 	Vector_DCtor(m->meshes);
-	
+
 	free(m->directory);
-	GameObject_DCtor((GameObject*)m);
+	m->vftable.GameObject_DCtor((GameObject*)m);
 }
 
-void Model_Draw(Model* m, Shader* shader)
+void Model_Draw(Model * m, Shader * shader)
 {
 	assert(m);
 	assert(shader);
 
 	m->vftable.GameObject_Draw((GameObject*)m, shader);
 
-	for(unsigned int i = 0; i < m->meshes->count; i++)
+	for (unsigned int i = 0; i < m->meshes->count; i++)
 		Mesh_Draw((Mesh*)Vector_Get(m->meshes, i), shader);
 }
 
@@ -77,7 +105,7 @@ void Model_Draw(Model* m, Shader* shader)
 ****************    private    ****************
 **********************************************/
 
-void process_node(Model* model, aiNode* node, const aiScene* scene)
+void process_node(Model * model, aiNode * node, const aiScene * scene)
 {
 	assert(model);
 	assert(node);
@@ -97,7 +125,7 @@ void process_node(Model* model, aiNode* node, const aiScene* scene)
 		process_node(model, node->mChildren[i], scene);
 }
 
-Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
+Mesh* process_mesh(Model * model, aiMesh * mesh, const aiScene * scene)
 {
 	assert(model);
 	assert(mesh);
@@ -119,13 +147,13 @@ Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 		vector[0] = mesh->mVertices[i].x;
 		vector[1] = mesh->mVertices[i].y;
 		vector[2] = mesh->mVertices[i].z;
-		memcpy_s(vertex.position, sizeof(vertex.position), vector, sizeof(vector));
+		CheckedMemory(memcpy_s(vertex.position, sizeof vertex.position, vector, sizeof vector));
 
 		// normals
 		vector[0] = mesh->mNormals[i].x;
 		vector[1] = mesh->mNormals[i].y;
 		vector[2] = mesh->mNormals[i].z;
-		memcpy_s(vertex.normal, sizeof(vertex.normal), vector, sizeof(vector));
+		CheckedMemory(memcpy_s(vertex.normal, sizeof vertex.normal, vector, sizeof vector));
 
 		// texture coordinates
 		if (mesh->mTextureCoords[0]) // does the mesh contain texture coordinates?
@@ -135,7 +163,7 @@ Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 			// use models where a vertex can have multiple texture coordinates so we always take the first set (0).
 			vec[0] = mesh->mTextureCoords[0][i].x;
 			vec[1] = mesh->mTextureCoords[0][i].y;
-			memcpy_s(vertex.tex_coords, sizeof(vertex.tex_coords), vec, sizeof(vec));
+			CheckedMemory(memcpy_s(vertex.tex_coords, sizeof vertex.tex_coords, vec, sizeof vec));
 		}
 		else
 			memset(vertex.tex_coords, 0, 2);
@@ -144,13 +172,13 @@ Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 		vector[0] = mesh->mTangents[i].x;
 		vector[1] = mesh->mTangents[i].y;
 		vector[2] = mesh->mTangents[i].z;
-		memcpy_s(vertex.tangent, sizeof(vertex.tangent), vector, sizeof(vector));
+		CheckedMemory(memcpy_s(vertex.tangent, sizeof vertex.tangent, vector, sizeof vector));
 
 		// bitangent
 		vector[0] = mesh->mBitangents[i].x;
 		vector[1] = mesh->mBitangents[i].y;
 		vector[2] = mesh->mBitangents[i].z;
-		memcpy_s(vertex.bitangent, sizeof(vertex.bitangent), vector, sizeof(vector));
+		CheckedMemory(memcpy_s(vertex.bitangent, sizeof vertex.bitangent, vector, sizeof vector));
 
 		vector_push_back(vertices, vertex);
 	}
@@ -162,7 +190,7 @@ Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 		// retrieve all indices of the face and store them in the indices vector
 		for (unsigned int j = 0; j < face.mNumIndices; j++)
 			vector_push_back(indices, face.mIndices[j]);
-			//Vector_Add(indices, &face.mIndices[j]); // BUG: ?
+		//Vector_Add(indices, &face.mIndices[j]); // BUG: ?
 	}
 
 	// process materials
@@ -176,29 +204,29 @@ Mesh* process_mesh(Model* model, aiMesh* mesh, const aiScene* scene)
 
 	// 1. diffuse maps
 	Vector* diffuseMaps = load_material_textures(model, material, aiTextureType_DIFFUSE);
-	for(unsigned int i= 0; i < diffuseMaps->count; i++)
+	for (unsigned int i = 0; i < diffuseMaps->count; i++)
 		Vector_Add(textures, Vector_Get(diffuseMaps, i));
 
 	// 2. specular maps
-	Vector* specularMaps = load_material_textures(model, material, aiTextureType_SPECULAR);
-	for(unsigned int i= 0; i < specularMaps->count; i++)
+	Vector * specularMaps = load_material_textures(model, material, aiTextureType_SPECULAR);
+	for (unsigned int i = 0; i < specularMaps->count; i++)
 		Vector_Add(textures, Vector_Get(specularMaps, i));
 
 	// 3. normal maps
-	Vector* normalMaps = load_material_textures(model, material, aiTextureType_HEIGHT);
-	for(unsigned int i= 0; i < normalMaps->count; i++)
+	Vector * normalMaps = load_material_textures(model, material, aiTextureType_HEIGHT);
+	for (unsigned int i = 0; i < normalMaps->count; i++)
 		Vector_Add(textures, Vector_Get(normalMaps, i));
 
 	// 4. height maps
-	Vector* heightMaps = load_material_textures(model, material, aiTextureType_AMBIENT);
-	for(unsigned int i= 0; i < heightMaps->count; i++)
+	Vector * heightMaps = load_material_textures(model, material, aiTextureType_AMBIENT);
+	for (unsigned int i = 0; i < heightMaps->count; i++)
 		Vector_Add(textures, Vector_Get(heightMaps, i));
 
 	// return a mesh object created from the extracted mesh data
 	return Mesh_Ctor(vertices, indices, textures);
 }
 
-Vector* load_material_textures(Model* model, aiMaterial* mat, enum aiTextureType type)
+Vector* load_material_textures(Model * model, aiMaterial * mat, enum aiTextureType type)
 {
 	assert(model);
 	assert(mat);
@@ -220,8 +248,10 @@ Vector* load_material_textures(Model* model, aiMaterial* mat, enum aiTextureType
 			texture = (Texture*)Vector_Get(model->textures_loaded, j);
 			char* texture_path = texture->path;
 			const unsigned int path_length = strlen(texture_path) - strlstchar(texture_path, PATH_SEP) + 1;
-			char* path = (char*)calloc(path_length, sizeof (char)); // +1 for null terminator
-			memcpy_s(path, path_length, &texture_path[strlstchar(texture_path, PATH_SEP)], strlen(texture_path) - strlstchar(texture_path, PATH_SEP));
+			char* path = (char*)calloc(path_length, sizeof(char)); // +1 for null terminator
+			if (!path)
+				panic("calloc failed in load_material_textures");
+			CheckedMemory(memcpy_s(path, path_length, &texture_path[strlstchar(texture_path, PATH_SEP)], strlen(texture_path) - strlstchar(texture_path, PATH_SEP)));
 
 			if (strcmp(path, str.data) == 0)
 			{

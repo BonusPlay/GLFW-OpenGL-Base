@@ -29,5 +29,6 @@ void render();
 
 /**
  * @brief Changes game state.
+ * @param state GameState to change to
  */
 void set_state(GameState* state);

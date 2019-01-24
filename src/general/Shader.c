@@ -10,9 +10,35 @@
 
 #define CHUNK 1024 // read 1024 bytes at a time
 
+/**********************************************
+****************    private    ****************
+**********************************************/
+
+/**
+ * @brief Loads shader code from file
+ * @param path shader file to load code form
+ * @returns shader code
+ */
 char* shader_load(const char* path);
+
+/**
+ * @brief Compiles vertex shader
+ * @param s Shader to compile vertex shader for
+ * @param code Vertex shader code
+ */
 void v_shader_compile(Shader* s, const char* code); // joining these 2 functions make resulting function very ugly
+
+/**
+ * @brief Compile fragment shader
+ * @param s Shader to compile fragment shader for
+ * @param code Fragment shader code
+ */
 void f_shader_compile(Shader* s, const char* code);
+
+/**
+ * @brief Compiles final shader program from vertex and fragment shaders
+ * @param s Shader to compile program for
+ */
 void create_shader_program(Shader* s);
 
 
@@ -50,90 +76,90 @@ Shader* Shader_Ctor(const char* v_shader_name, const char* f_shader_name)
 	return s;
 }
 
-void Shader_DCtor(Shader* s)
+void Shader_DCtor(Shader * s)
 {
 	assert(s);
 	glDeleteShader(s->ID);
 	free(s);
 }
 
-void Shader_Use(Shader* shader)
+void Shader_Use(Shader * shader)
 {
 	assert(shader);
 	glUseProgram(shader->ID);
 }
 
-void Shader_SetBool(Shader* shader, const char* name, bool value)
+void Shader_SetBool(Shader * shader, const char* name, bool value)
 {
 	assert(shader);
 	assert(name);
 	glUniform1i(glGetUniformLocation(shader->ID, name), (int)value);
 }
 
-void Shader_SetInt(Shader* shader, const char* name, int value)
+void Shader_SetInt(Shader * shader, const char* name, int value)
 {
 	assert(shader);
 	assert(name);
 	glUniform1i(glGetUniformLocation(shader->ID, name), value);
 }
 
-void Shader_SetFloat(Shader* shader, const char* name, float value)
+void Shader_SetFloat(Shader * shader, const char* name, float value)
 {
 	assert(shader);
 	assert(name);
 	glUniform1f(glGetUniformLocation(shader->ID, name), value);
 }
 
-void Shader_SetVec2(Shader* shader, const char* name, const vec2 value)
+void Shader_SetVec2(Shader * shader, const char* name, const vec2 value)
 {
 	assert(shader);
 	assert(name);
 	glUniform2fv(glGetUniformLocation(shader->ID, name), 1, value);
 }
 
-void Shader_SetVec2f(Shader* shader, const char* name, float x, float y)
+void Shader_SetVec2f(Shader * shader, const char* name, float x, float y)
 {
 	assert(shader);
 	assert(name);
 	glUniform2f(glGetUniformLocation(shader->ID, name), x, y);
 }
 
-void Shader_SetVec3(Shader* shader, const char* name, const vec3 value)
+void Shader_SetVec3(Shader * shader, const char* name, const vec3 value)
 {
 	assert(shader);
 	assert(name);
 	glUniform3fv(glGetUniformLocation(shader->ID, name), 1, value);
 }
 
-void Shader_SetVec3f(Shader* shader, const char* name, float x, float y, float z)
+void Shader_SetVec3f(Shader * shader, const char* name, float x, float y, float z)
 {
 	assert(shader);
 	assert(name);
 	glUniform3f(glGetUniformLocation(shader->ID, name), x, y, z);
 }
 
-void Shader_SetVec4(Shader* shader, const char* name, const vec4 value)
+void Shader_SetVec4(Shader * shader, const char* name, const vec4 value)
 {
 	assert(shader);
 	assert(name);
 	glUniform4fv(glGetUniformLocation(shader->ID, name), 1, value);
 }
 
-void Shader_SetVec4f(Shader* shader, const char* name, float x, float y, float z, float w)
+void Shader_SetVec4f(Shader * shader, const char* name, float x, float y, float z, float w)
 {
 	assert(shader);
 	assert(name);
 	glUniform4f(glGetUniformLocation(shader->ID, name), x, y, z, w);
 }
 
-void Shader_SetMat3(Shader* s, const char* name, const mat3 value)
+void Shader_SetMat3(Shader * s, const char* name, const mat3 value)
 {
 	assert(s);
 	assert(name);
 	glUniformMatrix3fv(glGetUniformLocation(s->ID, name), 1, GL_FALSE, value);
 }
 
-void Shader_SetMat4(Shader* s, const char* name, const mat4 value)
+void Shader_SetMat4(Shader * s, const char* name, const mat4 value)
 {
 	assert(s);
 	assert(name);
@@ -151,48 +177,43 @@ char* shader_load(const char* path)
 
 	char* source = NULL;
 	FILE* fp;
-	errno_t error = fopen_s(&fp, path, "r");
-	if (error != 0)
+	const errno_t error = fopen_s(&fp, path, "r");
+	if (error != 0 || !fp)
 	{
 		fprintf(stderr, "cannot open file '%s': '%d", path, error);
 		assert(false);
 	}
 
-	if (fp != NULL)	
+	// Go to the end of the file
+	if (fseek(fp, 0L, SEEK_END) == 0)
 	{
-		// Go to the end of the file
-		if (fseek(fp, 0L, SEEK_END) == 0)
-		{
-			// Get the size of the file
-			long bufsize = ftell(fp);
-			if (bufsize == -1)
-			{
-				assert(false);
-				// TODO: error handling
-			}
+		// Get the size of the file
+		const long bufsize = ftell(fp);
 
-			source = malloc(sizeof(char) * (bufsize + 1));
-			if(!source)
-				panic("malloc failed in shader_load");
+		if (bufsize == -1)
+			panic("failed to get file size");
 
-			// Go back to the start of the file
-			if (fseek(fp, 0L, SEEK_SET) != 0)
-				panic("fseek failed in shader_load");
+		source = malloc(sizeof(char) * (bufsize + 1));
+		if (!source)
+			panic("malloc failed in shader_load");
 
-			/* Read the entire file into memory. */
-			size_t newLen = fread(source, sizeof(char), bufsize, fp);
-			if (ferror(fp) != 0)
-				panic("ferror in shader_load");
-			else
-				source[newLen++] = '\0';
-		}
-		fclose(fp);
+		// Go back to the start of the file
+		if (fseek(fp, 0L, SEEK_SET) != 0)
+			panic("fseek failed in shader_load");
+
+		// Read the entire file into memory
+		size_t newLen = fread(source, sizeof(char), bufsize, fp);
+		if (ferror(fp) != 0)
+			panic("ferror in shader_load");
+		else
+			source[newLen++] = '\0';
 	}
+	fclose(fp);
 
 	return source;
 }
 
-void v_shader_compile(Shader* s, const char* code)
+void v_shader_compile(Shader * s, const char* code)
 {
 	assert(s);
 	assert(code);
@@ -215,7 +236,7 @@ void v_shader_compile(Shader* s, const char* code)
 	}
 }
 
-void f_shader_compile(Shader* s, const char* code)
+void f_shader_compile(Shader * s, const char* code)
 {
 	assert(s);
 	assert(code);
@@ -238,7 +259,7 @@ void f_shader_compile(Shader* s, const char* code)
 	}
 }
 
-void create_shader_program(Shader* s)
+void create_shader_program(Shader * s)
 {
 	assert(s);
 

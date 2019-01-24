@@ -22,15 +22,6 @@ Mesh* Mesh_Ctor(Vertex* vertices, Indice* indices, Vector* textures)
 	m->indices = indices;
 	m->textures = textures;
 
-	//for(unsigned int i = 0; i < vertices->count; i++)
-	//{
-	//	Vertex* v = (Vertex*)Vector_Get(vertices, i);
-	//	printf("i: %i\n", i);
-	//	printf("   pos: (%f, %f, %f)\n", v->position[0], v->position[1], v->position[2]);
-	//	printf("   norm: (%f, %f, %f)\n", v->normal[0], v->normal[1], v->normal[2]);
-	//	printf("   tex: (%f, %f)\n", v->tex_coords[0], v->tex_coords[1]);
-	//}
-
 	glGenVertexArrays(1, &m->VAO);
 	glGenBuffers(1, &m->VBO);
 	glGenBuffers(1, &m->EBO);

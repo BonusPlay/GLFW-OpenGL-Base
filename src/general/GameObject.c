@@ -2,6 +2,11 @@
 #include "GameObject.h"
 #include "../utils/SwissArmyKnife.h"
 
+/**********************************************
+****************    VFTable    ****************
+**********************************************/
+
+void GameObject_DCtor(GameObject* go);
 void GameObject_Draw(GameObject* go, Shader* shader);
 
 /*********************************************
@@ -24,9 +29,9 @@ GameObject* GameObject_Ctor2(vec3 position, quat rotation, vec3 scale)
 	if (!go)
 		panic("malloc failed in GameObject_Ctor");
 
-	memcpy_s(go->position, sizeof(vec3), position, sizeof go->position);
-	memcpy_s(go->rotation, sizeof(quat), rotation, sizeof go->rotation);
-	memcpy_s(go->scale, sizeof(vec3), scale, sizeof go->scale);
+	CheckedMemory(memcpy_s(go->position, sizeof(vec3), position, sizeof go->position));
+	CheckedMemory(memcpy_s(go->rotation, sizeof(quat), rotation, sizeof go->rotation));
+	CheckedMemory(memcpy_s(go->scale, sizeof(vec3), scale, sizeof go->scale));
 
 	go->vftable.GameObject_DCtor = GameObject_DCtor;
 	go->vftable.GameObject_Draw = GameObject_Draw;

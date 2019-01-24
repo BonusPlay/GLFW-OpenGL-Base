@@ -89,8 +89,7 @@ CubeMap* CubeMap_Ctor(const char* name)
 		else
 		{
 			stbi_image_free(data);
-			//throw runtime_error("Failed to load texture '" + name + "[" + faces[i] + "]'");
-			// TODO: error handling
+			panic("Failed to load texture '%s[%d]'", name, faces[i]);
 		}
 		free(path);
 	}

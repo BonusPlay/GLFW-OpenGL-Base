@@ -87,8 +87,8 @@ void init_opengl()
 	g_Window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Beat Hunter", NULL, NULL);
 	if (g_Window == NULL)
 	{
-		panic("GLFW window create failed");
 		glfwTerminate();
+		panic("GLFW window create failed");
 	}
 
 	glfwMakeContextCurrent(g_Window);
@@ -114,19 +114,16 @@ void init_opengl()
 
 void init_audio()
 {
-	if (HIWORD(BASS_GetVersion()) != BASSVERSION);
-	//throw runtime_error("An incorrect version of BASS.DLL was loaded");
-	// TODO: error handling
+	if (HIWORD(BASS_GetVersion()) != BASSVERSION)
+		panic("incorrect version of bass.dll was loaded");
 
-	if (!BASS_Init(-1, 44100, 0, NULL, NULL));
-	//throw runtime_error("Can't initialize BASS device");
-	// TODO: error handling
+	if (!BASS_Init(-1, 44100, 0, NULL, NULL))
+		panic("cannot initialize BASS device");
 
 	BASS_SetVolume(1);
 
-	if (BASS_ErrorGetCode() != BASS_OK);
-	//throw runtime_error(std::to_string(BASS_ErrorGetCode()));
-	// TODO: error handling
+	if (BASS_ErrorGetCode() != BASS_OK)
+		panic("BASS error occured");
 }
 
 static void framebuffer_size_callback(GLFWwindow* window, int width, int height)

@@ -22,8 +22,8 @@ char* concatc(const char* s1, const char s2)
 	if (!result)
 		panic("malloc failed in concatc");
 
-	strcpy_s(result, size, s1);
-	strcat_s(result, size, s2);
+	CheckedMemory(strcpy_s(result, size, s1));
+	CheckedMemory(strcat_s(result, size, s2));
 	return result;
 }
 
@@ -37,8 +37,8 @@ char* concat2(const char *s1, const char *s2)
 	if (!result)
 		panic("malloc failed in concat2");
 
-	strcpy_s(result, size, s1);
-	strcat_s(result, size, s2);
+	CheckedMemory(strcpy_s(result, size, s1));
+	CheckedMemory(strcat_s(result, size, s2));
 	return result;
 }
 
@@ -52,9 +52,9 @@ char* concat3(const char* s1, const char* s2, const char* s3)
 	if (!result)
 		panic("malloc failed in concat3");
 
-	strcpy_s(result, size, s1);
-	strcat_s(result, size, s2);
-	strcat_s(result, size, s3);
+	CheckedMemory(strcpy_s(result, size, s1));
+	CheckedMemory(strcat_s(result, size, s2));
+	CheckedMemory(strcat_s(result, size, s3));
 	return result;
 }
 
@@ -65,10 +65,10 @@ char* concat4(const char* s1, const char* s2, const char* s3, const char* s4)
 	if (!result)
 		panic("malloc failed in concat4");
 
-	strcpy_s(result, size, s1);
-	strcat_s(result, size, s2);
-	strcat_s(result, size, s3);
-	strcat_s(result, size, s4);
+	CheckedMemory(strcpy_s(result, size, s1));
+	CheckedMemory(strcat_s(result, size, s2));
+	CheckedMemory(strcat_s(result, size, s3));
+	CheckedMemory(strcat_s(result, size, s4));
 	return result;
 }
 

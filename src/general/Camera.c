@@ -20,6 +20,9 @@ void ProcessMouseMovement(Camera* c, float xoffset, float yoffset, bool constrai
 ****************    private    ****************
 **********************************************/
 
+/**
+ * @brief Updates "up" and "front" vectors for #Camera.
+ */
 void UpdateVectors(Camera* c);
 
 
@@ -44,8 +47,9 @@ Camera* Camera_Ctor2(vec3 position, vec3 up, vec3 front, float yaw, float pitch)
 	LogD("Camera_Ctor");
 	Camera* c = (Camera*)GameObject_Ctor1(position);
 
-	memcpy_s(c->WorldUp, sizeof(vec3), up, sizeof c->WorldUp);
-	memcpy_s(c->Front, sizeof(vec3), front, sizeof c->Front);
+	CheckedMemory(memcpy_s(c->WorldUp, sizeof(vec3), up, sizeof c->WorldUp));
+	CheckedMemory(memcpy_s(c->Front, sizeof(vec3), front, sizeof c->Front));
+
 	c->Yaw = yaw;
 	c->Pitch = pitch;
 	c->MovementSpeed = 2.5f;
@@ -54,7 +58,7 @@ Camera* Camera_Ctor2(vec3 position, vec3 up, vec3 front, float yaw, float pitch)
 	UpdateVectors(c);
 
 	// backup VFTable
-	c->vftable.GameObject_DCtor = GameObject_DCtor;
+	c->vftable.GameObject_DCtor = c->base.vftable.GameObject_DCtor;
 
 	// override
 	c->base.vftable.GameObject_DCtor = Camera_DCtor;
@@ -80,7 +84,7 @@ void Camera_DCtor(Camera* c)
 	assert(c);
 	LogD("Camera_DCtor");
 
-	GameObject_DCtor((GameObject*)c);
+	c->vftable.GameObject_DCtor((GameObject*)c);
 }
 
 mat4* GetViewMatrix(Camera* c)
@@ -173,16 +177,16 @@ void UpdateVectors(Camera* c)
 	front[2] = sinf(glm_rad(c->Yaw)) * cosf(glm_rad(c->Pitch));
 
 	glm_normalize(front);
-	memcpy_s(c->Front, sizeof(c->Front), front, sizeof c->Front);
+	CheckedMemory(memcpy_s(c->Front, sizeof c->Front, front, sizeof c->Front));
 
 	// Also re-calculate the Right and Up vector
 	vec3 cross;
 	glm_cross(c->Front, c->WorldUp, cross);
 	glm_normalize(cross);
-	memcpy_s(c->Right, sizeof(c->Right), cross, sizeof c->Right);
+	CheckedMemory(memcpy_s(c->Right, sizeof c->Right, cross, sizeof c->Right));
 
 	// Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
 	glm_cross(c->Right, c->Front, cross);
 	glm_normalize(cross);
-	memcpy_s(c->Up, sizeof(c->Up), cross, sizeof c->Up);
+	CheckedMemory(memcpy_s(c->Up, sizeof c->Up, cross, sizeof c->Up));
 }

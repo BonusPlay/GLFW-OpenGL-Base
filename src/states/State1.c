@@ -57,7 +57,7 @@ void State1_DCtor(State1* s)
 	Music_DCtor(s->music);
 	Shader_DCtor(s->shader_skybox);
 	CubeMap_DCtor(s->skybox);
-	Model_DCtor(s->model);
+	s->model->base.vftable.GameObject_DCtor((GameObject*)s->model);
 	s->vftable.GameState_DCtor((GameState*)s); // GameState_DCtor frees the pointer
 }
 
@@ -78,7 +78,7 @@ void State1_Render(State1* s)
 	Shader_SetMat4(s->base.shader, "projection", s->base.projection);
 
 	// draw
-	Model_Draw(s->model, s->base.shader);
+	s->model->base.vftable.GameObject_Draw((GameObject*)s->model, s->base.shader);
 
 	// Skybox
 	Shader_Use(s->shader_skybox);

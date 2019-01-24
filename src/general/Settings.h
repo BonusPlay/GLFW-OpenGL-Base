@@ -1,5 +1,8 @@
 #pragma once
 
+/**
+ * @brief helper global object
+ */
 typedef struct
 {
 	float music_volume;
