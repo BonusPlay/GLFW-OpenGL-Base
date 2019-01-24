@@ -1,0 +1,35 @@
+Base Project structure for Open\+GL + G\+L\+FW. Clone with {\ttfamily git clone -\/-\/recursive \href{https://github.com/BonusPlay/GLFW-OpenGL-Base.git}{\texttt{ https\+://github.\+com/\+Bonus\+Play/\+G\+L\+F\+W-\/\+Open\+G\+L-\/\+Base.\+git}}} and remember to build dependencies with cmake in {\ttfamily lib} folder. Since B\+A\+SS isn\textquotesingle{}t open source I didn\textquotesingle{}t include it in the repo, but if you want to use it just unzip it into the {\ttfamily lib/bass} folder.
+
+This project is barely a basic structure to build upon. It allows user to rapidly add new features, as all the hard work like importing assets and rendering is already done. With just a few LoC user can add their own shaders, models, music \& other stuff.
+
+Project also features full C++ \char`\"{}like\char`\"{} inheritance, with member fields and function overloading.
+
+\subsection*{Libraries used}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/Dav1dde/glad}{\texttt{ G\+L\+AD}}
+\item \href{https://github.com/glfw/glfw}{\texttt{ G\+L\+FW}}
+\item \href{https://github.com/g-truc/glm}{\texttt{ G\+LM}}
+\item \href{https://github.com/nothings/stb}{\texttt{ S\+TB}}
+\item \href{https://github.com/assimp/assimp}{\texttt{ assimp}}
+\item \href{https://www.un4seen.com/}{\texttt{ B\+A\+SS}}
+\end{DoxyItemize}
+
+\subsection*{Usage}
+
+When user runs .exe, he will be greeted with a frozen screen (this is due to imperfection of Open\+GL\textquotesingle{}s single threaded nature).
+
+
+
+User is greeted to a fully loaded 3ds Max model with textures, and a \mbox{\hyperlink{struct_cube_map}{Cube\+Map}} around him.
+
+
+
+User is able to control camera with mouse and W\+S\+AD.
+
+
+
+User also has access to a G\+UI with a $\sim$ key (some features of G\+UI are hidden in release build).
+
+ 

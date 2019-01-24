@@ -1,0 +1,156 @@
+\hypertarget{_music_8c}{}\section{src/general/\+Music.c File Reference}
+\label{_music_8c}\index{src/general/Music.c@{src/general/Music.c}}
+{\ttfamily \#include \char`\"{}Music.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Typedefs.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_music_8c_a167a083ac20caeafcd9b4c3218e4bd12}\label{_music_8c_a167a083ac20caeafcd9b4c3218e4bd12}} 
+void \mbox{\hyperlink{_music_8c_a167a083ac20caeafcd9b4c3218e4bd12}{check\+\_\+errors}} ()
+\begin{DoxyCompactList}\small\item\em Helper function to return B\+A\+SS library errors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_music}{Music}} $\ast$ \mbox{\hyperlink{_music_8c_a92862394ca745a4a1d342b853ebdbc0b}{Music\+\_\+\+Ctor}} (char $\ast$name)
+\item 
+void \mbox{\hyperlink{_music_8c_a2c41290412f0b33f6414043856e8c0cd}{Music\+\_\+\+D\+Ctor}} (\mbox{\hyperlink{struct_music}{Music}} $\ast$m)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_music}{Music}} deconstructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_music_8c_a6ef4d2db8eea3ee5021eb738e636c6e5}{Music\+\_\+\+Play}} (\mbox{\hyperlink{struct_music}{Music}} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Plays music. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_music_8c_acf6e7659d56835c63c404a72c7b1dcb4}{Music\+\_\+\+Pause}} (\mbox{\hyperlink{struct_music}{Music}} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Pauses music. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_music_8c_aa76ced7fee5d7a61892d09458f91c5b7}{Music\+\_\+\+Stop}} (\mbox{\hyperlink{struct_music}{Music}} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Stops music. \end{DoxyCompactList}\item 
+Music\+Status \mbox{\hyperlink{_music_8c_a5dac3b024b696317af62ef78ab9707db}{Music\+\_\+\+Get\+Status}} (\mbox{\hyperlink{struct_music}{Music}} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Returns current music status. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{_music_8c_abbac3957540e424d232f6ae4a5f2c850}{Music\+\_\+\+Get\+Progress}} (\mbox{\hyperlink{struct_music}{Music}} $\ast$music)
+\begin{DoxyCompactList}\small\item\em Returns music progress in percentage (0.\+00 -\/ 1.\+00) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_music_8c_a7f2accbb7ec7daa6540e32ab90e74957}{Music\+\_\+\+Update}} (\mbox{\hyperlink{struct_music}{Music}} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Update music volume based on global setting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_music_8c_a92862394ca745a4a1d342b853ebdbc0b}\label{_music_8c_a92862394ca745a4a1d342b853ebdbc0b}} 
+\index{Music.c@{Music.c}!Music\_Ctor@{Music\_Ctor}}
+\index{Music\_Ctor@{Music\_Ctor}!Music.c@{Music.c}}
+\subsubsection{\texorpdfstring{Music\_Ctor()}{Music\_Ctor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_music}{Music}}$\ast$ Music\+\_\+\+Ctor (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{struct_music}{Music}} constructor 
+\begin{DoxyParams}{Parameters}
+{\em name} & Song name (has to have corresponding file in resources) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+music 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_music_8c_a2c41290412f0b33f6414043856e8c0cd}\label{_music_8c_a2c41290412f0b33f6414043856e8c0cd}} 
+\index{Music.c@{Music.c}!Music\_DCtor@{Music\_DCtor}}
+\index{Music\_DCtor@{Music\_DCtor}!Music.c@{Music.c}}
+\subsubsection{\texorpdfstring{Music\_DCtor()}{Music\_DCtor()}}
+{\footnotesize\ttfamily void Music\+\_\+\+D\+Ctor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_music}{Music}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_music}{Music}} deconstructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \mbox{\hyperlink{struct_music}{Music}} to deconstruct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_music_8c_abbac3957540e424d232f6ae4a5f2c850}\label{_music_8c_abbac3957540e424d232f6ae4a5f2c850}} 
+\index{Music.c@{Music.c}!Music\_GetProgress@{Music\_GetProgress}}
+\index{Music\_GetProgress@{Music\_GetProgress}!Music.c@{Music.c}}
+\subsubsection{\texorpdfstring{Music\_GetProgress()}{Music\_GetProgress()}}
+{\footnotesize\ttfamily float Music\+\_\+\+Get\+Progress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_music}{Music}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+
+
+Returns music progress in percentage (0.\+00 -\/ 1.\+00) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \mbox{\hyperlink{struct_music}{Music}} to return progress for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_music}{Music}} progress 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_music_8c_a5dac3b024b696317af62ef78ab9707db}\label{_music_8c_a5dac3b024b696317af62ef78ab9707db}} 
+\index{Music.c@{Music.c}!Music\_GetStatus@{Music\_GetStatus}}
+\index{Music\_GetStatus@{Music\_GetStatus}!Music.c@{Music.c}}
+\subsubsection{\texorpdfstring{Music\_GetStatus()}{Music\_GetStatus()}}
+{\footnotesize\ttfamily Music\+Status Music\+\_\+\+Get\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_music}{Music}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+
+
+Returns current music status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \mbox{\hyperlink{struct_music}{Music}} to return status for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_music}{Music}} status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_music_8c_acf6e7659d56835c63c404a72c7b1dcb4}\label{_music_8c_acf6e7659d56835c63c404a72c7b1dcb4}} 
+\index{Music.c@{Music.c}!Music\_Pause@{Music\_Pause}}
+\index{Music\_Pause@{Music\_Pause}!Music.c@{Music.c}}
+\subsubsection{\texorpdfstring{Music\_Pause()}{Music\_Pause()}}
+{\footnotesize\ttfamily void Music\+\_\+\+Pause (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_music}{Music}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+
+
+Pauses music. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \mbox{\hyperlink{struct_music}{Music}} to pause \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_music_8c_a6ef4d2db8eea3ee5021eb738e636c6e5}\label{_music_8c_a6ef4d2db8eea3ee5021eb738e636c6e5}} 
+\index{Music.c@{Music.c}!Music\_Play@{Music\_Play}}
+\index{Music\_Play@{Music\_Play}!Music.c@{Music.c}}
+\subsubsection{\texorpdfstring{Music\_Play()}{Music\_Play()}}
+{\footnotesize\ttfamily void Music\+\_\+\+Play (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_music}{Music}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+
+
+Plays music. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \mbox{\hyperlink{struct_music}{Music}} to play \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_music_8c_aa76ced7fee5d7a61892d09458f91c5b7}\label{_music_8c_aa76ced7fee5d7a61892d09458f91c5b7}} 
+\index{Music.c@{Music.c}!Music\_Stop@{Music\_Stop}}
+\index{Music\_Stop@{Music\_Stop}!Music.c@{Music.c}}
+\subsubsection{\texorpdfstring{Music\_Stop()}{Music\_Stop()}}
+{\footnotesize\ttfamily void Music\+\_\+\+Stop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_music}{Music}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+
+
+Stops music. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \mbox{\hyperlink{struct_music}{Music}} to stop \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_music_8c_a7f2accbb7ec7daa6540e32ab90e74957}\label{_music_8c_a7f2accbb7ec7daa6540e32ab90e74957}} 
+\index{Music.c@{Music.c}!Music\_Update@{Music\_Update}}
+\index{Music\_Update@{Music\_Update}!Music.c@{Music.c}}
+\subsubsection{\texorpdfstring{Music\_Update()}{Music\_Update()}}
+{\footnotesize\ttfamily void Music\+\_\+\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_music}{Music}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+
+
+Update music volume based on global setting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \mbox{\hyperlink{struct_music}{Music}} to update \\
+\hline
+\end{DoxyParams}

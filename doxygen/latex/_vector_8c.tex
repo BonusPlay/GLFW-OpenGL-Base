@@ -1,0 +1,127 @@
+\hypertarget{_vector_8c}{}\section{src/utils/\+Vector.c File Reference}
+\label{_vector_8c}\index{src/utils/Vector.c@{src/utils/Vector.c}}
+{\ttfamily \#include \char`\"{}Vector.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_vector}{Vector}} $\ast$ \mbox{\hyperlink{_vector_8c_a439cd188fc06126ce9f8b80295aa27d7}{Vector\+\_\+\+Ctor}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_vector}{Vector}} constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8c_a7cd5d74f17cefce97314a93152dcfa40}{Vector\+\_\+\+D\+Ctor}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$v)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_vector}{Vector}} deconstructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8c_adb987777720fa1b4331efe9774e8a663}{Vector\+\_\+\+Add}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$v, void $\ast$item)
+\begin{DoxyCompactList}\small\item\em Add item to vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8c_a2a3486282a441779d17b0e78671b0265}{Vector\+\_\+\+Set}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$v, unsigned int index, void $\ast$item)
+\begin{DoxyCompactList}\small\item\em Set item at index. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{_vector_8c_a3016a48237107d471970f4120c7cca05}{Vector\+\_\+\+Get}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$v, unsigned int index)
+\begin{DoxyCompactList}\small\item\em Get item at index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8c_a343ed88a635378efbf5a3895e029e3ec}{Vector\+\_\+\+Delete}} (\mbox{\hyperlink{struct_vector}{Vector}} $\ast$v, unsigned int index)
+\begin{DoxyCompactList}\small\item\em Delete item at index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_vector_8c_adb987777720fa1b4331efe9774e8a663}\label{_vector_8c_adb987777720fa1b4331efe9774e8a663}} 
+\index{Vector.c@{Vector.c}!Vector\_Add@{Vector\_Add}}
+\index{Vector\_Add@{Vector\_Add}!Vector.c@{Vector.c}}
+\subsubsection{\texorpdfstring{Vector\_Add()}{Vector\_Add()}}
+{\footnotesize\ttfamily void Vector\+\_\+\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{v,  }\item[{void $\ast$}]{item }\end{DoxyParamCaption})}
+
+
+
+Add item to vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \mbox{\hyperlink{struct_vector}{Vector}} to add to \\
+\hline
+{\em item} & Item to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8c_a439cd188fc06126ce9f8b80295aa27d7}\label{_vector_8c_a439cd188fc06126ce9f8b80295aa27d7}} 
+\index{Vector.c@{Vector.c}!Vector\_Ctor@{Vector\_Ctor}}
+\index{Vector\_Ctor@{Vector\_Ctor}!Vector.c@{Vector.c}}
+\subsubsection{\texorpdfstring{Vector\_Ctor()}{Vector\_Ctor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vector}{Vector}}$\ast$ Vector\+\_\+\+Ctor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_vector}{Vector}} constructor. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_vector}{Vector}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_vector_8c_a7cd5d74f17cefce97314a93152dcfa40}\label{_vector_8c_a7cd5d74f17cefce97314a93152dcfa40}} 
+\index{Vector.c@{Vector.c}!Vector\_DCtor@{Vector\_DCtor}}
+\index{Vector\_DCtor@{Vector\_DCtor}!Vector.c@{Vector.c}}
+\subsubsection{\texorpdfstring{Vector\_DCtor()}{Vector\_DCtor()}}
+{\footnotesize\ttfamily void Vector\+\_\+\+D\+Ctor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{v }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_vector}{Vector}} deconstructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \mbox{\hyperlink{struct_vector}{Vector}} to deconstruct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8c_a343ed88a635378efbf5a3895e029e3ec}\label{_vector_8c_a343ed88a635378efbf5a3895e029e3ec}} 
+\index{Vector.c@{Vector.c}!Vector\_Delete@{Vector\_Delete}}
+\index{Vector\_Delete@{Vector\_Delete}!Vector.c@{Vector.c}}
+\subsubsection{\texorpdfstring{Vector\_Delete()}{Vector\_Delete()}}
+{\footnotesize\ttfamily void Vector\+\_\+\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{v,  }\item[{unsigned int}]{index }\end{DoxyParamCaption})}
+
+
+
+Delete item at index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \mbox{\hyperlink{struct_vector}{Vector}} to delete item from \\
+\hline
+{\em index} & Index to delete at \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8c_a3016a48237107d471970f4120c7cca05}\label{_vector_8c_a3016a48237107d471970f4120c7cca05}} 
+\index{Vector.c@{Vector.c}!Vector\_Get@{Vector\_Get}}
+\index{Vector\_Get@{Vector\_Get}!Vector.c@{Vector.c}}
+\subsubsection{\texorpdfstring{Vector\_Get()}{Vector\_Get()}}
+{\footnotesize\ttfamily void$\ast$ Vector\+\_\+\+Get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{v,  }\item[{unsigned int}]{index }\end{DoxyParamCaption})}
+
+
+
+Get item at index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \mbox{\hyperlink{struct_vector}{Vector}} to get item from \\
+\hline
+{\em index} & Index of item to get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+item 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_vector_8c_a2a3486282a441779d17b0e78671b0265}\label{_vector_8c_a2a3486282a441779d17b0e78671b0265}} 
+\index{Vector.c@{Vector.c}!Vector\_Set@{Vector\_Set}}
+\index{Vector\_Set@{Vector\_Set}!Vector.c@{Vector.c}}
+\subsubsection{\texorpdfstring{Vector\_Set()}{Vector\_Set()}}
+{\footnotesize\ttfamily void Vector\+\_\+\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} $\ast$}]{v,  }\item[{unsigned int}]{index,  }\item[{void $\ast$}]{item }\end{DoxyParamCaption})}
+
+
+
+Set item at index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \mbox{\hyperlink{struct_vector}{Vector}} to set item to \\
+\hline
+{\em index} & Index of item to set \\
+\hline
+{\em item} & Item to set \\
+\hline
+\end{DoxyParams}

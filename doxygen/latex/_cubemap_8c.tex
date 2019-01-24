@@ -1,0 +1,97 @@
+\hypertarget{_cubemap_8c}{}\section{src/general/\+Cubemap.c File Reference}
+\label{_cubemap_8c}\index{src/general/Cubemap.c@{src/general/Cubemap.c}}
+{\ttfamily \#include \char`\"{}Cubemap.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Typedefs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stb\+\_\+image.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_cube_map}{Cube\+Map}} $\ast$ \mbox{\hyperlink{_cubemap_8c_abfddca5bd49e56120d84a8ca83b1a28d}{Cube\+Map\+\_\+\+Ctor}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_cube_map}{Cube\+Map}} constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_cubemap_8c_a32fd1b8611750c3bc332b58ced6f5871}{Cube\+Map\+\_\+\+D\+Ctor}} (\mbox{\hyperlink{struct_cube_map}{Cube\+Map}} $\ast$cm)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_cube_map}{Cube\+Map}} deconstructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_cubemap_8c_ae7846cc56bdfc63f133f4d0224c54502}{Cube\+Map\+\_\+\+Draw}} (\mbox{\hyperlink{struct_cube_map}{Cube\+Map}} $\ast$cm, \mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader)
+\begin{DoxyCompactList}\small\item\em Draws cubemap using shader. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ {\bfseries faces} \mbox{[}6\mbox{]}
+\item 
+\mbox{\Hypertarget{_cubemap_8c_a25986ed96a435775e363f05540a2f9c4}\label{_cubemap_8c_a25986ed96a435775e363f05540a2f9c4}} 
+float {\bfseries vertices} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_cubemap_8c_abfddca5bd49e56120d84a8ca83b1a28d}\label{_cubemap_8c_abfddca5bd49e56120d84a8ca83b1a28d}} 
+\index{Cubemap.c@{Cubemap.c}!CubeMap\_Ctor@{CubeMap\_Ctor}}
+\index{CubeMap\_Ctor@{CubeMap\_Ctor}!Cubemap.c@{Cubemap.c}}
+\subsubsection{\texorpdfstring{CubeMap\_Ctor()}{CubeMap\_Ctor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_cube_map}{Cube\+Map}}$\ast$ Cube\+Map\+\_\+\+Ctor (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_cube_map}{Cube\+Map}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & cubemap name (has to have a corresponding resource files) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_cube_map}{Cube\+Map}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_cubemap_8c_a32fd1b8611750c3bc332b58ced6f5871}\label{_cubemap_8c_a32fd1b8611750c3bc332b58ced6f5871}} 
+\index{Cubemap.c@{Cubemap.c}!CubeMap\_DCtor@{CubeMap\_DCtor}}
+\index{CubeMap\_DCtor@{CubeMap\_DCtor}!Cubemap.c@{Cubemap.c}}
+\subsubsection{\texorpdfstring{CubeMap\_DCtor()}{CubeMap\_DCtor()}}
+{\footnotesize\ttfamily void Cube\+Map\+\_\+\+D\+Ctor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_cube_map}{Cube\+Map}} $\ast$}]{c }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_cube_map}{Cube\+Map}} deconstructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Cue\+Map to deconstruct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_cubemap_8c_ae7846cc56bdfc63f133f4d0224c54502}\label{_cubemap_8c_ae7846cc56bdfc63f133f4d0224c54502}} 
+\index{Cubemap.c@{Cubemap.c}!CubeMap\_Draw@{CubeMap\_Draw}}
+\index{CubeMap\_Draw@{CubeMap\_Draw}!Cubemap.c@{Cubemap.c}}
+\subsubsection{\texorpdfstring{CubeMap\_Draw()}{CubeMap\_Draw()}}
+{\footnotesize\ttfamily void Cube\+Map\+\_\+\+Draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_cube_map}{Cube\+Map}} $\ast$}]{c,  }\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{shader }\end{DoxyParamCaption})}
+
+
+
+Draws cubemap using shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \mbox{\hyperlink{struct_cube_map}{Cube\+Map}} to draw \\
+\hline
+{\em shader} & \mbox{\hyperlink{struct_shader}{Shader}} to draw with \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_cubemap_8c_ac92f0ba471c5f2dd1695f388dcecdd68}\label{_cubemap_8c_ac92f0ba471c5f2dd1695f388dcecdd68}} 
+\index{Cubemap.c@{Cubemap.c}!faces@{faces}}
+\index{faces@{faces}!Cubemap.c@{Cubemap.c}}
+\subsubsection{\texorpdfstring{faces}{faces}}
+{\footnotesize\ttfamily const char$\ast$ faces\mbox{[}6\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"right.jpg"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"left.jpg"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"top.jpg"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"bottom.jpg"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"front.jpg"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"back.jpg"}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

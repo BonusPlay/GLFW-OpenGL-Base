@@ -1,0 +1,79 @@
+\hypertarget{_game_object_8c}{}\section{src/general/\+Game\+Object.c File Reference}
+\label{_game_object_8c}\index{src/general/GameObject.c@{src/general/GameObject.c}}
+{\ttfamily \#include \char`\"{}Game\+Object.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_game_object_8c_a7006af86142fa368bcfd56a6a6da0503}\label{_game_object_8c_a7006af86142fa368bcfd56a6a6da0503}} 
+void {\bfseries Game\+Object\+\_\+\+D\+Ctor} (\mbox{\hyperlink{struct_game_object}{Game\+Object}} $\ast$go)
+\item 
+\mbox{\Hypertarget{_game_object_8c_a436a20073e5e4b3f9c7ddec817743d30}\label{_game_object_8c_a436a20073e5e4b3f9c7ddec817743d30}} 
+void {\bfseries Game\+Object\+\_\+\+Draw} (\mbox{\hyperlink{struct_game_object}{Game\+Object}} $\ast$go, \mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader)
+\item 
+\mbox{\hyperlink{struct_game_object}{Game\+Object}} $\ast$ \mbox{\hyperlink{_game_object_8c_aae12765cb4d3c4950e26bb2db65e301b}{Game\+Object\+\_\+\+Ctor0}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_game_object}{Game\+Object}} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_game_object}{Game\+Object}} $\ast$ \mbox{\hyperlink{_game_object_8c_a12311f4cb685b2cf37c1b67623eeef9d}{Game\+Object\+\_\+\+Ctor1}} (vec3 position)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_game_object}{Game\+Object}} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_game_object}{Game\+Object}} $\ast$ \mbox{\hyperlink{_game_object_8c_a9dd38839a07bac355ae398ba6cc5e583}{Game\+Object\+\_\+\+Ctor2}} (vec3 position, quat rotation, vec3 scale)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_game_object}{Game\+Object}} constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_game_object_8c_aae12765cb4d3c4950e26bb2db65e301b}\label{_game_object_8c_aae12765cb4d3c4950e26bb2db65e301b}} 
+\index{GameObject.c@{GameObject.c}!GameObject\_Ctor0@{GameObject\_Ctor0}}
+\index{GameObject\_Ctor0@{GameObject\_Ctor0}!GameObject.c@{GameObject.c}}
+\subsubsection{\texorpdfstring{GameObject\_Ctor0()}{GameObject\_Ctor0()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_game_object}{Game\+Object}}$\ast$ Game\+Object\+\_\+\+Ctor0 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_game_object}{Game\+Object}} constructor. 
+
+calls \mbox{\hyperlink{_game_object_8c_a9dd38839a07bac355ae398ba6cc5e583}{Game\+Object\+\_\+\+Ctor2}} with identity vectors/matrices
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_game_object}{Game\+Object}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_game_object_8c_a12311f4cb685b2cf37c1b67623eeef9d}\label{_game_object_8c_a12311f4cb685b2cf37c1b67623eeef9d}} 
+\index{GameObject.c@{GameObject.c}!GameObject\_Ctor1@{GameObject\_Ctor1}}
+\index{GameObject\_Ctor1@{GameObject\_Ctor1}!GameObject.c@{GameObject.c}}
+\subsubsection{\texorpdfstring{GameObject\_Ctor1()}{GameObject\_Ctor1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_game_object}{Game\+Object}}$\ast$ Game\+Object\+\_\+\+Ctor1 (\begin{DoxyParamCaption}\item[{vec3}]{position }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_game_object}{Game\+Object}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & position\\
+\hline
+\end{DoxyParams}
+calls \mbox{\hyperlink{_game_object_8c_a9dd38839a07bac355ae398ba6cc5e583}{Game\+Object\+\_\+\+Ctor2}} with identity matrices
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_game_object}{Game\+Object}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_game_object_8c_a9dd38839a07bac355ae398ba6cc5e583}\label{_game_object_8c_a9dd38839a07bac355ae398ba6cc5e583}} 
+\index{GameObject.c@{GameObject.c}!GameObject\_Ctor2@{GameObject\_Ctor2}}
+\index{GameObject\_Ctor2@{GameObject\_Ctor2}!GameObject.c@{GameObject.c}}
+\subsubsection{\texorpdfstring{GameObject\_Ctor2()}{GameObject\_Ctor2()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_game_object}{Game\+Object}}$\ast$ Game\+Object\+\_\+\+Ctor2 (\begin{DoxyParamCaption}\item[{vec3}]{position,  }\item[{quat}]{rotation,  }\item[{vec3}]{scale }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_game_object}{Game\+Object}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & position \\
+\hline
+{\em rotation} & rotation \\
+\hline
+{\em scale} & scale \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_game_object}{Game\+Object}} 
+\end{DoxyReturn}

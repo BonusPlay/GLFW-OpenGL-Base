@@ -1,0 +1,135 @@
+\hypertarget{struct_game_state}{}\section{Game\+State Struct Reference}
+\label{struct_game_state}\index{GameState@{GameState}}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_game_state_aa8c33d6fc7a539d01a808c240f712ca8}\label{struct_game_state_aa8c33d6fc7a539d01a808c240f712ca8}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>void($\ast$ \mbox{\hyperlink{struct_game_state_a89ac5d517616efa61dc4542b99ddca55}{DCtor}} )(struct \mbox{\hyperlink{struct_game_state}{GameState}} $\ast$gs)\\
+\>\>{\em \mbox{\hyperlink{struct_game_state}{GameState}} deconstructor. }\\
+\>void($\ast$ \mbox{\hyperlink{struct_game_state_acbaac59530e6b6281aeeb4c6054ab137}{Update}} )(struct \mbox{\hyperlink{struct_game_state}{GameState}} $\ast$gs)\\
+\>\>{\em Makes a game tick on \mbox{\hyperlink{struct_game_state}{GameState}}. }\\
+\>void($\ast$ \mbox{\hyperlink{struct_game_state_a8ace42db63d39c26d6a4ce6520920ed8}{UpdateM}} )(struct \mbox{\hyperlink{struct_game_state}{GameState}} $\ast$gs, float \\
+\>\>x\_offset, float y\_offset)\\
+\>\>{\em Processes GLFW mouse event. }\\
+\>void($\ast$ \mbox{\hyperlink{struct_game_state_a2b9efd2a4168b1973ee002a75d8298b5}{UpdateK}} )(struct \mbox{\hyperlink{struct_game_state}{GameState}} $\ast$gs, int \\
+\>\>key, int scancode, int action, \\
+\>\>int mods)\\
+\>\>{\em Processes GLFW keyboard event. }\\
+\>void($\ast$ \mbox{\hyperlink{struct_game_state_af9b81ae9492dd446bec0fd03db6b302a}{Render}} )(struct \mbox{\hyperlink{struct_game_state}{GameState}} $\ast$gs)\\
+\>\>{\em Renders \mbox{\hyperlink{struct_game_state}{GameState}}. }\\
+\} {\bfseries vftable}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{struct_game_state_a8ddae28369420fae557c1db3cdc8870c}\label{struct_game_state_a8ddae28369420fae557c1db3cdc8870c}} 
+\mbox{\hyperlink{struct_camera}{Camera}} $\ast$ {\bfseries camera}
+\item 
+\mbox{\Hypertarget{struct_game_state_a47a772081fc93399b3882b960d91b8d5}\label{struct_game_state_a47a772081fc93399b3882b960d91b8d5}} 
+\mbox{\hyperlink{struct_shader}{Shader}} $\ast$ {\bfseries shader}
+\item 
+\mbox{\Hypertarget{struct_game_state_a980c860e9616d865ff075e127b0b40e7}\label{struct_game_state_a980c860e9616d865ff075e127b0b40e7}} 
+mat4 {\bfseries projection}
+\item 
+\mbox{\Hypertarget{struct_game_state_a1ddfa0f7b675e77c620a59eecece16c9}\label{struct_game_state_a1ddfa0f7b675e77c620a59eecece16c9}} 
+float {\bfseries delta\+\_\+time}
+\item 
+\mbox{\Hypertarget{struct_game_state_adec36ecb14a36c91561df5f14f58251f}\label{struct_game_state_adec36ecb14a36c91561df5f14f58251f}} 
+float {\bfseries last\+\_\+frame}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_game_state_a89ac5d517616efa61dc4542b99ddca55}\label{struct_game_state_a89ac5d517616efa61dc4542b99ddca55}} 
+\index{GameState@{GameState}!DCtor@{DCtor}}
+\index{DCtor@{DCtor}!GameState@{GameState}}
+\subsubsection{\texorpdfstring{DCtor}{DCtor}}
+{\footnotesize\ttfamily void($\ast$ Game\+State\+::\+D\+Ctor) (struct \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gs)}
+
+
+
+\mbox{\hyperlink{struct_game_state}{Game\+State}} deconstructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gs} & \mbox{\hyperlink{struct_game_state}{Game\+State}} to deconstruct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_game_state_af9b81ae9492dd446bec0fd03db6b302a}\label{struct_game_state_af9b81ae9492dd446bec0fd03db6b302a}} 
+\index{GameState@{GameState}!Render@{Render}}
+\index{Render@{Render}!GameState@{GameState}}
+\subsubsection{\texorpdfstring{Render}{Render}}
+{\footnotesize\ttfamily void($\ast$ Game\+State\+::\+Render) (struct \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gs)}
+
+
+
+Renders \mbox{\hyperlink{struct_game_state}{Game\+State}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gs} & \mbox{\hyperlink{struct_game_state}{Game\+State}} to render \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_game_state_acbaac59530e6b6281aeeb4c6054ab137}\label{struct_game_state_acbaac59530e6b6281aeeb4c6054ab137}} 
+\index{GameState@{GameState}!Update@{Update}}
+\index{Update@{Update}!GameState@{GameState}}
+\subsubsection{\texorpdfstring{Update}{Update}}
+{\footnotesize\ttfamily void($\ast$ Game\+State\+::\+Update) (struct \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gs)}
+
+
+
+Makes a game tick on \mbox{\hyperlink{struct_game_state}{Game\+State}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gs} & \mbox{\hyperlink{struct_game_state}{Game\+State}} to update \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_game_state_a2b9efd2a4168b1973ee002a75d8298b5}\label{struct_game_state_a2b9efd2a4168b1973ee002a75d8298b5}} 
+\index{GameState@{GameState}!UpdateK@{UpdateK}}
+\index{UpdateK@{UpdateK}!GameState@{GameState}}
+\subsubsection{\texorpdfstring{UpdateK}{UpdateK}}
+{\footnotesize\ttfamily void($\ast$ Game\+State\+::\+UpdateK) (struct \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gs, int key, int scancode, int action, int mods)}
+
+
+
+Processes G\+L\+FW keyboard event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gs} & \mbox{\hyperlink{struct_game_state}{Game\+State}} to update \\
+\hline
+{\em key} & The keyboard key that was pressed or released. \\
+\hline
+{\em scancode} & The system-\/specific scancode of the key. \\
+\hline
+{\em action} & G\+L\+F\+W\+\_\+\+P\+R\+E\+SS, G\+L\+F\+W\+\_\+\+R\+E\+L\+E\+A\+SE or G\+L\+F\+W\+\_\+\+R\+E\+P\+E\+AT. \\
+\hline
+{\em mods} & Bit field describing which modifier keys were held down. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_game_state_a8ace42db63d39c26d6a4ce6520920ed8}\label{struct_game_state_a8ace42db63d39c26d6a4ce6520920ed8}} 
+\index{GameState@{GameState}!UpdateM@{UpdateM}}
+\index{UpdateM@{UpdateM}!GameState@{GameState}}
+\subsubsection{\texorpdfstring{UpdateM}{UpdateM}}
+{\footnotesize\ttfamily void($\ast$ Game\+State\+::\+UpdateM) (struct \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gs, float x\+\_\+offset, float y\+\_\+offset)}
+
+
+
+Processes G\+L\+FW mouse event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gs} & \mbox{\hyperlink{struct_game_state}{Game\+State}} to update \\
+\hline
+{\em x\+\_\+offset} & offset since last mouse position on X axis \\
+\hline
+{\em y\+\_\+offset} & offset since last mouse position on Y axis \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/states/Game\+State.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,59 @@
+\hypertarget{_game_8c}{}\section{src/\+Game.c File Reference}
+\label{_game_8c}\index{src/Game.c@{src/Game.c}}
+{\ttfamily \#include \char`\"{}Game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}general/\+Settings.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}states/\+State1.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/\+Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_game_8c_a9e8420ad9c4610614b852612cdac4c45}\label{_game_8c_a9e8420ad9c4610614b852612cdac4c45}} 
+\#define \mbox{\hyperlink{_game_8c_a9e8420ad9c4610614b852612cdac4c45}{Checked\+Memory}}(x)~if(x) \mbox{\hyperlink{_swiss_army_knife_8c_a8169020a72573a7a97a44c34c7c4acfb}{panic}}(\char`\"{}Memory operation failed!\char`\"{})
+\begin{DoxyCompactList}\small\item\em helper macro to handle errors in memcpy\+\_\+s, strncpy\+\_\+s, strcat\+\_\+s \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_game_8c_a9e1f0b1b3d8f0205640c55a7a7102f57}\label{_game_8c_a9e1f0b1b3d8f0205640c55a7a7102f57}} 
+void {\bfseries init\+\_\+opengl} ()
+\item 
+\mbox{\Hypertarget{_game_8c_a72aef54bbf8430ce6d860206deb2d1ce}\label{_game_8c_a72aef54bbf8430ce6d860206deb2d1ce}} 
+void {\bfseries init\+\_\+audio} ()
+\item 
+\mbox{\Hypertarget{_game_8c_a02fd73d861ef2e4aabb38c0c9ff82947}\label{_game_8c_a02fd73d861ef2e4aabb38c0c9ff82947}} 
+void \mbox{\hyperlink{_game_8c_a02fd73d861ef2e4aabb38c0c9ff82947}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes G\+L\+FW, Open\+GL, B\+A\+SS, G\+L\+AD. Should only be called once. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_game_8c_a967fb9235af58c66165b0d619c6cc584}\label{_game_8c_a967fb9235af58c66165b0d619c6cc584}} 
+void \mbox{\hyperlink{_game_8c_a967fb9235af58c66165b0d619c6cc584}{deinit}} ()
+\begin{DoxyCompactList}\small\item\em Deinitializes all libraries and cleans up. Should only be called once. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_game_8c_ac5c54df7ed3b930268c8d7752c101725}\label{_game_8c_ac5c54df7ed3b930268c8d7752c101725}} 
+void \mbox{\hyperlink{_game_8c_ac5c54df7ed3b930268c8d7752c101725}{update}} ()
+\begin{DoxyCompactList}\small\item\em Make game tick. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_game_8c_a7d9edd8b0a8d0d2f737eb5ee0b0a5040}\label{_game_8c_a7d9edd8b0a8d0d2f737eb5ee0b0a5040}} 
+void \mbox{\hyperlink{_game_8c_a7d9edd8b0a8d0d2f737eb5ee0b0a5040}{render}} ()
+\begin{DoxyCompactList}\small\item\em Renders current game state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_game_8c_ab2e06aec2f12eff43dffc5ff6a1439ab}{set\+\_\+state}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$next)
+\begin{DoxyCompactList}\small\item\em Changes game state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_game_8c_a42854bc8df4981bdd4e2c947771c7e6a}\label{_game_8c_a42854bc8df4981bdd4e2c947771c7e6a}} 
+\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$ {\bfseries state}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_game_8c_ab2e06aec2f12eff43dffc5ff6a1439ab}\label{_game_8c_ab2e06aec2f12eff43dffc5ff6a1439ab}} 
+\index{Game.c@{Game.c}!set\_state@{set\_state}}
+\index{set\_state@{set\_state}!Game.c@{Game.c}}
+\subsubsection{\texorpdfstring{set\_state()}{set\_state()}}
+{\footnotesize\ttfamily void set\+\_\+state (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+Changes game state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & \mbox{\hyperlink{struct_game_state}{Game\+State}} to change to \\
+\hline
+\end{DoxyParams}

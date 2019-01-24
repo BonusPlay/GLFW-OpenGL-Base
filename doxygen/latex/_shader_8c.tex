@@ -1,0 +1,374 @@
+\hypertarget{_shader_8c}{}\section{src/general/\+Shader.c File Reference}
+\label{_shader_8c}\index{src/general/Shader.c@{src/general/Shader.c}}
+{\ttfamily \#include \char`\"{}Shader.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$glad.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Typedefs.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_shader_8c_a25022864dfc8ec428e7128282e57b136}\label{_shader_8c_a25022864dfc8ec428e7128282e57b136}} 
+\#define {\bfseries C\+H\+U\+NK}~1024
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{_shader_8c_ac6c66fc6adb3cef079900f303143adc7}{shader\+\_\+load}} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Loads shader code from file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_a568bf20ad1f6d0cfb7c05dd472720a75}{v\+\_\+shader\+\_\+compile}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$s, const char $\ast$code)
+\begin{DoxyCompactList}\small\item\em Compiles vertex shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_aa4b4373a67608f2d87340c9881f44906}{f\+\_\+shader\+\_\+compile}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$s, const char $\ast$code)
+\begin{DoxyCompactList}\small\item\em Compile fragment shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_abb78aed9bf3bd864b5ffc44caff26da4}{create\+\_\+shader\+\_\+program}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Compiles final shader program from vertex and fragment shaders. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_shader}{Shader}} $\ast$ \mbox{\hyperlink{_shader_8c_ad733b0ef2afd97d08820777a13f34d64}{Shader\+\_\+\+Ctor}} (const char $\ast$v\+\_\+shader\+\_\+name, const char $\ast$f\+\_\+shader\+\_\+name)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_shader}{Shader}} constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_ab5cb574223e7a284fbfd1e83e5854d58}{Shader\+\_\+\+D\+Ctor}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$s)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_shader}{Shader}} deconstructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_ad399a5cefed7e04ae8338d7f26b2e0af}{Shader\+\_\+\+Use}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader)
+\begin{DoxyCompactList}\small\item\em Sets shader as currently used. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_a12153cb19a4d2e4aa56b13b8af3405eb}{Shader\+\_\+\+Set\+Bool}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader, const char $\ast$name, bool value)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_ab8fb243059707596885e685347945543}{Shader\+\_\+\+Set\+Int}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader, const char $\ast$name, int value)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_a12829b4df8fe5d5f9ff928423236b63f}{Shader\+\_\+\+Set\+Float}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader, const char $\ast$name, float value)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_a05ef44beeb65615da86db278ada9dc69}{Shader\+\_\+\+Set\+Vec2}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader, const char $\ast$name, const vec2 value)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_ae96c735f4522d0faa5f12455397ca61e}{Shader\+\_\+\+Set\+Vec2f}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader, const char $\ast$name, float x, float y)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_a8aab76ce01a19633e138e004d4e8146d}{Shader\+\_\+\+Set\+Vec3}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader, const char $\ast$name, const vec3 value)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_a8940ac159802e6e54747e897b3b14dc3}{Shader\+\_\+\+Set\+Vec3f}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader, const char $\ast$name, float x, float y, float z)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_a06c2cbff0fd3f82f621e8a3a2b1ccc07}{Shader\+\_\+\+Set\+Vec4}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader, const char $\ast$name, const vec4 value)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_a664a1031f1743ba59f22bc424403ae82}{Shader\+\_\+\+Set\+Vec4f}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader, const char $\ast$name, float x, float y, float z, float w)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_a1e64ad381fa3f665b75ec44e73397862}{Shader\+\_\+\+Set\+Mat3}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$s, const char $\ast$name, const mat3 value)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8c_a62b2372d1829154fb07c818959a65e44}{Shader\+\_\+\+Set\+Mat4}} (\mbox{\hyperlink{struct_shader}{Shader}} $\ast$s, const char $\ast$name, const mat4 value)
+\begin{DoxyCompactList}\small\item\em Sets shader parameter value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_shader_8c_abb78aed9bf3bd864b5ffc44caff26da4}\label{_shader_8c_abb78aed9bf3bd864b5ffc44caff26da4}} 
+\index{Shader.c@{Shader.c}!create\_shader\_program@{create\_shader\_program}}
+\index{create\_shader\_program@{create\_shader\_program}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{create\_shader\_program()}{create\_shader\_program()}}
+{\footnotesize\ttfamily void create\+\_\+shader\+\_\+program (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Compiles final shader program from vertex and fragment shaders. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \mbox{\hyperlink{struct_shader}{Shader}} to compile program for \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_aa4b4373a67608f2d87340c9881f44906}\label{_shader_8c_aa4b4373a67608f2d87340c9881f44906}} 
+\index{Shader.c@{Shader.c}!f\_shader\_compile@{f\_shader\_compile}}
+\index{f\_shader\_compile@{f\_shader\_compile}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{f\_shader\_compile()}{f\_shader\_compile()}}
+{\footnotesize\ttfamily void f\+\_\+shader\+\_\+compile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{code }\end{DoxyParamCaption})}
+
+
+
+Compile fragment shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \mbox{\hyperlink{struct_shader}{Shader}} to compile fragment shader for \\
+\hline
+{\em code} & Fragment shader code \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_ad733b0ef2afd97d08820777a13f34d64}\label{_shader_8c_ad733b0ef2afd97d08820777a13f34d64}} 
+\index{Shader.c@{Shader.c}!Shader\_Ctor@{Shader\_Ctor}}
+\index{Shader\_Ctor@{Shader\_Ctor}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_Ctor()}{Shader\_Ctor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_shader}{Shader}}$\ast$ Shader\+\_\+\+Ctor (\begin{DoxyParamCaption}\item[{const char $\ast$}]{v\+\_\+shader\+\_\+name,  }\item[{const char $\ast$}]{f\+\_\+shader\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_shader}{Shader}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v\+\_\+shader\+\_\+name} & vertex shader name (has to have corresponding file in resources) \\
+\hline
+{\em f\+\_\+shader\+\_\+name} & fragment shader name (has to have corresponding file in resources) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_shader}{Shader}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_shader_8c_ab5cb574223e7a284fbfd1e83e5854d58}\label{_shader_8c_ab5cb574223e7a284fbfd1e83e5854d58}} 
+\index{Shader.c@{Shader.c}!Shader\_DCtor@{Shader\_DCtor}}
+\index{Shader\_DCtor@{Shader\_DCtor}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_DCtor()}{Shader\_DCtor()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+D\+Ctor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_shader}{Shader}} deconstructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \mbox{\hyperlink{struct_shader}{Shader}} to deconstruct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_ac6c66fc6adb3cef079900f303143adc7}\label{_shader_8c_ac6c66fc6adb3cef079900f303143adc7}} 
+\index{Shader.c@{Shader.c}!shader\_load@{shader\_load}}
+\index{shader\_load@{shader\_load}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{shader\_load()}{shader\_load()}}
+{\footnotesize\ttfamily char $\ast$ shader\+\_\+load (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Loads shader code from file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & shader file to load code form \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+shader code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_shader_8c_a12153cb19a4d2e4aa56b13b8af3405eb}\label{_shader_8c_a12153cb19a4d2e4aa56b13b8af3405eb}} 
+\index{Shader.c@{Shader.c}!Shader\_SetBool@{Shader\_SetBool}}
+\index{Shader\_SetBool@{Shader\_SetBool}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetBool()}{Shader\_SetBool()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Bool (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{bool}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em value} & \mbox{\hyperlink{struct_shader}{Shader}} parameter value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_a12829b4df8fe5d5f9ff928423236b63f}\label{_shader_8c_a12829b4df8fe5d5f9ff928423236b63f}} 
+\index{Shader.c@{Shader.c}!Shader\_SetFloat@{Shader\_SetFloat}}
+\index{Shader\_SetFloat@{Shader\_SetFloat}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetFloat()}{Shader\_SetFloat()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Float (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em value} & \mbox{\hyperlink{struct_shader}{Shader}} parameter value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_ab8fb243059707596885e685347945543}\label{_shader_8c_ab8fb243059707596885e685347945543}} 
+\index{Shader.c@{Shader.c}!Shader\_SetInt@{Shader\_SetInt}}
+\index{Shader\_SetInt@{Shader\_SetInt}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetInt()}{Shader\_SetInt()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em value} & \mbox{\hyperlink{struct_shader}{Shader}} parameter value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_a1e64ad381fa3f665b75ec44e73397862}\label{_shader_8c_a1e64ad381fa3f665b75ec44e73397862}} 
+\index{Shader.c@{Shader.c}!Shader\_SetMat3@{Shader\_SetMat3}}
+\index{Shader\_SetMat3@{Shader\_SetMat3}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetMat3()}{Shader\_SetMat3()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Mat3 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{const mat3}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em value} & \mbox{\hyperlink{struct_shader}{Shader}} parameter value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_a62b2372d1829154fb07c818959a65e44}\label{_shader_8c_a62b2372d1829154fb07c818959a65e44}} 
+\index{Shader.c@{Shader.c}!Shader\_SetMat4@{Shader\_SetMat4}}
+\index{Shader\_SetMat4@{Shader\_SetMat4}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetMat4()}{Shader\_SetMat4()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Mat4 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{const mat4}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em value} & \mbox{\hyperlink{struct_shader}{Shader}} parameter value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_a05ef44beeb65615da86db278ada9dc69}\label{_shader_8c_a05ef44beeb65615da86db278ada9dc69}} 
+\index{Shader.c@{Shader.c}!Shader\_SetVec2@{Shader\_SetVec2}}
+\index{Shader\_SetVec2@{Shader\_SetVec2}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetVec2()}{Shader\_SetVec2()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Vec2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{const vec2}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em value} & \mbox{\hyperlink{struct_shader}{Shader}} parameter value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_ae96c735f4522d0faa5f12455397ca61e}\label{_shader_8c_ae96c735f4522d0faa5f12455397ca61e}} 
+\index{Shader.c@{Shader.c}!Shader\_SetVec2f@{Shader\_SetVec2f}}
+\index{Shader\_SetVec2f@{Shader\_SetVec2f}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetVec2f()}{Shader\_SetVec2f()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Vec2f (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em x} & \mbox{\hyperlink{struct_shader}{Shader}} parameter X value \\
+\hline
+{\em y} & \mbox{\hyperlink{struct_shader}{Shader}} parameter Y value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_a8aab76ce01a19633e138e004d4e8146d}\label{_shader_8c_a8aab76ce01a19633e138e004d4e8146d}} 
+\index{Shader.c@{Shader.c}!Shader\_SetVec3@{Shader\_SetVec3}}
+\index{Shader\_SetVec3@{Shader\_SetVec3}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetVec3()}{Shader\_SetVec3()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Vec3 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{const vec3}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em value} & \mbox{\hyperlink{struct_shader}{Shader}} parameter value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_a8940ac159802e6e54747e897b3b14dc3}\label{_shader_8c_a8940ac159802e6e54747e897b3b14dc3}} 
+\index{Shader.c@{Shader.c}!Shader\_SetVec3f@{Shader\_SetVec3f}}
+\index{Shader\_SetVec3f@{Shader\_SetVec3f}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetVec3f()}{Shader\_SetVec3f()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Vec3f (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em x} & \mbox{\hyperlink{struct_shader}{Shader}} parameter X value \\
+\hline
+{\em y} & \mbox{\hyperlink{struct_shader}{Shader}} parameter Y value \\
+\hline
+{\em z} & \mbox{\hyperlink{struct_shader}{Shader}} parameter Z value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_a06c2cbff0fd3f82f621e8a3a2b1ccc07}\label{_shader_8c_a06c2cbff0fd3f82f621e8a3a2b1ccc07}} 
+\index{Shader.c@{Shader.c}!Shader\_SetVec4@{Shader\_SetVec4}}
+\index{Shader\_SetVec4@{Shader\_SetVec4}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetVec4()}{Shader\_SetVec4()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Vec4 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{const vec4}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em value} & \mbox{\hyperlink{struct_shader}{Shader}} parameter value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_a664a1031f1743ba59f22bc424403ae82}\label{_shader_8c_a664a1031f1743ba59f22bc424403ae82}} 
+\index{Shader.c@{Shader.c}!Shader\_SetVec4f@{Shader\_SetVec4f}}
+\index{Shader\_SetVec4f@{Shader\_SetVec4f}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_SetVec4f()}{Shader\_SetVec4f()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Set\+Vec4f (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{name,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{w }\end{DoxyParamCaption})}
+
+
+
+Sets shader parameter value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{struct_shader}{Shader}} parameter name \\
+\hline
+{\em x} & \mbox{\hyperlink{struct_shader}{Shader}} parameter X value \\
+\hline
+{\em y} & \mbox{\hyperlink{struct_shader}{Shader}} parameter Y value \\
+\hline
+{\em z} & \mbox{\hyperlink{struct_shader}{Shader}} parameter Z value \\
+\hline
+{\em w} & \mbox{\hyperlink{struct_shader}{Shader}} parameter W value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_ad399a5cefed7e04ae8338d7f26b2e0af}\label{_shader_8c_ad399a5cefed7e04ae8338d7f26b2e0af}} 
+\index{Shader.c@{Shader.c}!Shader\_Use@{Shader\_Use}}
+\index{Shader\_Use@{Shader\_Use}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{Shader\_Use()}{Shader\_Use()}}
+{\footnotesize\ttfamily void Shader\+\_\+\+Use (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Sets shader as currently used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \mbox{\hyperlink{struct_shader}{Shader}} to use \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8c_a568bf20ad1f6d0cfb7c05dd472720a75}\label{_shader_8c_a568bf20ad1f6d0cfb7c05dd472720a75}} 
+\index{Shader.c@{Shader.c}!v\_shader\_compile@{v\_shader\_compile}}
+\index{v\_shader\_compile@{v\_shader\_compile}!Shader.c@{Shader.c}}
+\subsubsection{\texorpdfstring{v\_shader\_compile()}{v\_shader\_compile()}}
+{\footnotesize\ttfamily void v\+\_\+shader\+\_\+compile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_shader}{Shader}} $\ast$}]{s,  }\item[{const char $\ast$}]{code }\end{DoxyParamCaption})}
+
+
+
+Compiles vertex shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \mbox{\hyperlink{struct_shader}{Shader}} to compile vertex shader for \\
+\hline
+{\em code} & \mbox{\hyperlink{struct_vertex}{Vertex}} shader code \\
+\hline
+\end{DoxyParams}

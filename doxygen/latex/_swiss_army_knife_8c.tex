@@ -1,0 +1,149 @@
+\hypertarget{_swiss_army_knife_8c}{}\section{src/utils/\+Swiss\+Army\+Knife.c File Reference}
+\label{_swiss_army_knife_8c}\index{src/utils/SwissArmyKnife.c@{src/utils/SwissArmyKnife.c}}
+{\ttfamily \#include \char`\"{}Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{_swiss_army_knife_8c_a3b9b4e5de22e6859418b324e65367484}{strlstchar}} (const char $\ast$str, const char ch)
+\begin{DoxyCompactList}\small\item\em Gets index of first occurence of char in string. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{_swiss_army_knife_8c_aaa16f8dd8f775d692d7e179cddf3dbe6}{concatc}} (const char $\ast$s1, const char s2)
+\begin{DoxyCompactList}\small\item\em concats string and char together \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{_swiss_army_knife_8c_a52c06bc38f749bec96633f6ed0f76fb3}{concat2}} (const char $\ast$s1, const char $\ast$s2)
+\begin{DoxyCompactList}\small\item\em concats 2 strings together \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{_swiss_army_knife_8c_a1587ac77b53251cbe7f3e897675bd521}{concat3}} (const char $\ast$s1, const char $\ast$s2, const char $\ast$s3)
+\begin{DoxyCompactList}\small\item\em concats 3 strings together \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{_swiss_army_knife_8c_a77dcf29dceeb7f92723add451b5afefb}{concat4}} (const char $\ast$s1, const char $\ast$s2, const char $\ast$s3, const char $\ast$s4)
+\begin{DoxyCompactList}\small\item\em concats 4 strings together \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_swiss_army_knife_8c_a8169020a72573a7a97a44c34c7c4acfb}{panic}} (const char $\ast$str,...)
+\begin{DoxyCompactList}\small\item\em Prints error output and exits the program gracefully. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_swiss_army_knife_8c_a52c06bc38f749bec96633f6ed0f76fb3}\label{_swiss_army_knife_8c_a52c06bc38f749bec96633f6ed0f76fb3}} 
+\index{SwissArmyKnife.c@{SwissArmyKnife.c}!concat2@{concat2}}
+\index{concat2@{concat2}!SwissArmyKnife.c@{SwissArmyKnife.c}}
+\subsubsection{\texorpdfstring{concat2()}{concat2()}}
+{\footnotesize\ttfamily char$\ast$ concat2 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s1,  }\item[{const char $\ast$}]{s2 }\end{DoxyParamCaption})}
+
+
+
+concats 2 strings together 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s1} & string to concat \\
+\hline
+{\em s2} & string to concat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+resulted string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_swiss_army_knife_8c_a1587ac77b53251cbe7f3e897675bd521}\label{_swiss_army_knife_8c_a1587ac77b53251cbe7f3e897675bd521}} 
+\index{SwissArmyKnife.c@{SwissArmyKnife.c}!concat3@{concat3}}
+\index{concat3@{concat3}!SwissArmyKnife.c@{SwissArmyKnife.c}}
+\subsubsection{\texorpdfstring{concat3()}{concat3()}}
+{\footnotesize\ttfamily char$\ast$ concat3 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s1,  }\item[{const char $\ast$}]{s2,  }\item[{const char $\ast$}]{s3 }\end{DoxyParamCaption})}
+
+
+
+concats 3 strings together 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s1} & string to concat \\
+\hline
+{\em s2} & string to concat \\
+\hline
+{\em s3} & string to concat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+resulted string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_swiss_army_knife_8c_a77dcf29dceeb7f92723add451b5afefb}\label{_swiss_army_knife_8c_a77dcf29dceeb7f92723add451b5afefb}} 
+\index{SwissArmyKnife.c@{SwissArmyKnife.c}!concat4@{concat4}}
+\index{concat4@{concat4}!SwissArmyKnife.c@{SwissArmyKnife.c}}
+\subsubsection{\texorpdfstring{concat4()}{concat4()}}
+{\footnotesize\ttfamily char$\ast$ concat4 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s1,  }\item[{const char $\ast$}]{s2,  }\item[{const char $\ast$}]{s3,  }\item[{const char $\ast$}]{s4 }\end{DoxyParamCaption})}
+
+
+
+concats 4 strings together 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s1} & string to concat \\
+\hline
+{\em s2} & string to concat \\
+\hline
+{\em s3} & string to concat \\
+\hline
+{\em s4} & string to concat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+resulted string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_swiss_army_knife_8c_aaa16f8dd8f775d692d7e179cddf3dbe6}\label{_swiss_army_knife_8c_aaa16f8dd8f775d692d7e179cddf3dbe6}} 
+\index{SwissArmyKnife.c@{SwissArmyKnife.c}!concatc@{concatc}}
+\index{concatc@{concatc}!SwissArmyKnife.c@{SwissArmyKnife.c}}
+\subsubsection{\texorpdfstring{concatc()}{concatc()}}
+{\footnotesize\ttfamily char$\ast$ concatc (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s1,  }\item[{const char}]{s2 }\end{DoxyParamCaption})}
+
+
+
+concats string and char together 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s1} & string to concat \\
+\hline
+{\em s2} & char to concat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+resulted string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_swiss_army_knife_8c_a8169020a72573a7a97a44c34c7c4acfb}\label{_swiss_army_knife_8c_a8169020a72573a7a97a44c34c7c4acfb}} 
+\index{SwissArmyKnife.c@{SwissArmyKnife.c}!panic@{panic}}
+\index{panic@{panic}!SwissArmyKnife.c@{SwissArmyKnife.c}}
+\subsubsection{\texorpdfstring{panic()}{panic()}}
+{\footnotesize\ttfamily void panic (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Prints error output and exits the program gracefully. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & format string \\
+\hline
+{\em ...} & parameters for formatted string \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_swiss_army_knife_8c_a3b9b4e5de22e6859418b324e65367484}\label{_swiss_army_knife_8c_a3b9b4e5de22e6859418b324e65367484}} 
+\index{SwissArmyKnife.c@{SwissArmyKnife.c}!strlstchar@{strlstchar}}
+\index{strlstchar@{strlstchar}!SwissArmyKnife.c@{SwissArmyKnife.c}}
+\subsubsection{\texorpdfstring{strlstchar()}{strlstchar()}}
+{\footnotesize\ttfamily unsigned int strlstchar (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{const char}]{ch }\end{DoxyParamCaption})}
+
+
+
+Gets index of first occurence of char in string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & String to search \\
+\hline
+{\em ch} & char to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+index of char in string 
+\end{DoxyReturn}

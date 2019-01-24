@@ -1,0 +1,129 @@
+\hypertarget{struct_camera}{}\section{Camera Struct Reference}
+\label{struct_camera}\index{Camera@{Camera}}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_camera_a0e1845f3d45181e2991a148e992c26b3}\label{struct_camera_a0e1845f3d45181e2991a148e992c26b3}} 
+\mbox{\hyperlink{struct_game_object}{Game\+Object}} {\bfseries base}
+\item 
+\mbox{\Hypertarget{struct_camera_a00dccaa3e655f31158be5fdaaea59591}\label{struct_camera_a00dccaa3e655f31158be5fdaaea59591}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>void($\ast$ \mbox{\hyperlink{struct_camera_acdec9e05794ea2771f97316373556a46}{GameObject\_DCtor}} )(\mbox{\hyperlink{struct_game_object}{GameObject}} $\ast$go)\\
+\>\>{\em Backup for overloaded \mbox{\hyperlink{struct_camera_acdec9e05794ea2771f97316373556a46}{GameObject\_DCtor}}. }\\
+\>mat4 $\ast$($\ast$ \mbox{\hyperlink{struct_camera_a9bafa1f3bcffbe76cc3a602f0279cc51}{GetViewMatrix}} )(struct \mbox{\hyperlink{struct_camera}{Camera}} $\ast$c)\\
+\>\>{\em Returns current camera view matrix. }\\
+\>void($\ast$ \mbox{\hyperlink{struct_camera_a13434f409d30054379ec14e2ad129eb7}{ProcessKeyboard}} )(struct \mbox{\hyperlink{struct_camera}{Camera}} $\ast$c, float \\
+\>\>deltaTime)\\
+\>\>{\em Processes GLFW keyboard event. }\\
+\>void($\ast$ \mbox{\hyperlink{struct_camera_a29dd103bc4169133d8ee899ac875e798}{ProcessMouseMovement}} )(struct \mbox{\hyperlink{struct_camera}{Camera}} $\ast$c, float \\
+\>\>xoffset, float yoffset, bool \\
+\>\>constrainPitch)\\
+\>\>{\em Processes GLFW mouse event. }\\
+\} {\bfseries vftable}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{struct_camera_ae8fefdb9e27290a00d9c70be77086bc6}\label{struct_camera_ae8fefdb9e27290a00d9c70be77086bc6}} 
+vec3 {\bfseries Front}
+\item 
+\mbox{\Hypertarget{struct_camera_a17c45b2bf09c165a4cf1aff793f628d7}\label{struct_camera_a17c45b2bf09c165a4cf1aff793f628d7}} 
+vec3 {\bfseries Up}
+\item 
+\mbox{\Hypertarget{struct_camera_a1c47a3264f5bc15356de0319df40696a}\label{struct_camera_a1c47a3264f5bc15356de0319df40696a}} 
+vec3 {\bfseries Right}
+\item 
+\mbox{\Hypertarget{struct_camera_a45f586b01107a672129db3381e60e3f0}\label{struct_camera_a45f586b01107a672129db3381e60e3f0}} 
+vec3 {\bfseries World\+Up}
+\item 
+\mbox{\Hypertarget{struct_camera_a1a1354a2bd2df7f18ef82924e671d241}\label{struct_camera_a1a1354a2bd2df7f18ef82924e671d241}} 
+float {\bfseries Yaw}
+\item 
+\mbox{\Hypertarget{struct_camera_af9c8f223bb06bb74fc77c586545e7e67}\label{struct_camera_af9c8f223bb06bb74fc77c586545e7e67}} 
+float {\bfseries Pitch}
+\item 
+\mbox{\Hypertarget{struct_camera_a63221392d762df6a74f45bc9d43a2f61}\label{struct_camera_a63221392d762df6a74f45bc9d43a2f61}} 
+float {\bfseries Movement\+Speed}
+\item 
+\mbox{\Hypertarget{struct_camera_a73e88844b31d5111eeb76327dfbb2d68}\label{struct_camera_a73e88844b31d5111eeb76327dfbb2d68}} 
+float {\bfseries Mouse\+Sensitivity}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_camera_acdec9e05794ea2771f97316373556a46}\label{struct_camera_acdec9e05794ea2771f97316373556a46}} 
+\index{Camera@{Camera}!GameObject\_DCtor@{GameObject\_DCtor}}
+\index{GameObject\_DCtor@{GameObject\_DCtor}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{GameObject\_DCtor}{GameObject\_DCtor}}
+{\footnotesize\ttfamily void($\ast$ Camera\+::\+Game\+Object\+\_\+\+D\+Ctor) (\mbox{\hyperlink{struct_game_object}{Game\+Object}} $\ast$go)}
+
+
+
+Backup for overloaded \mbox{\hyperlink{struct_camera_acdec9e05794ea2771f97316373556a46}{Game\+Object\+\_\+\+D\+Ctor}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em go} & \mbox{\hyperlink{struct_game_object}{Game\+Object}} to deconstruct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_camera_a9bafa1f3bcffbe76cc3a602f0279cc51}\label{struct_camera_a9bafa1f3bcffbe76cc3a602f0279cc51}} 
+\index{Camera@{Camera}!GetViewMatrix@{GetViewMatrix}}
+\index{GetViewMatrix@{GetViewMatrix}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{GetViewMatrix}{GetViewMatrix}}
+{\footnotesize\ttfamily mat4$\ast$($\ast$ Camera\+::\+Get\+View\+Matrix) (struct \mbox{\hyperlink{struct_camera}{Camera}} $\ast$c)}
+
+
+
+Returns current camera view matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \mbox{\hyperlink{struct_camera}{Camera}} to calculate view matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+View matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{struct_camera_a13434f409d30054379ec14e2ad129eb7}\label{struct_camera_a13434f409d30054379ec14e2ad129eb7}} 
+\index{Camera@{Camera}!ProcessKeyboard@{ProcessKeyboard}}
+\index{ProcessKeyboard@{ProcessKeyboard}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{ProcessKeyboard}{ProcessKeyboard}}
+{\footnotesize\ttfamily void($\ast$ Camera\+::\+Process\+Keyboard) (struct \mbox{\hyperlink{struct_camera}{Camera}} $\ast$c, float delta\+Time)}
+
+
+
+Processes G\+L\+FW keyboard event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \mbox{\hyperlink{struct_camera}{Camera}} to use \\
+\hline
+{\em delta\+Time} & time since last update \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_camera_a29dd103bc4169133d8ee899ac875e798}\label{struct_camera_a29dd103bc4169133d8ee899ac875e798}} 
+\index{Camera@{Camera}!ProcessMouseMovement@{ProcessMouseMovement}}
+\index{ProcessMouseMovement@{ProcessMouseMovement}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{ProcessMouseMovement}{ProcessMouseMovement}}
+{\footnotesize\ttfamily void($\ast$ Camera\+::\+Process\+Mouse\+Movement) (struct \mbox{\hyperlink{struct_camera}{Camera}} $\ast$c, float xoffset, float yoffset, bool constrain\+Pitch)}
+
+
+
+Processes G\+L\+FW mouse event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \mbox{\hyperlink{struct_camera}{Camera}} to use \\
+\hline
+{\em xoffset} & offset since last mouse position on X axis \\
+\hline
+{\em yoffset} & offset since last mouse position on Y axis \\
+\hline
+{\em constrain\+Pitch} & should constrain camera pitch \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/general/Camera.\+h\end{DoxyCompactItemize}

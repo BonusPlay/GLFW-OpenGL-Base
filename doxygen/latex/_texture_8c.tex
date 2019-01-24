@@ -1,0 +1,53 @@
+\hypertarget{_texture_8c}{}\section{src/general/\+Texture.c File Reference}
+\label{_texture_8c}\index{src/general/Texture.c@{src/general/Texture.c}}
+{\ttfamily \#include \char`\"{}Texture.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$glad.\+h$>$}\newline
+{\ttfamily \#include $<$stb\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_texture}{Texture}} $\ast$ \mbox{\hyperlink{_texture_8c_a0a2d535523e42dfba0f669eb84b70872}{Texture\+\_\+\+Ctor}} (const char $\ast$path, ai\+Texture\+Type type)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_texture}{Texture}} constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_texture_8c_acb3bb84d24685d467de22043ae5ed12d}{Texture\+\_\+\+D\+Ctor}} (\mbox{\hyperlink{struct_texture}{Texture}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Draw texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_texture_8c_a0a2d535523e42dfba0f669eb84b70872}\label{_texture_8c_a0a2d535523e42dfba0f669eb84b70872}} 
+\index{Texture.c@{Texture.c}!Texture\_Ctor@{Texture\_Ctor}}
+\index{Texture\_Ctor@{Texture\_Ctor}!Texture.c@{Texture.c}}
+\subsubsection{\texorpdfstring{Texture\_Ctor()}{Texture\_Ctor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_texture}{Texture}}$\ast$ Texture\+\_\+\+Ctor (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{ai\+Texture\+Type}]{type }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_texture}{Texture}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & file to load texture from (has to have corresponding file in resources) \\
+\hline
+{\em type} & texture type to load \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_texture}{Texture}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_texture_8c_acb3bb84d24685d467de22043ae5ed12d}\label{_texture_8c_acb3bb84d24685d467de22043ae5ed12d}} 
+\index{Texture.c@{Texture.c}!Texture\_DCtor@{Texture\_DCtor}}
+\index{Texture\_DCtor@{Texture\_DCtor}!Texture.c@{Texture.c}}
+\subsubsection{\texorpdfstring{Texture\_DCtor()}{Texture\_DCtor()}}
+{\footnotesize\ttfamily void Texture\+\_\+\+D\+Ctor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_texture}{Texture}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+Draw texture. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \mbox{\hyperlink{struct_texture}{Texture}} to draw \\
+\hline
+\end{DoxyParams}

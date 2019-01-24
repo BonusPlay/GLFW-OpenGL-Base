@@ -1,0 +1,66 @@
+\hypertarget{struct_game_object}{}\section{Game\+Object Struct Reference}
+\label{struct_game_object}\index{GameObject@{GameObject}}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_game_object_a01525b832c3ab3f2ea50635b53220c33}\label{struct_game_object_a01525b832c3ab3f2ea50635b53220c33}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>void($\ast$ \mbox{\hyperlink{struct_game_object_a7c9fca050ff0b1d1ca316d163fc16e7d}{GameObject\_DCtor}} )(struct \mbox{\hyperlink{struct_game_object}{GameObject}} $\ast$go)\\
+\>\>{\em Object deconstructor. }\\
+\>void($\ast$ \mbox{\hyperlink{struct_game_object_a4c44dbb7279c47bcd7f896d2b99f9350}{GameObject\_Draw}} )(struct \mbox{\hyperlink{struct_game_object}{GameObject}} $\ast$go, \\
+\>\>\mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader)\\
+\>\>{\em Draws object with shader. }\\
+\} {\bfseries vftable}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{struct_game_object_a657c179075c0c78c40dcadacdfa85a81}\label{struct_game_object_a657c179075c0c78c40dcadacdfa85a81}} 
+vec3 {\bfseries position}
+\item 
+\mbox{\Hypertarget{struct_game_object_a5f0803c23c601a8815466c60bb1e1851}\label{struct_game_object_a5f0803c23c601a8815466c60bb1e1851}} 
+quat {\bfseries rotation}
+\item 
+\mbox{\Hypertarget{struct_game_object_abce5cff57446567a46013d2d1ec59cac}\label{struct_game_object_abce5cff57446567a46013d2d1ec59cac}} 
+vec3 {\bfseries scale}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_game_object_a7c9fca050ff0b1d1ca316d163fc16e7d}\label{struct_game_object_a7c9fca050ff0b1d1ca316d163fc16e7d}} 
+\index{GameObject@{GameObject}!GameObject\_DCtor@{GameObject\_DCtor}}
+\index{GameObject\_DCtor@{GameObject\_DCtor}!GameObject@{GameObject}}
+\subsubsection{\texorpdfstring{GameObject\_DCtor}{GameObject\_DCtor}}
+{\footnotesize\ttfamily void($\ast$ Game\+Object\+::\+Game\+Object\+\_\+\+D\+Ctor) (struct \mbox{\hyperlink{struct_game_object}{Game\+Object}} $\ast$go)}
+
+
+
+Object deconstructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em go} & \mbox{\hyperlink{struct_game_object}{Game\+Object}} to deconstruct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_game_object_a4c44dbb7279c47bcd7f896d2b99f9350}\label{struct_game_object_a4c44dbb7279c47bcd7f896d2b99f9350}} 
+\index{GameObject@{GameObject}!GameObject\_Draw@{GameObject\_Draw}}
+\index{GameObject\_Draw@{GameObject\_Draw}!GameObject@{GameObject}}
+\subsubsection{\texorpdfstring{GameObject\_Draw}{GameObject\_Draw}}
+{\footnotesize\ttfamily void($\ast$ Game\+Object\+::\+Game\+Object\+\_\+\+Draw) (struct \mbox{\hyperlink{struct_game_object}{Game\+Object}} $\ast$go, \mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader)}
+
+
+
+Draws object with shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em go} & \mbox{\hyperlink{struct_game_object}{Game\+Object}} to draw \\
+\hline
+{\em shader} & \mbox{\hyperlink{struct_shader}{Shader}} to draw with \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/general/Game\+Object.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,139 @@
+\hypertarget{_camera_8c}{}\section{src/general/\+Camera.c File Reference}
+\label{_camera_8c}\index{src/general/Camera.c@{src/general/Camera.c}}
+{\ttfamily \#include \char`\"{}Camera.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Game.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$corecrt\+\_\+memcpy\+\_\+s.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_camera_8c_a8f6e9a6f503e6a1c6b7b9b4e36baf585}\label{_camera_8c_a8f6e9a6f503e6a1c6b7b9b4e36baf585}} 
+void {\bfseries Camera\+\_\+\+D\+Ctor} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$c)
+\item 
+\mbox{\Hypertarget{_camera_8c_aa621b2caf9676077d332ef482dc61346}\label{_camera_8c_aa621b2caf9676077d332ef482dc61346}} 
+mat4 $\ast$ {\bfseries Get\+View\+Matrix} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$c)
+\item 
+\mbox{\Hypertarget{_camera_8c_abd7f20c09468c562f2fb3f9050b741a4}\label{_camera_8c_abd7f20c09468c562f2fb3f9050b741a4}} 
+void {\bfseries Process\+Keyboard} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$c, float delta\+Time)
+\item 
+\mbox{\Hypertarget{_camera_8c_a8f070f40f1aa77357deb8bd0ae8d652d}\label{_camera_8c_a8f070f40f1aa77357deb8bd0ae8d652d}} 
+void {\bfseries Process\+Mouse\+Movement} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$c, float xoffset, float yoffset, bool constrain\+Pitch)
+\item 
+\mbox{\Hypertarget{_camera_8c_a1ee1b7acd6f3e5a7f726f315b782087b}\label{_camera_8c_a1ee1b7acd6f3e5a7f726f315b782087b}} 
+void \mbox{\hyperlink{_camera_8c_a1ee1b7acd6f3e5a7f726f315b782087b}{Update\+Vectors}} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$c)
+\begin{DoxyCompactList}\small\item\em Updates \char`\"{}up\char`\"{} and \char`\"{}front\char`\"{} vectors for \mbox{\hyperlink{struct_camera}{Camera}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_camera}{Camera}} $\ast$ \mbox{\hyperlink{_camera_8c_ac15d8fbaf6f354ef9083813476c687b7}{Camera\+\_\+\+Ctor0}} (vec3 position)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_camera}{Camera}} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_camera}{Camera}} $\ast$ \mbox{\hyperlink{_camera_8c_a9c5e6352efe19e28ccd8fe1a97a19945}{Camera\+\_\+\+Ctor1}} (vec3 position, vec3 up)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_camera}{Camera}} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_camera}{Camera}} $\ast$ \mbox{\hyperlink{_camera_8c_af6eb520fa3c482bc83a5380493cfb197}{Camera\+\_\+\+Ctor2}} (vec3 position, vec3 up, vec3 front, float yaw, float pitch)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_camera}{Camera}} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_camera}{Camera}} $\ast$ \mbox{\hyperlink{_camera_8c_ad7cf8505526ca0ffe21dd5545f58fdd5}{Camera\+\_\+\+Ctor3}} (float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_camera}{Camera}} constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_camera_8c_ac15d8fbaf6f354ef9083813476c687b7}\label{_camera_8c_ac15d8fbaf6f354ef9083813476c687b7}} 
+\index{Camera.c@{Camera.c}!Camera\_Ctor0@{Camera\_Ctor0}}
+\index{Camera\_Ctor0@{Camera\_Ctor0}!Camera.c@{Camera.c}}
+\subsubsection{\texorpdfstring{Camera\_Ctor0()}{Camera\_Ctor0()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_camera}{Camera}}$\ast$ Camera\+\_\+\+Ctor0 (\begin{DoxyParamCaption}\item[{vec3}]{position }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_camera}{Camera}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & position\\
+\hline
+\end{DoxyParams}
+Calls \mbox{\hyperlink{_camera_8c_a9c5e6352efe19e28ccd8fe1a97a19945}{Camera\+\_\+\+Ctor1}} with up = \{0.\+0f, 1.\+0f, 0.\+0f\}
+
+\begin{DoxyReturn}{Returns}
+camera 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_camera_8c_a9c5e6352efe19e28ccd8fe1a97a19945}\label{_camera_8c_a9c5e6352efe19e28ccd8fe1a97a19945}} 
+\index{Camera.c@{Camera.c}!Camera\_Ctor1@{Camera\_Ctor1}}
+\index{Camera\_Ctor1@{Camera\_Ctor1}!Camera.c@{Camera.c}}
+\subsubsection{\texorpdfstring{Camera\_Ctor1()}{Camera\_Ctor1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_camera}{Camera}}$\ast$ Camera\+\_\+\+Ctor1 (\begin{DoxyParamCaption}\item[{vec3}]{position,  }\item[{vec3}]{up }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_camera}{Camera}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Initial camera position \\
+\hline
+{\em up} & Initial \char`\"{}up\char`\"{} vector\\
+\hline
+\end{DoxyParams}
+Calls \mbox{\hyperlink{_camera_8c_af6eb520fa3c482bc83a5380493cfb197}{Camera\+\_\+\+Ctor2}} with front = \{ 0.\+0f, 0.\+0f, -\/1.\+0f \}, yaw = -\/90.\+0f and pitch = 0.\+0f
+
+\begin{DoxyReturn}{Returns}
+camera 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_camera_8c_af6eb520fa3c482bc83a5380493cfb197}\label{_camera_8c_af6eb520fa3c482bc83a5380493cfb197}} 
+\index{Camera.c@{Camera.c}!Camera\_Ctor2@{Camera\_Ctor2}}
+\index{Camera\_Ctor2@{Camera\_Ctor2}!Camera.c@{Camera.c}}
+\subsubsection{\texorpdfstring{Camera\_Ctor2()}{Camera\_Ctor2()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_camera}{Camera}}$\ast$ Camera\+\_\+\+Ctor2 (\begin{DoxyParamCaption}\item[{vec3}]{position,  }\item[{vec3}]{up,  }\item[{vec3}]{front,  }\item[{float}]{yaw,  }\item[{float}]{pitch }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_camera}{Camera}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & position \\
+\hline
+{\em up} & \char`\"{}up\char`\"{} vector \\
+\hline
+{\em front} & \char`\"{}front\char`\"{} vector \\
+\hline
+{\em yaw} & yaw \\
+\hline
+{\em pitch} & pitch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+camera 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_camera_8c_ad7cf8505526ca0ffe21dd5545f58fdd5}\label{_camera_8c_ad7cf8505526ca0ffe21dd5545f58fdd5}} 
+\index{Camera.c@{Camera.c}!Camera\_Ctor3@{Camera\_Ctor3}}
+\index{Camera\_Ctor3@{Camera\_Ctor3}!Camera.c@{Camera.c}}
+\subsubsection{\texorpdfstring{Camera\_Ctor3()}{Camera\_Ctor3()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_camera}{Camera}}$\ast$ Camera\+\_\+\+Ctor3 (\begin{DoxyParamCaption}\item[{float}]{posX,  }\item[{float}]{posY,  }\item[{float}]{posZ,  }\item[{float}]{upX,  }\item[{float}]{upY,  }\item[{float}]{upZ,  }\item[{float}]{yaw,  }\item[{float}]{pitch }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_camera}{Camera}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em posX} & X position \\
+\hline
+{\em posY} & Y position \\
+\hline
+{\em posZ} & Z position \\
+\hline
+{\em upX} & X \char`\"{}up\char`\"{} vector value \\
+\hline
+{\em upY} & Y \char`\"{}up\char`\"{} vector value \\
+\hline
+{\em upZ} & Z \char`\"{}up\char`\"{} vector value \\
+\hline
+{\em yaw} & yaw \\
+\hline
+{\em pitch} & pitch\\
+\hline
+\end{DoxyParams}
+Calls \mbox{\hyperlink{_camera_8c_af6eb520fa3c482bc83a5380493cfb197}{Camera\+\_\+\+Ctor2}} with vectors built from floats
+
+\begin{DoxyReturn}{Returns}
+camera 
+\end{DoxyReturn}

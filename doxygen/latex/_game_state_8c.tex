@@ -1,0 +1,46 @@
+\hypertarget{_game_state_8c}{}\section{src/states/\+Game\+State.c File Reference}
+\label{_game_state_8c}\index{src/states/GameState.c@{src/states/GameState.c}}
+{\ttfamily \#include \char`\"{}Game\+State.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../general/\+Settings.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_game_state_8c_ac3cef957abdb0bef560d9a47eeb034e0}\label{_game_state_8c_ac3cef957abdb0bef560d9a47eeb034e0}} 
+void {\bfseries D\+Ctor} (struct \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gs)
+\item 
+\mbox{\Hypertarget{_game_state_8c_ab8ab5fb0c97cd83276aa6bc8f93b9b2c}\label{_game_state_8c_ab8ab5fb0c97cd83276aa6bc8f93b9b2c}} 
+void {\bfseries Update} (struct \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gs)
+\item 
+\mbox{\Hypertarget{_game_state_8c_a1bdbff7024a196ba60d48364882ba40e}\label{_game_state_8c_a1bdbff7024a196ba60d48364882ba40e}} 
+void {\bfseries UpdateM} (struct \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gs, float x\+\_\+offset, float y\+\_\+offset)
+\item 
+\mbox{\Hypertarget{_game_state_8c_aeb41a37958ab705a8290ec092382bfe2}\label{_game_state_8c_aeb41a37958ab705a8290ec092382bfe2}} 
+void {\bfseries UpdateK} (struct \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gs, int key, int scancode, int action, int mods)
+\item 
+\mbox{\Hypertarget{_game_state_8c_afb644e6510b2fcacedaf45dd1e96f7c9}\label{_game_state_8c_afb644e6510b2fcacedaf45dd1e96f7c9}} 
+void {\bfseries Render} (struct \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gs)
+\item 
+\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$ \mbox{\hyperlink{_game_state_8c_ae8bc0e37ac20bc09050f4654138bd136}{Game\+State\+\_\+\+Ctor}} (\mbox{\hyperlink{struct_game_state_params}{Game\+State\+Params}} $\ast$params)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_game_state}{Game\+State}} constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_game_state_8c_ae8bc0e37ac20bc09050f4654138bd136}\label{_game_state_8c_ae8bc0e37ac20bc09050f4654138bd136}} 
+\index{GameState.c@{GameState.c}!GameState\_Ctor@{GameState\_Ctor}}
+\index{GameState\_Ctor@{GameState\_Ctor}!GameState.c@{GameState.c}}
+\subsubsection{\texorpdfstring{GameState\_Ctor()}{GameState\_Ctor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_game_state}{Game\+State}}$\ast$ Game\+State\+\_\+\+Ctor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state_params}{Game\+State\+Params}} $\ast$}]{params }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_game_state}{Game\+State}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & Parameters object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_game_state}{Game\+State}} 
+\end{DoxyReturn}

@@ -1,0 +1,114 @@
+\hypertarget{_model_8c}{}\section{src/general/\+Model.c File Reference}
+\label{_model_8c}\index{src/general/Model.c@{src/general/Model.c}}
+{\ttfamily \#include \char`\"{}Model.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$assimp/cimport.\+h$>$}\newline
+{\ttfamily \#include $<$assimp/scene.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Mesh.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$assimp/postprocess.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Texture.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Swiss\+Army\+Knife.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Vector\+G\+L.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$corecrt\+\_\+memcpy\+\_\+s.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_model_8c_a7f1309ab611dd88dde4c37dcca53c935}{process\+\_\+node}} (\mbox{\hyperlink{struct_model}{Model}} $\ast$model, ai\+Node $\ast$node, const ai\+Scene $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Processes all nodes on assimp scene. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{_model_8c_a186b097eef82ae201d35678edc5253c9}{process\+\_\+mesh}} (\mbox{\hyperlink{struct_model}{Model}} $\ast$model, ai\+Mesh $\ast$mesh, const ai\+Scene $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Processes mesh (loads materials and textures) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_vector}{Vector}} $\ast$ \mbox{\hyperlink{_model_8c_a262959294d171aa0f6fe4e3b66496975}{load\+\_\+material\+\_\+textures}} (\mbox{\hyperlink{struct_model}{Model}} $\ast$m, ai\+Material $\ast$mat, enum ai\+Texture\+Type type)
+\begin{DoxyCompactList}\small\item\em Loads textures for material. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_model}{Model}} $\ast$ \mbox{\hyperlink{_model_8c_aa141759f1e7fa93a2ed2af598a329f7d}{Model\+\_\+\+Ctor}} (const char $\ast$file)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_model}{Model}} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_model_8c_a2c8dc9c7a7ea89e679a69f08daac8a82}\label{_model_8c_a2c8dc9c7a7ea89e679a69f08daac8a82}} 
+void {\bfseries Model\+\_\+\+D\+Ctor} (\mbox{\hyperlink{struct_model}{Model}} $\ast$m)
+\item 
+\mbox{\Hypertarget{_model_8c_a3edc1635d3f4819fc2fc6d2cfb878c96}\label{_model_8c_a3edc1635d3f4819fc2fc6d2cfb878c96}} 
+void {\bfseries Model\+\_\+\+Draw} (\mbox{\hyperlink{struct_model}{Model}} $\ast$m, \mbox{\hyperlink{struct_shader}{Shader}} $\ast$shader)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_model_8c_a262959294d171aa0f6fe4e3b66496975}\label{_model_8c_a262959294d171aa0f6fe4e3b66496975}} 
+\index{Model.c@{Model.c}!load\_material\_textures@{load\_material\_textures}}
+\index{load\_material\_textures@{load\_material\_textures}!Model.c@{Model.c}}
+\subsubsection{\texorpdfstring{load\_material\_textures()}{load\_material\_textures()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vector}{Vector}} $\ast$ load\+\_\+material\+\_\+textures (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_model}{Model}} $\ast$}]{m,  }\item[{ai\+Material $\ast$}]{mat,  }\item[{enum ai\+Texture\+Type}]{type }\end{DoxyParamCaption})}
+
+
+
+Loads textures for material. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & currently processed model \\
+\hline
+{\em mat} & currently processed material \\
+\hline
+{\em type} & texture type \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_vector}{Vector}} of textures 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_model_8c_aa141759f1e7fa93a2ed2af598a329f7d}\label{_model_8c_aa141759f1e7fa93a2ed2af598a329f7d}} 
+\index{Model.c@{Model.c}!Model\_Ctor@{Model\_Ctor}}
+\index{Model\_Ctor@{Model\_Ctor}!Model.c@{Model.c}}
+\subsubsection{\texorpdfstring{Model\_Ctor()}{Model\_Ctor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_model}{Model}}$\ast$ Model\+\_\+\+Ctor (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{struct_model}{Model}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & model name (has to have a corresponding resource files) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_model}{Model}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_model_8c_a186b097eef82ae201d35678edc5253c9}\label{_model_8c_a186b097eef82ae201d35678edc5253c9}} 
+\index{Model.c@{Model.c}!process\_mesh@{process\_mesh}}
+\index{process\_mesh@{process\_mesh}!Model.c@{Model.c}}
+\subsubsection{\texorpdfstring{process\_mesh()}{process\_mesh()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_mesh}{Mesh}} $\ast$ process\+\_\+mesh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_model}{Model}} $\ast$}]{model,  }\item[{ai\+Mesh $\ast$}]{mesh,  }\item[{const ai\+Scene $\ast$}]{scene }\end{DoxyParamCaption})}
+
+
+
+Processes mesh (loads materials and textures) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & currently processed model \\
+\hline
+{\em mesh} & currently processed mesh \\
+\hline
+{\em scene} & currently processed scene \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_mesh}{Mesh}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_model_8c_a7f1309ab611dd88dde4c37dcca53c935}\label{_model_8c_a7f1309ab611dd88dde4c37dcca53c935}} 
+\index{Model.c@{Model.c}!process\_node@{process\_node}}
+\index{process\_node@{process\_node}!Model.c@{Model.c}}
+\subsubsection{\texorpdfstring{process\_node()}{process\_node()}}
+{\footnotesize\ttfamily void process\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_model}{Model}} $\ast$}]{model,  }\item[{ai\+Node $\ast$}]{node,  }\item[{const ai\+Scene $\ast$}]{scene }\end{DoxyParamCaption})}
+
+
+
+Processes all nodes on assimp scene. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & currently processed model \\
+\hline
+{\em node} & currently processed node \\
+\hline
+{\em scene} & currently processed scene \\
+\hline
+\end{DoxyParams}
