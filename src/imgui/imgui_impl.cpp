@@ -1,4 +1,4 @@
-#include "imgui_impl.h"
+#include "imgui_impl.hpp"
 
 #ifdef _WIN32
 #undef APIENTRY

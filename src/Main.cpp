@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "imgui/imgui_impl.h"
+#include "imgui/imgui_impl.hpp"
 #include "states/ExampleState.hpp"
 
 int start()
@@ -20,10 +20,12 @@ int start()
 	return 0;
 }
 
+#ifdef _WIN32
 int __stdcall WinMain([[maybe_unused]] HINSTANCE hInstance, [[maybe_unused]] HINSTANCE hPrevInstance, [[maybe_unused]] PSTR lpCmdLine, [[maybe_unused]] INT nCmdShow)
 {
 	return start();
 }
+#endif
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 {

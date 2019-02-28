@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "imgui/imgui_impl.h"
+#include "imgui/imgui_impl.hpp"
 #include "imgui/fonts.hpp"
 #include "game_objects/Settings.hpp"
 #include "game_objects/SharedData.hpp"
