@@ -8,6 +8,7 @@
 #include <tuple>
 #include <thread>
 #include <map>
+#include <any>
 #include <fstream>
 #include <atomic>
 #include <mutex>
@@ -38,6 +39,10 @@
 
 // BASS
 #include <bass.h>
+
+// SpdLog
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 
 // Some of the stuff from STL that you'll use a lot
 using std::string;

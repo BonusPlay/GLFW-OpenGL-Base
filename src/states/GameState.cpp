@@ -1,15 +1,13 @@
 #include "GameState.hpp"
 #include "../Game.hpp"
-#include "../general/Settings.hpp"
-#include "../general/SharedData.hpp"
-#include "../threads/Frontend.hpp"
+#include "../game_objects/Settings.hpp"
 #include "ExampleState.hpp"
 
 float last_frame = 0.0f;
 
 GameState::GameState()
 {
-	window = game->get_window();
+	window = g_Game->get_window();
 }
 
 void GameState::update()
@@ -19,8 +17,8 @@ void GameState::update(int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_GRAVE_ACCENT && action == GLFW_PRESS)
 	{
-		settings.ui_open = !settings.ui_open;
-		glfwSetInputMode(window, GLFW_CURSOR, settings.ui_open ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED);
+		g_Settings.ui_open = !g_Settings.ui_open;
+		glfwSetInputMode(window, GLFW_CURSOR, g_Settings.ui_open ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED);
 	}
 }
 
@@ -36,7 +34,7 @@ void GameState::render()
 	last_frame = time_value;
 
 	projection = glm::mat4(1.0f);
-	projection = glm::perspective(glm::radians(80.0f), static_cast<float>(settings.screen_width) / static_cast<float>(settings.screen_height), 0.1f, 100.0f);
+	projection = glm::perspective(glm::radians(80.0f), static_cast<float>(g_Settings.screen_width) / static_cast<float>(g_Settings.screen_height), 0.1f, 100.0f);
 
 	render_fps();
 
@@ -44,10 +42,10 @@ void GameState::render()
 	render_debug_overlay();
 #endif
 
-	if (settings.ui_open)
+	if (g_Settings.ui_open)
 	{
 #ifdef _DEBUG
-		ImGui::ShowDemoWindow(&settings.ui_open);
+		ImGui::ShowDemoWindow(&g_Settings.ui_open);
 #endif
 		render_gamestate_menu();
 	}
@@ -102,15 +100,5 @@ void GameState::render_debug_overlay() const
 
 void GameState::render_gamestate_menu() const
 {
-	if (ImGui::Begin("GameState menu", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
-	{
-		if (ImGui::Button("ExampleState"))
-		{
-			shared.game_state_ready = false;
-			Threads::render_load_state();
-			shared.game_state = make_shared<ExampleState>();
-		}
 
-		ImGui::End();
-	}
 }

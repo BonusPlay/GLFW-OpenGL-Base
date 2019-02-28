@@ -19,12 +19,6 @@
     <Filter Include="Header Files\imgui">
       <UniqueIdentifier>{20f8197a-9980-4afa-baea-5ece615d3e15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\general">
-      <UniqueIdentifier>{2b75c938-8dbf-4a1e-86c8-bf9c9d45c5e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\general">
-      <UniqueIdentifier>{6da4cb3a-e062-44ef-8948-e9bdf11ad35b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\states">
       <UniqueIdentifier>{5e5b19c0-a6bb-4d4e-a0fe-8835d93a45f6}</UniqueIdentifier>
     </Filter>
@@ -39,6 +33,12 @@
     </Filter>
     <Filter Include="Source Files\threads">
       <UniqueIdentifier>{f7ccf99f-dbee-4311-a2d9-489d41216774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game objects">
+      <UniqueIdentifier>{2b75c938-8dbf-4a1e-86c8-bf9c9d45c5e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game objects">
+      <UniqueIdentifier>{6da4cb3a-e062-44ef-8948-e9bdf11ad35b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,30 +60,6 @@
     <ClCompile Include="Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="general\Camera.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\CubeMap.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\GameObject.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Mesh.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Model.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Music.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Shader.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
-    <ClCompile Include="general\Texture.cpp">
-      <Filter>Source Files\general</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -96,14 +72,35 @@
     <ClCompile Include="utils\glad.c">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="threads\Backend.cpp">
-      <Filter>Source Files\threads</Filter>
-    </ClCompile>
-    <ClCompile Include="threads\Frontend.cpp">
-      <Filter>Source Files\threads</Filter>
-    </ClCompile>
     <ClCompile Include="states\LoadState.cpp">
       <Filter>Source Files\states</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\Camera.cpp">
+      <Filter>Source Files\game objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\CubeMap.cpp">
+      <Filter>Source Files\game objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\GameObject.cpp">
+      <Filter>Source Files\game objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\Mesh.cpp">
+      <Filter>Source Files\game objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\Model.cpp">
+      <Filter>Source Files\game objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\Music.cpp">
+      <Filter>Source Files\game objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\Shader.cpp">
+      <Filter>Source Files\game objects</Filter>
+    </ClCompile>
+    <ClCompile Include="game_objects\Texture.cpp">
+      <Filter>Source Files\game objects</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>Source Files\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,36 +113,6 @@
     <ClInclude Include="Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="general\Camera.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\CubeMap.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\GameObject.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Mesh.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Model.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Music.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Shader.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Texture.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Vertex.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="general\Settings.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
     <ClInclude Include="Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -154,15 +121,6 @@
     </ClInclude>
     <ClInclude Include="states\ExampleState.hpp">
       <Filter>Header Files\states</Filter>
-    </ClInclude>
-    <ClInclude Include="general\SharedData.hpp">
-      <Filter>Header Files\general</Filter>
-    </ClInclude>
-    <ClInclude Include="threads\Backend.hpp">
-      <Filter>Header Files\threads</Filter>
-    </ClInclude>
-    <ClInclude Include="threads\Frontend.hpp">
-      <Filter>Header Files\threads</Filter>
     </ClInclude>
     <ClInclude Include="imgui\fonts.hpp">
       <Filter>Header Files\imgui</Filter>
@@ -178,6 +136,39 @@
     </ClInclude>
     <ClInclude Include="states\LoadState.hpp">
       <Filter>Header Files\states</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\Camera.hpp">
+      <Filter>Header Files\game objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\CubeMap.hpp">
+      <Filter>Header Files\game objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\GameObject.hpp">
+      <Filter>Header Files\game objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\Mesh.hpp">
+      <Filter>Header Files\game objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\Model.hpp">
+      <Filter>Header Files\game objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\Music.hpp">
+      <Filter>Header Files\game objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\Settings.hpp">
+      <Filter>Header Files\game objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\Shader.hpp">
+      <Filter>Header Files\game objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\SharedData.hpp">
+      <Filter>Header Files\game objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\Texture.hpp">
+      <Filter>Header Files\game objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game_objects\Vertex.hpp">
+      <Filter>Header Files\game objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,5 @@
 #include "ExampleState.hpp"
-#include "../general/Settings.hpp"
-#include "../general/SharedData.hpp"
+#include "../game_objects/Settings.hpp"
 #include "../imgui/font_awesome.hpp"
 
 atomic<float> delta_time2 = 0.0f;
@@ -16,29 +15,24 @@ void ExampleState::render()
 {
 	GameState::render();
 
-	if (shared.game_state_ready)	// if we change shared.game_state in GameState::render() then this is nullptr, so we have to work around it
-	{
-		glStencilFunc(GL_ALWAYS, 1, 0xFF);
-		glStencilMask(0xFF);
+	glStencilFunc(GL_ALWAYS, 1, 0xFF);
+	glStencilMask(0xFF);
 
-		// Shader
-		shader->use();
-		shader->set_mat4("view", cam->get_view_matrix());
-		shader->set_mat4("projection", projection);
+	// Shader
+	shader->use();
+	shader->set_mat4("view", cam->get_view_matrix());
+	shader->set_mat4("projection", projection);
 
-		// draw
-		model->draw(shader);
+	// draw
+	model->draw(shader);
 
-		// Skybox
-		shader_skybox->use();
-		shader_skybox->set_mat4("view", glm::mat4(glm::mat3(cam->get_view_matrix())));
-		shader_skybox->set_mat4("projection", projection);
-		skybox->draw(shader_skybox);
+	// Skybox
+	shader_skybox->use();
+	shader_skybox->set_mat4("view", glm::mat4(glm::mat3(cam->get_view_matrix())));
+	shader_skybox->set_mat4("projection", projection);
+	skybox->draw(shader_skybox);
 
-		render_music_menu();
-	}
-	else
-		shared.game_state_ready = true;
+	render_music_menu();
 }
 
 void ExampleState::update()
@@ -74,7 +68,7 @@ void ExampleState::load()
 
 void ExampleState::render_music_menu() const
 {
-	if (settings.ui_open)
+	if (g_Settings.ui_open)
 	{
 		if (ImGui::Begin("Music window", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoTitleBar))
 		{

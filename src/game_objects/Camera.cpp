@@ -27,16 +27,16 @@ glm::mat4 Camera::get_view_matrix() const
 void Camera::process_keyboard(float deltaTime)
 {
 	const float velocity = MovementSpeed * deltaTime;
-	if (glfwGetKey(game->get_window(), GLFW_KEY_W) == GLFW_PRESS)
+	if (glfwGetKey(g_Game->get_window(), GLFW_KEY_W) == GLFW_PRESS)
 		position += Front * velocity;
 
-	if (glfwGetKey(game->get_window(), GLFW_KEY_S) == GLFW_PRESS)
+	if (glfwGetKey(g_Game->get_window(), GLFW_KEY_S) == GLFW_PRESS)
 		position -= Front * velocity;
 
-	if (glfwGetKey(game->get_window(), GLFW_KEY_A) == GLFW_PRESS)
+	if (glfwGetKey(g_Game->get_window(), GLFW_KEY_A) == GLFW_PRESS)
 		position -= Right * velocity;
 
-	if (glfwGetKey(game->get_window(), GLFW_KEY_D) == GLFW_PRESS)
+	if (glfwGetKey(g_Game->get_window(), GLFW_KEY_D) == GLFW_PRESS)
 		position += Right * velocity;
 }
 

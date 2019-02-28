@@ -1,9 +1,9 @@
 #pragma once
 #include "../Common.hpp"
 #include "GameState.hpp"
-#include "../general/Model.hpp"
-#include "../general/CubeMap.hpp"
-#include "../general/Music.hpp"
+#include "../game_objects/Model.hpp"
+#include "../game_objects/CubeMap.hpp"
+#include "../game_objects/Music.hpp"
 
 class ExampleState : public GameState
 {

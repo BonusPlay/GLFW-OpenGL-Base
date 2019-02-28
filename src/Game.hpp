@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.hpp"
+#include "states/GameState.hpp"
 
 class Game
 {
@@ -10,6 +11,11 @@ public:
 
 	GLFWwindow* get_window() const;
 	static void set_volume(float volume);
+
+	void set_game_state (unique_ptr<GameState> game_state);
+
+	void update();
+	void render();
 
 private:
 	GLFWwindow* window;
@@ -24,4 +30,4 @@ private:
 	static void log_error(int error, const char* description);
 };
 
-extern unique_ptr<Game> game;
+extern unique_ptr<Game> g_Game;

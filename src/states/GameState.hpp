@@ -1,7 +1,7 @@
 #pragma once
 #include "../Common.hpp"
-#include "../general/Camera.hpp"
-#include "../general/Shader.hpp"
+#include "../game_objects/Camera.hpp"
+#include "../game_objects/Shader.hpp"
 
 class GameState
 {
@@ -15,7 +15,7 @@ public:
 	virtual void render();
 
 protected:
-	GLFWwindow * window;
+	GLFWwindow* window;
 	shared_ptr<Camera> cam;
 	shared_ptr<Shader> shader;
 

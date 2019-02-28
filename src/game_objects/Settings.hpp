@@ -9,4 +9,4 @@ struct Settings
 	int screen_height = 720;
 };
 
-extern Settings settings;
+extern Settings g_Settings;

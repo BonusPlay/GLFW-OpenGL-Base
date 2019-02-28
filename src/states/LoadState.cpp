@@ -1,5 +1,4 @@
 #include "LoadState.hpp"
-#include "../general/SharedData.hpp"
 
 LoadState::LoadState()
 {
