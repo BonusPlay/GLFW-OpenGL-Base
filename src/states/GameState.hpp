@@ -8,6 +8,13 @@ class GameState
 public:
 	GameState();
 	virtual ~GameState() = default;
+<<<<<<< HEAD
+=======
+	GameState(const GameState&) = default;
+	GameState(GameState&&) = default;
+	GameState& operator=(const GameState&) = default;
+	GameState& operator=(GameState&&) = default;
+>>>>>>> a4a49d8... fafa
 
 	virtual void update();
 	virtual void update(int key, int scancode, int action, int mods);
@@ -16,8 +23,13 @@ public:
 
 protected:
 	GLFWwindow* window;
+<<<<<<< HEAD
 	shared_ptr<Camera> cam;
 	shared_ptr<Shader> shader;
+=======
+	unique_ptr<Camera> cam;
+	unique_ptr<Shader> shader;
+>>>>>>> a4a49d8... fafa
 
 	virtual void load() = 0;
 	void render_fps() const;

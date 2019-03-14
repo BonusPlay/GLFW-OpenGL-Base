@@ -1,8 +1,13 @@
 #include "Music.hpp"
 
 Music::Music(string name)
+<<<<<<< HEAD
 {
 	this->name = name;
+=======
+	: name(std::move(name))
+{
+>>>>>>> a4a49d8... fafa
 	music = BASS_StreamCreateFile(false, ("res/music/" + name + ".mp3").c_str(), 0, 0, 0);
 	check_errors();
 }

@@ -1,11 +1,17 @@
 #include "Mesh.hpp"
 
+<<<<<<< HEAD
 Mesh::Mesh(vector<Vertex> vertices, vector<unsigned> indices, vector<Texture> textures)
 {
 	this->vertices = vertices;
 	this->indices = indices;
 	this->textures = textures;
 
+=======
+Mesh::Mesh(vector<Vertex> vertices, vector<unsigned>indices, vector<Texture> textures)
+	: vertices(std::move(vertices)), indices(std::move(indices)), textures(std::move(textures))
+{
+>>>>>>> a4a49d8... fafa
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
@@ -49,7 +55,11 @@ Mesh::~Mesh()
 	//glDeleteBuffers(1, &EBO);
 }
 
+<<<<<<< HEAD
 void Mesh::draw(shared_ptr<Shader> shader)
+=======
+void Mesh::draw(const Shader& shader)
+>>>>>>> a4a49d8... fafa
 {
 	unsigned int diffuseNr = 1;
 	unsigned int specularNr = 1;
@@ -88,7 +98,11 @@ void Mesh::draw(shared_ptr<Shader> shader)
 		}
 
 		// now set the sampler to the correct texture unit
+<<<<<<< HEAD
 		shader->set_int(name + "_" + number, i);
+=======
+		shader.set_int(name + "_" + number, i);
+>>>>>>> a4a49d8... fafa
 
 		// and finally bind the texture
 		glBindTexture(GL_TEXTURE_2D, textures[i].get_id());

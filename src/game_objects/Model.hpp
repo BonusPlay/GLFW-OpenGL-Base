@@ -9,7 +9,11 @@ class Model : public GameObject
 public:
 	Model(const string& file);
 
+<<<<<<< HEAD
 	void draw(shared_ptr<Shader> shader);
+=======
+	void draw(const Shader& shader);
+>>>>>>> a4a49d8... fafa
 
 private:
 	vector<Texture> textures_loaded;

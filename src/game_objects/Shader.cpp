@@ -9,7 +9,11 @@
  * \throws runtime_error failed to compile fragment shader
  * \throws runtime_error failed to compile program
  */
+<<<<<<< HEAD
 Shader::Shader(string v_shader_path, string f_shader_path)
+=======
+Shader::Shader(const string& v_shader_path, const string& f_shader_path)
+>>>>>>> a4a49d8... fafa
 {
 	string v_shader_code = v_shader_load("res/shaders/" + v_shader_path + ".vert");
 	string f_shader_code = f_shader_load("res/shaders/" + f_shader_path + ".frag");
@@ -98,7 +102,11 @@ void Shader::set_mat4(const string& name, const glm::mat4& value) const
 /**
  * \throws runtime_error failed to load vertex shader
  */
+<<<<<<< HEAD
 string Shader::v_shader_load(string v_shader_path) const
+=======
+string Shader::v_shader_load(const string& v_shader_path) const
+>>>>>>> a4a49d8... fafa
 {
 	std::ifstream v_shader_file;
 	v_shader_file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
@@ -122,7 +130,11 @@ string Shader::v_shader_load(string v_shader_path) const
 /**
  * \throws runtime_error failed to load fragment shader
  */
+<<<<<<< HEAD
 string Shader::f_shader_load(string f_shader_path) const
+=======
+string Shader::f_shader_load(const string& f_shader_path) const
+>>>>>>> a4a49d8... fafa
 {
 	std::ifstream f_shader_file;
 	f_shader_file.exceptions(std::ifstream::failbit | std::ifstream::badbit);

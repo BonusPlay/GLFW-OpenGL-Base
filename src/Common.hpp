@@ -9,13 +9,25 @@
 #include <thread>
 #include <map>
 #include <any>
+<<<<<<< HEAD
+=======
+#include <array>
+>>>>>>> a4a49d8... fafa
 #include <fstream>
 #include <atomic>
 #include <mutex>
 #include <condition_variable>
+<<<<<<< HEAD
 
 // GLAD + GLFW
 #include <glad.h>
+=======
+#include <string_view>
+
+// GLAD + GLFW
+#define GLFW_INCLUDE_NONE // we include GLAD so we don't want glfw to load it's own
+#include <glad/glad.h>
+>>>>>>> a4a49d8... fafa
 #include <GLFW/glfw3.h>
 
 // GLM
@@ -46,6 +58,10 @@
 
 // Some of the stuff from STL that you'll use a lot
 using std::string;
+<<<<<<< HEAD
+=======
+using std::string_view;
+>>>>>>> a4a49d8... fafa
 using std::shared_ptr;
 using std::unique_ptr;
 using std::make_unique;
@@ -66,6 +82,10 @@ using std::condition_variable;
 using std::atomic;
 using std::unique_lock;
 using std::scoped_lock;
+<<<<<<< HEAD
+=======
+using std::array;
+>>>>>>> a4a49d8... fafa
 
 #define GET_VARIABLE_NAME(Variable) (#Variable)
 

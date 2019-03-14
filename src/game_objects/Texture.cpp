@@ -3,10 +3,17 @@
 /**
  * \throws runtime_error Failed to load texture
  */
+<<<<<<< HEAD
 Texture::Texture(string file, aiTextureType type)
 {
 	this->path = file.substr(0, path.find_last_of(PATH_SEP));
 	this->type = type;
+=======
+Texture::Texture(const string& file, aiTextureType type)
+	: type(std::move(type))
+{
+	this->path = file.substr(0, path.find_last_of(PATH_SEP));
+>>>>>>> a4a49d8... fafa
 
 	glGenTextures(1, &ID);
 

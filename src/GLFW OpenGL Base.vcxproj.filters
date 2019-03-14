@@ -107,9 +107,12 @@
     <ClInclude Include="imgui\imconfig.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="imgui\imgui_impl.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
+=======
+>>>>>>> a4a49d8... fafa
     <ClInclude Include="Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -170,5 +173,11 @@
     <ClInclude Include="game_objects\Vertex.hpp">
       <Filter>Header Files\game objects</Filter>
     </ClInclude>
+<<<<<<< HEAD
+=======
+    <ClInclude Include="imgui\imgui_impl.hpp">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+>>>>>>> a4a49d8... fafa
   </ItemGroup>
 </Project>

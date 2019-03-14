@@ -2,12 +2,19 @@
 
 LoadState::LoadState()
 {
+<<<<<<< HEAD
 	LoadState::load();
 }
 
 LoadState::~LoadState()
 {}
 
+=======
+	shader = make_unique<Shader>("example", "example");
+	cam = make_unique<Camera>(glm::vec3(0.0f, 0.0f, 3.0f));
+}
+
+>>>>>>> a4a49d8... fafa
 void LoadState::update()
 {}
 
@@ -24,10 +31,13 @@ void LoadState::render()
 	shader->set_mat4("projection", projection);
 
 	// draw stuff without Dear ImGui
+<<<<<<< HEAD
 }
 
 void LoadState::load()
 {
 	shader = make_shared<Shader>("example", "example");
 	cam = make_unique<Camera>(glm::vec3(0.0f, 0.0f, 3.0f));
+=======
+>>>>>>> a4a49d8... fafa
 }

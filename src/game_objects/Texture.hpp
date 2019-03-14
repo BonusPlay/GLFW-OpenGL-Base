@@ -4,7 +4,11 @@
 class Texture
 {
 public:
+<<<<<<< HEAD
 	Texture(string file, aiTextureType type);
+=======
+	Texture(const string& file, aiTextureType type);
+>>>>>>> a4a49d8... fafa
 	//~Texture(); BUG: declaring deconstructor breaks a lot of stuff
 
 	unsigned int get_id() const;

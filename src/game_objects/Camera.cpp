@@ -2,15 +2,21 @@
 #include "../Game.hpp"
 
 Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch)
+<<<<<<< HEAD
 {
 	this->position = position;
 	WorldUp = up;
 	Yaw = yaw;
 	Pitch = pitch;
+=======
+	: GameObject(position), WorldUp(std::move(up)), Yaw(std::move(yaw)), Pitch(std::move(pitch))
+{
+>>>>>>> a4a49d8... fafa
 	update_camera_vectors();
 }
 
 Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch)
+<<<<<<< HEAD
 {
 	this->position = glm::vec3(posX, posY, posZ);
 	WorldUp = glm::vec3(upX, upY, upZ);
@@ -18,6 +24,10 @@ Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float u
 	Pitch = pitch;
 	update_camera_vectors();
 }
+=======
+	: Camera(glm::vec3(posX, posY, posZ), glm::vec3(upX, upY, upZ), yaw, pitch)
+{}
+>>>>>>> a4a49d8... fafa
 
 glm::mat4 Camera::get_view_matrix() const
 {

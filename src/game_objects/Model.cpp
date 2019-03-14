@@ -19,7 +19,11 @@ Model::Model(const string& file)
 	process_node(scene->mRootNode, scene);
 }
 
+<<<<<<< HEAD
 void Model::draw(shared_ptr<Shader> shader)
+=======
+void Model::draw(const Shader& shader)
+>>>>>>> a4a49d8... fafa
 {
 	GameObject::draw(shader);
 

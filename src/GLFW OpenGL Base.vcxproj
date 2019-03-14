@@ -244,7 +244,11 @@ xcopy /I /Y "$(SolutionDir)lib\bass\c\*.dll" "$(outDir)"</Command>
     <ClInclude Include="imgui\font_kenney.hpp" />
     <ClInclude Include="imgui\font_material_design.hpp" />
     <ClInclude Include="imgui\imconfig.h" />
+<<<<<<< HEAD
     <ClInclude Include="imgui\imgui_impl.h" />
+=======
+    <ClInclude Include="imgui\imgui_impl.hpp" />
+>>>>>>> a4a49d8... fafa
     <ClInclude Include="states\ExampleState.hpp" />
     <ClInclude Include="states\GameState.hpp" />
     <ClInclude Include="states\LoadState.hpp" />

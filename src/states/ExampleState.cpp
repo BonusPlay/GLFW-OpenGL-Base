@@ -24,13 +24,21 @@ void ExampleState::render()
 	shader->set_mat4("projection", projection);
 
 	// draw
+<<<<<<< HEAD
 	model->draw(shader);
+=======
+	model->draw(*shader);
+>>>>>>> a4a49d8... fafa
 
 	// Skybox
 	shader_skybox->use();
 	shader_skybox->set_mat4("view", glm::mat4(glm::mat3(cam->get_view_matrix())));
 	shader_skybox->set_mat4("projection", projection);
+<<<<<<< HEAD
 	skybox->draw(shader_skybox);
+=======
+	skybox->draw(*shader_skybox);
+>>>>>>> a4a49d8... fafa
 
 	render_music_menu();
 }
@@ -58,12 +66,21 @@ void ExampleState::update(int key, int scancode, int action, int mods)
 
 void ExampleState::load()
 {
+<<<<<<< HEAD
 	music = make_shared<Music>("Crossing the Waterscape");
 	shader = make_shared<Shader>("example", "example");
 	shader_skybox = make_shared<Shader>("skybox", "skybox");
 	cam = make_unique<Camera>(glm::vec3(0.0f, 0.0f, 3.0f));
 	model = make_unique<Model>("res/nanosuit/nanosuit.obj");
 	skybox = make_shared<CubeMap>("sea");
+=======
+	music = make_unique<Music>("Crossing the Waterscape");
+	shader = make_unique<Shader>("example", "example");
+	shader_skybox = make_unique<Shader>("skybox", "skybox");
+	cam = make_unique<Camera>(glm::vec3(0.0f, 0.0f, 3.0f));
+	model = make_unique<Model>("res/nanosuit/nanosuit.obj");
+	skybox = make_unique<CubeMap>("sea");
+>>>>>>> a4a49d8... fafa
 }
 
 void ExampleState::render_music_menu() const

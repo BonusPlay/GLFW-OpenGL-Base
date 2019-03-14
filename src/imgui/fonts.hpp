@@ -6,9 +6,15 @@
 
 namespace Fonts
 {
+<<<<<<< HEAD
 	void init()
 	{
 		ImGuiIO& io = ImGui::GetIO();
+=======
+	inline void init()
+	{
+		auto& io = ImGui::GetIO();
+>>>>>>> a4a49d8... fafa
 		io.Fonts->AddFontDefault();
 
 		// merge in icons from Font Awesome
