@@ -40,10 +40,11 @@ Texture::Texture(const string& file, aiTextureType type)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
 
-//Texture::~Texture()
-//{
-//	glDeleteTextures(1, &ID);
-//}
+Texture::~Texture()
+{
+	if (!moved)
+		glDeleteTextures(1, &ID);
+}
 
 unsigned int Texture::get_id() const
 {

@@ -1,12 +1,14 @@
 #pragma once
 #include "Common.hpp"
 #include "states/GameState.hpp"
+#include "utils/Handle.hpp"
 
-class Game
+class Game : public Handle
 {
 public:
 	Game();
-	Game(Game const&) = delete;
+	Game(Game&&) = default;
+	Game& operator=(Game&&) = default;
 	~Game();
 
 	GLFWwindow* get_window() const;

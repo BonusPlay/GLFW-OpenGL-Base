@@ -1,11 +1,14 @@
 #pragma once
 #include "../Common.hpp"
+#include "../utils/Handle.hpp"
 
-class Texture
+class Texture : public Handle
 {
 public:
 	Texture(const string& file, aiTextureType type);
-	//~Texture(); BUG: declaring deconstructor breaks a lot of stuff
+	Texture(Texture&& other) = default;
+	Texture& operator=(Texture&& other) = default;
+	~Texture();
 
 	unsigned int get_id() const;
 	aiTextureType get_type() const;

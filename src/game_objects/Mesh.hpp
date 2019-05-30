@@ -7,12 +7,12 @@
 class Mesh
 {
 public:
-	Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
-	~Mesh();
+	Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture*> textures);
 	Mesh(const Mesh&) = default;
 	Mesh(Mesh&&) = default;
 	Mesh& operator=(const Mesh&) = default;
 	Mesh& operator=(Mesh&&) = default;
+	~Mesh();
 
 	void draw(const Shader& shader);
 
@@ -21,5 +21,5 @@ private:
 
 	vector<Vertex> vertices;
 	vector<unsigned int> indices;
-	vector<Texture> textures;
+	vector<Texture*> textures;
 };

@@ -9,8 +9,11 @@ Music::Music(string name)
 
 Music::~Music()
 {
-	BASS_StreamFree(music);
-	check_errors();
+	if (!moved)
+	{
+		BASS_StreamFree(music);
+		check_errors();
+	}
 }
 
 void Music::play()

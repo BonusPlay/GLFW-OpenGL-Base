@@ -22,7 +22,8 @@ Shader::Shader(const string& v_shader_path, const string& f_shader_path)
 
 Shader::~Shader()
 {
-	glDeleteShader(ID);
+	if(!moved)
+		glDeleteShader(ID);
 }
 
 unsigned Shader::get_id() const

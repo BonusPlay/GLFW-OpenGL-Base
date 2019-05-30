@@ -115,8 +115,11 @@ CubeMap::CubeMap(const string& name)
 
 CubeMap::~CubeMap()
 {
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
+	if (!moved)
+	{
+		glDeleteVertexArrays(1, &VAO);
+		glDeleteBuffers(1, &VBO);
+	}
 }
 
 unsigned int CubeMap::get_id() const

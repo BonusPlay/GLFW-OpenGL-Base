@@ -248,6 +248,7 @@ xcopy /I /Y "$(SolutionDir)lib\bass\c\*.dll" "$(outDir)"</Command>
     <ClInclude Include="states\ExampleState.hpp" />
     <ClInclude Include="states\GameState.hpp" />
     <ClInclude Include="states\LoadState.hpp" />
+    <ClInclude Include="utils\Handle.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\example.frag" />

@@ -1,6 +1,6 @@
 #include "Mesh.hpp"
 
-Mesh::Mesh(vector<Vertex> vertices, vector<unsigned>indices, vector<Texture> textures)
+Mesh::Mesh(vector<Vertex> vertices, vector<unsigned>indices, vector<Texture*> textures)
 	: vertices(std::move(vertices)), indices(std::move(indices)), textures(std::move(textures))
 {
 	glGenVertexArrays(1, &VAO);
@@ -59,7 +59,7 @@ void Mesh::draw(const Shader& shader)
 										   // retrieve texture number (the N in diffuse_textureN)
 		string name;
 		string number;
-		aiTextureType type = textures[i].get_type();
+		aiTextureType type = (*textures[i]).get_type();
 
 		switch (type)
 		{
@@ -88,7 +88,7 @@ void Mesh::draw(const Shader& shader)
 		shader.set_int(name + "_" + number, i);
 
 		// and finally bind the texture
-		glBindTexture(GL_TEXTURE_2D, textures[i].get_id());
+		glBindTexture(GL_TEXTURE_2D, (*textures[i]).get_id());
 	}
 
 	// draw mesh

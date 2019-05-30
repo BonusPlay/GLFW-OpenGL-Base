@@ -1,5 +1,6 @@
 #pragma once
 #include "../Common.hpp"
+#include "../utils/Handle.hpp"
 
 using namespace std::chrono;
 
@@ -11,10 +12,12 @@ enum MusicStatus
 	Stalled = 3
 };
 
-class Music
+class Music : public Handle
 {
 public:
 	Music(string name);
+	Music(Music&& other) = default;
+	Music& operator=(Music&&) = default;
 	~Music();
 
 	void play();

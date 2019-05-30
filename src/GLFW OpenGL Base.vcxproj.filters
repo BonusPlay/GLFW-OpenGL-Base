@@ -34,6 +34,9 @@
     <Filter Include="Resource Files\shaders">
       <UniqueIdentifier>{0c8c1049-d03d-45eb-a4bc-4e20e395be62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{3e68d63a-12f0-41d7-883a-f037fe44307a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="imgui\imgui_impl.hpp">
       <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\Handle.hpp">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

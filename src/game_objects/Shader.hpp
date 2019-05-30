@@ -1,10 +1,13 @@
 #pragma once
 #include "../Common.hpp"
+#include "../utils/Handle.hpp"
 
-class Shader
+class Shader : public Handle
 {
 public:
 	Shader(const string& v_shader_path, const string& f_shader_path);
+	Shader(Shader&&) = default;
+	Shader& operator=(Shader&&) = default;
 	~Shader();
 
 	unsigned int get_id() const;

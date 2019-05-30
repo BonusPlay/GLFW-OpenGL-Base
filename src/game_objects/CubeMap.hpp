@@ -1,16 +1,15 @@
 ﻿#pragma once
 #include "../Common.hpp"
 #include "Shader.hpp"
+#include "../utils/Handle.hpp"
 
-class CubeMap
+class CubeMap : public Handle
 {
 public:
 	CubeMap(const string& name);
-	~CubeMap();
-	CubeMap(const CubeMap&) = default;
 	CubeMap(CubeMap&&) = default;
-	CubeMap& operator=(const CubeMap&) = default;
 	CubeMap& operator=(CubeMap&&) = default;
+	~CubeMap();
 
 	unsigned int get_id() const;
 
