@@ -7,7 +7,7 @@
 class Model : public GameObject
 {
 public:
-	Model(const string& file);
+	explicit Model(const string& file);
 
 	void draw(const Shader& shader);
 

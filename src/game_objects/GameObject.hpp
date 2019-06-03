@@ -5,7 +5,7 @@
 class GameObject
 {
 public:
-	GameObject(glm::vec3 position = glm::vec3(0.0f), glm::quat rotation = glm::quat(0.0f, 0.0f, 0.0f, 0.0f), glm::vec3 scale = glm::vec3(1.0f));
+	explicit GameObject(glm::vec3 position = glm::vec3(0.0f), glm::quat rotation = glm::quat(0.0f, 0.0f, 0.0f, 0.0f), glm::vec3 scale = glm::vec3(1.0f));
 	virtual ~GameObject() = default;
 	GameObject(const GameObject&) = default;
 	GameObject(GameObject&&) = default;

@@ -8,10 +8,6 @@ class GameState
 public:
 	GameState();
 	virtual ~GameState() = default;
-	GameState(const GameState&) = default;
-	GameState(GameState&&) = default;
-	GameState& operator=(const GameState&) = default;
-	GameState& operator=(GameState&&) = default;
 
 	virtual void update();
 	virtual void update(int key, int scancode, int action, int mods);

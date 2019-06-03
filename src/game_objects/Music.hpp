@@ -15,7 +15,7 @@ enum MusicStatus
 class Music : public Handle
 {
 public:
-	Music(string name);
+	explicit Music(string name);
 	Music(Music&& other) = default;
 	Music& operator=(Music&&) = default;
 	~Music();

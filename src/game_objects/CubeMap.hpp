@@ -6,7 +6,7 @@
 class CubeMap : public Handle
 {
 public:
-	CubeMap(const string& name);
+	explicit CubeMap(const string& name);
 	CubeMap(CubeMap&&) = default;
 	CubeMap& operator=(CubeMap&&) = default;
 	~CubeMap();

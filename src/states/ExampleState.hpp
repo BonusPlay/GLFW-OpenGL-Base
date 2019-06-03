@@ -9,11 +9,7 @@ class ExampleState : public GameState
 {
 public:
 	ExampleState();
-	~ExampleState() = default;
-	ExampleState(const ExampleState&) = default;
-	ExampleState(ExampleState&&) = default;
-	ExampleState& operator=(const ExampleState&) = default;
-	ExampleState& operator=(ExampleState&&) = default;
+	~ExampleState() override = default;
 
 	void render() override;
 	void update() override;

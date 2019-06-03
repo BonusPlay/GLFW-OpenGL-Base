@@ -4,7 +4,7 @@
  * \throws runtime_error Failed to load texture
  */
 Texture::Texture(const string& file, aiTextureType type)
-	: type(std::move(type))
+	: type(type) // no move, since trivially copyable
 {
 	this->path = file.substr(0, path.find_last_of(PATH_SEP));
 

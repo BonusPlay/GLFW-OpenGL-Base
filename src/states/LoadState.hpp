@@ -6,11 +6,7 @@ class LoadState : public GameState
 {
 public:
 	LoadState();
-	~LoadState() = default;
-	LoadState(const LoadState&) = default;
-	LoadState(LoadState&&) = default;
-	LoadState& operator=(const LoadState&) = default;
-	LoadState& operator=(LoadState&&) = default;
+	~LoadState() override = default;
 
 	void render() override;
 	void update() override;
